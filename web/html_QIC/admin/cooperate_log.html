@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>操作日志</title>
+<link rel="stylesheet" type="text/css" href="../style/admin-config-log.css">
+<script src="../js/jquery-1.8.2.min.js"></script>
+<script src="../js/global-qic.js"></script>
+</head>
+
+<body>
+
+
+<!--strategy_nav Begin-->
+<div class="strategy_nav">
+	<div class="date_log_box">
+	<div class="date_log">
+ <label class="log_c">时间&nbsp;</label><input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})" id="" name="start_applydate" readonly  class="log_c a_datepicker"  value="2012-11-25">
+ <label class="log_c">-</label>
+ <input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})" id="" name="start_applydate" readonly  class="log_c a_datepicker"  value="2012-11-25">
+ <input type="image" class="log_q user_submit" src="../images/user_check.png" name="">
+	</div>
+    </div>
+</div>
+<!--strategy_nav End-->
+
+<!--main_wrap Begin-->
+<div class="main_wrap">
+    
+
+	<!--sp_right Begin-->
+    <div class="sp_right_wrap">
+        	<div class="content_title">
+            	
+                
+                <div class="tab_title">
+                    <table width="100%" class=" tbl_exec" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th width="10%">操作时间</th>
+    <th width="10%">操作人</th>
+    <th width="10%">操作功能</th>
+    <th width="60%">操作内容</th>
+    <th width="10%">类型</th>
+  </tr>
+  
+  </table>
+  
+  <div class="tbl_scoll log_tbl">
+  <table width="100%" class="tbl_common tbl_exec" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="10%">2010-10-25</td>
+    <td width="10%">zhangsan</td>
+    <td width="10%">celue upolad</td>
+    <td width="60%">content</td>
+    <td width="10%">type</td>
+  </tr>
+  <tr>
+    <td width="10%">2010-10-25</td>
+    <td width="10%">zhangsan</td>
+    <td width="10%">celue upolad</td>
+    <td width="60%">content</td>
+    <td width="10%">type</td>
+  </tr>
+  <tr>
+    <td width="10%">2010-10-25</td>
+    <td width="10%">zhangsan</td>
+    <td width="10%">celue upolad</td>
+    <td width="60%">content</td>
+    <td width="10%">type</td>
+  </tr>
+  <tr>
+    <td width="10%">2010-10-25</td>
+    <td width="10%">zhangsan</td>
+    <td width="10%">celue upolad</td>
+    <td width="60%">content</td>
+    <td width="10%">type</td>
+  </tr>
+  
+  
+ 
+ 
+</table>
+</div>
+  <!--分页 Begin-->
+                                <div class="page">
+                                    <div class="page_center">
+                                        <a href="#" class="previous">上一页</a>
+                                        <span class="page_current">1</span>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <span class="page_break">...</span>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="page_num">共10页</span>
+                                        <span class="go_page">到第<input type="text">页</span>
+                                        <span class="page_ok"><img src="../images/st_ok.png"></span>
+                                    </div>
+                                </div>
+                                <!--分页 End-->
+                     
+                </div>
+                
+            </div>
+       
+            
+                          
+
+        </div>
+    <!--sp_right End-->
+    
+</div>
+<!--main_wrap End-->
+<script src = '../js/WdatePicker.js'></script>
+
+<script>
+(function(){
+	window.resizeHeight('.str_notice', 220);
+	window.resizeWidth('.tab_title', 80);
+	window.resizeHeight('.tbl_scoll', 200);
+
+})();
+
+
+</script>
+
+</body>
+</html>

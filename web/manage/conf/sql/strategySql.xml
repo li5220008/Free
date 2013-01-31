@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Strategy sql</comment>
+
+    <!--管理策略SQL-->
+    <entry key="StrategySql">
+        <![CDATA[
+                SELECT
+                      sb.id AS id,
+                      sb.`status` AS STATUS,
+                      sb.name AS sname,
+                      sb.provider AS provider,
+                      sb.trade_variety AS tradeVariety,
+                      sb.trade_type AS stype,
+                      sb.collect_count AS collectCount,
+                      c.nowOrder AS subscriber,
+                      MAX(uso.`order_etime`) AS endDate,
+                      sb.order_count AS allSubscriber,
+                      shl.`RetainedProfits` AS retainedProfits,
+                      shl.`Yield` AS yield,
+                      shl.`YieldOfYear` AS yieldOfYear,
+                      shl.`YieldOfMonth` As yieldOfMonth,
+                      shl.`YieldOfMonthStandardDeviation` AS yomsd,
+                      shl.`OverallProfitability` AS overallProfitability,
+                      shl.`OverallDeficit` AS overallDeficit,
+                      shl.`TradeCount` AS tradeCount,
+                      shl.`ProfitCount` AS profitCount,
+                      shl.`DeficitCount` AS deficitCount,
+                      shl.`MAXSingleProfit` AS maxSingleProfit,
+                      shl.`MAXSingleDeficit` AS maxSingleDeficit,
+                      shl.`TradeDays` AS tradeDays,
+                      shl.`MAXShortPositionTime` AS maxShortPositionTime,
+                      shl.`LongPositionTradeCount` AS longPositionTradeCount,
+                      shl.`ShortPositionTradeCount` AS shortPositionTradeCount,
+                      shl.`PositionCloseCount` AS positionCloseCount,
+                      shl.`MAXSequentialProfitCount` AS maxSequentialProfitCount,
+                      shl.`MAXSequentialDeficitCount` AS maxSequentialDeficitCount,
+                      shl.`ProfitRatio` AS profitRatio,
+                      shl.`CanhsiedRatio` AS canhsiedRatio,
+                      shl.`MAXSingleProfitRatio` AS maxSingleProfitRatio,
+                      shl.`MAXSingleDeficitRatio` AS maxSingleDeficitRatio,
+                      shl.`MAXSequentialDeficitCapital` AS maxSequentialDeficitCapital,
+                      shl.`SumOfCommission` AS sumOfCommission,
+                      shl.`GrossProfit` AS grossProfit,
+                      shl.`ProfitLossRatio` AS profitLossRatio,
+                      shl.`AvgProfitOfMonth` AS avgProfitOfMonth,
+                      shl.`SharpeIndex` AS sharpeIndex,
+                      shl.`FloatingProfitAndLoss` AS floatingProfitAndLoss,
+                      shl.`MovingCost` AS movingCost
+                    FROM
+                      qic_db.strategy_baseinfo sb
+                      LEFT JOIN user_strategy_order uso
+                        ON sb.`id` = uso.`stid`
+                      LEFT JOIN
+                        (SELECT
+                          COUNT(1) AS nowOrder,
+                          a.`stid` AS stid
+                        FROM
+                          qic_db.user_strategy_order a
+                          INNER JOIN qic_db.strategy_baseinfo b
+                            ON a.`stid` = b.`id`
+                        WHERE a.`order_etime` > NOW()
+                        GROUP BY b.`id`) c
+                        ON sb.`id` = c.stid
+                      LEFT JOIN strategy_high_low shl
+                        ON shl.`StrategyID` = sb.`st_uuid`
+                    WHERE 1 = 1
+
+                ]]>
+    </entry>
+
+
+    <!--到期策略清空SQL-->
+    <entry key="emptyStrategy">
+        <![CDATA[
+        DELETE
+        FROM
+          qic_db.`strategy_baseinfo`
+        WHERE (
+            STATUS = 5
+            AND DATEDIFF(NOW(), down_time) > 90
+          )
+          OR (STATUS = - 100
+          AND DATEDIFF(NOW(), del_time) > 90 )
+                ]]>
+    </entry>
+    <!--上传策略-->
+    <entry key="insertStrategy">
+            <![CDATA[
+            INSERT INTO strategy_baseinfo(
+                st_uuid,
+                name,
+                trade_type,
+                trade_variety,
+                provider,
+                provider_desp,
+                desp,
+                status,
+                stup_uid,
+                upload_time,
+                lookback_stime,
+                lookback_etime
+            )VALUES(
+                ?,?,?,?,?,?,?,?,?,NOW(),?,?
+            )
+        ]]>
+    </entry>
+    <!--查询策略-->
+    <entry key="findStrategyByName">
+        <![CDATA[
+            SELECT
+                id id,
+                name sname,
+                desp
+            FROM
+                strategy_baseinfo
+            WHERE
+                name=?
+        ]]>
+    </entry>
+
+    <!--根据策略ID查询策略-->
+    <entry key="findStrategyById">
+        <![CDATA[
+            SELECT
+                id id,
+                st_uuid as stUuid,
+                name,
+                desp,
+                trade_type as stype,
+                trade_variety as tradeVariety,
+                up_time as upTime,
+                down_time as downTime,
+                provider,
+                provider_desp as providerDesp,
+                lookback_stime as lookbackStime,
+                lookback_etime as lookbackEtime,
+                status,
+                discuss_total as discussTotal,
+                discuss_count as discussCount,
+                collect_count as collectCount,
+                order_count as orderCount
+            FROM
+                strategy_baseinfo
+            WHERE
+                id=?
+        ]]>
+    </entry>
+    <!--根据策略ID查询策略-->
+    <entry key="findStrategysByIds">
+        <![CDATA[
+            SELECT
+                id id,
+                st_uuid as stUuid,
+                name,
+                desp,
+                trade_type as stype,
+                trade_variety as tradeVariety,
+                up_time as upTime,
+                down_time as downTime,
+                provider,
+                provider_desp as providerDesp,
+                lookback_stime as lookbackStime,
+                lookback_etime as lookbackEtime,
+                status,
+                discuss_total as discussTotal,
+                discuss_count as discussCount,
+                collect_count as collectCount,
+                order_count as orderCount
+            FROM
+                strategy_baseinfo
+            WHERE
+                1=1
+        ]]>
+    </entry>
+
+
+    <!--查询选中策略id数组的最大收藏时间-->
+    <entry key="maxOrderTime">
+        <![CDATA[
+                   SELECT
+              IFNULL(MAX(order_etime) , DATE('1911-10-10')) AS orderTime
+            FROM
+              user_strategy_order
+            WHERE stid IN (#strIdGroup#)
+                ]]>
+    </entry>
+
+    <!--策略下架-->
+    <entry key="StrDown">
+        <![CDATA[
+             UPDATE
+          `strategy_baseinfo`
+        SET
+          down_time = ?,
+           STATUS = ?
+        WHERE id = ?
+                ]]>
+    </entry>
+
+    <!--查询订阅用户-->
+    <entry key="getOrderedUser">
+        <![CDATA[
+          select
+           uid
+           from
+           user_strategy_order
+           where stid=?
+           and order_etime>?
+                ]]>
+    </entry>
+
+    <!--保存下架消息-->
+    <entry key="sendUserMassage">
+        <![CDATA[
+            insert into
+                user_message
+                    (uid,message,status,title)
+                        values(?,?,1,"策略下架通知")
+                ]]>
+    </entry>
+    <!--得到策略下架时间-->
+    <entry key="getStrategyDownTime">
+        <![CDATA[
+            select
+            down_time as downTime
+             from
+                strategy_baseinfo
+                where
+                id=?
+                ]]>
+    </entry>
+
+    <!--上传策略后同步数据到qic的qstragy表中,上架的时候上传到sqm库中-->
+    <entry key="syncStrategyToQsm">
+        <![CDATA[
+            INSERT INTO   qstrategy(
+                             StrategyID,
+                             StrategyName,
+                             FilePath,
+                             AgentIP
+                     )
+                        VALUES(?,?,?,?)
+                ]]>
+    </entry>
+
+
+    <!--上传策略后同步数据到qic的qstragy表中,上架的时候上传到sqm库中-->
+    <entry key="deleteStrategyFromQsm">
+        <![CDATA[
+            DELETE FROM qstrategy where StrategyID=?
+        ]]>
+    </entry>
+
+    <!--把延时下架信息存入任务调度表-->
+    <entry key="setScdulingTaskInfo">
+        <![CDATA[
+            insert into
+                scheduling_task
+                    (parameter,runtime,module,status)
+                        values(?,?,?,1)
+                ]]>
+    </entry>
+
+
+    <!--得到任务调度信息-->
+    <entry key="getScdulingTaskInfo">
+        <![CDATA[
+            select
+                id,
+                parameter,
+                runtime,
+                module,
+                status
+                from
+                scheduling_task
+                 where
+                 status =1
+                 and
+                 runtime<=NOW()
+                ]]>
+    </entry>
+
+    <!--把延时下架信息存入任务调度表-->
+    <entry key="changeTaskStatus">
+        <![CDATA[
+            update
+                scheduling_task
+                 set
+                 status =?
+                 where
+                 id =?
+                ]]>
+    </entry>
+
+    <!--删除策略-->
+    <entry key="delStrategy">
+        <![CDATA[
+            UPDATE
+              qic_db.`strategy_baseinfo` a
+            SET
+              a.`status` = ?,
+              a.`del_time` = NOW()
+            WHERE a.`id` = ?
+                ]]>
+    </entry>
+
+    <!--删除策略-->
+    <entry key="queryStraStatus">
+        <![CDATA[
+            select
+            status
+            from
+              qic_db.`strategy_baseinfo` a
+            WHERE a.`id` = ?
+                ]]>
+    </entry>
+
+    <!--同步回测数据-->
+    <entry key="syncBackTestResult">
+        <![CDATA[
+           INSERT INTO strategy_high_low
+                         (StrategyID,
+                          RetainedProfits,
+                          GrossProfit,
+                          OverallProfitability,
+                          OverallDeficit,
+                          CanhsiedRatio,
+                          TradeCount,
+                          LongPositionTradeCount,
+                          ShortPositionTradeCount,
+                          ProfitRatio,
+                          ProfitCount,
+                          DeficitCount,
+                          PositionCloseCount,
+                          MAXSingleProfit,
+                          MAXSingleDeficit,
+                          MAXSingleProfitRatio,
+                          MAXSingleDeficitRatio,
+                          ProfitLossRatio,
+                          SumOfCommission,
+                          Yield,
+                          AvgProfitOfMonth,
+                          FloatingProfitAndLoss,
+                          TotalAsset,
+                          YieldOfMonth,
+                          YieldOfYear,
+                          MAXSequentialDeficitCapital,
+                          LastSequentialDeficitCapital,
+                          MAXSequentialProfitCount,
+                          LastSequentialProfitCount,
+                          MAXSequentialDeficitCount,
+                          LastSequentialDeficitCount,
+                          TradeDays,
+                          MAXShortPositionTime,
+                          YieldOfMonthStandardDeviation,
+                          SharpeIndex,
+
+                          MovingCost
+                           )
+                        VALUES
+                        (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+                ]]>
+    </entry>
+    <!--把延时下架信息存入任务调度表-->
+    <entry key="updateStategyStatus">
+        <![CDATA[
+            update
+                strategy_baseinfo
+                 set
+                 status =?
+                 where
+                 st_uuid =?
+                ]]>
+    </entry>
+    <entry key="updateStategyStatusbyId">
+        <![CDATA[
+            update
+                strategy_baseinfo
+                 set
+                 status =?
+                 where
+                 id =?
+                ]]>
+    </entry>
+    <!--查询策略-->
+    <entry key="findStrategyByUUID">
+        <![CDATA[
+            SELECT
+                id id,
+                name sname,
+                desp,
+                status
+            FROM
+                strategy_baseinfo
+            WHERE
+                st_uuid=?
+        ]]>
+    </entry>
+
+    <entry key="upShelfStrategy">
+        <![CDATA[
+            UPDATE
+              qic_db.`strategy_baseinfo` a
+            SET
+              a.`status` = ?,
+              a.`up_time` = NOW()
+            WHERE a.`id` = ?
+        ]]>
+    </entry>
+    <entry key="deleteStrategyFromHighLow">
+        <![CDATA[
+            DELETE FROM strategy_high_low where StrategyID=?
+        ]]>
+    </entry>
+
+</properties>

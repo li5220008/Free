@@ -1,0 +1,80 @@
+<script type="text/javascript">
+    var maxDate=${dates[0]};
+    var minDate=${dates[1]};
+    var maxYield=parseFloat(${dates[2]});
+    var  strategys=${dates[3]};
+    var  pre_Yield=parseFloat(${dates[4]});
+</script>
+<script src="@{'/public/javascripts/highChart/js/highcharts.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/Strategys/strategyContrast.js'}" type="text/javascript" charset="utf-8"></script>
+
+    <div class="constract_img">
+       *{ <img src="@{'/public/images/constracrt_img.jpg'}" width="745" height="334">}*
+        <div id="container" style="width: 745px;height: 334px"></div>
+    </div>
+    <div class="tbl_constract_wrap">
+        <table width="100%" class="tbl_constract" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <th>策略名称</th>
+                <th>收益率</th>
+                <th>月化收益率</th>
+                <th>月度收益率标准差</th>
+                <th>年化收益率</th>
+                <th>盈利次数</th>
+                <th>胜率</th>
+                <th>夏普比率</th>
+                <th>单次最大盈利</th>
+                <th>单次最大亏损</th>
+                <th>总交易天数</th>
+            </tr>
+
+
+        #{list items:list, as:'item' }
+            <tr>
+                <td >
+                    <div class="stock_index">
+                        <div class="st_index_bg" style="background-color:#{emVF item.color/};">
+                            &nbsp;
+                        </div>
+                        <div  style="color:#{emVF item.color/};">
+                        #{emVF  item.name/}
+                        </div>
+                    </div>
+                </td>
+            #{if  item.yield!=null}
+                <td>
+                    #{emVFC  item.yield*100, f:'##0.00', u:'%'/}
+
+                </td>
+            #{/if}
+                #{else }
+                    <td>0.00%</td>
+                #{/else}
+                #{if item.yieldOfMonth!=null}
+                    <td>#{emVFC  item.yieldOfMonth*100, f:'##0.00', u:'%'/}</td>
+                #{/if}
+                #{else }
+                    <td>0.00%</td>
+                #{/else}
+                <td>#{emVFC  item.yieldOfMonthSD, f:'##0.0000'/}</td>
+                #{if item.yieldOfYear!=null}
+                    <td>#{emVFC  item.yieldOfYear*100, f:'##0.00', u:'%'/}</td>
+                #{/if}
+                #{else }
+                    <td>0.00%</td>
+                #{/else}
+                <td>#{emVFC  item.profitCount/}</td>
+                #{if item.profitRatio!=null}
+                    <td>#{emVFC  item.profitRatio*100, f:'##0.00', u:'%'/}</td>
+                #{/if}
+                #{else }
+                    <td>0.00%</td>
+                #{/else}
+                <td>#{emVFC   item.sharpeIndex, f:'##0.0000'/}</td>
+                <td>#{emVFC  item.maxSingleProfit/}</td>
+                <td>#{emVFC  item.maxSingleDeficit/}</td>
+                <td>#{emVFC  item.tradeDays/}</td>
+            </tr>
+        #{/list}
+        </table>
+    </div>

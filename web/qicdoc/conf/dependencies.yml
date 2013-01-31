@@ -1,0 +1,4 @@
+self: play -> qicdoc 0.1
+
+require:
+    - play

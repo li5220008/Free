@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>操作日志 sql</comment>
+
+
+    <entry key="findServerIdByAddr">
+        <![CDATA[
+        SELECT
+            bsl.id,
+            bsl.status,
+            bsl.memo
+
+        FROM
+            server_list bsl
+        WHERE
+            bsl.ip=?
+
+       ]]>
+    </entry>
+
+
+
+    <entry key="findBackTestStrategyByServerId">
+        <![CDATA[
+        SELECT
+            sb.st_uuid strategyUUid,
+            qs.FilePath filePath,
+            sb.name strategyName,
+            sb.status state
+
+        FROM
+            strategy_baseinfo sb
+        LEFT JOIN
+            qstrategy qs
+        ON
+            sb.st_uuid=qs.StrategyID
+        WHERE
+            sb.back_test_sid=? and sb.status BETWEEN ? and ? and filePath<>''
+
+       ]]>
+    </entry>
+
+
+
+
+    <entry key="checkBackTestStatus">
+        <![CDATA[
+        SELECT
+            sb.st_uuid strategyUUid
+        FROM
+            strategy_baseinfo sb
+
+        WHERE
+            sb.back_test_sid=? and sb.st_uuid=? and sb.status=2
+
+       ]]>
+    </entry>
+
+    <entry key="updateStrategyStatus">
+        <![CDATA[
+        UPDATE
+            strategy_baseinfo
+        SET
+            status=?
+        WHERE
+            st_uuid=?
+
+       ]]>
+    </entry>
+
+
+    <entry key="updateStrategyStatusByServerId">
+        <![CDATA[
+        UPDATE
+            strategy_baseinfo
+        SET
+            status=?
+        WHERE
+            back_test_sid=? AND status=?
+
+       ]]>
+    </entry>
+
+    <entry key="addServer">
+        <![CDATA[
+        INSERT INTO
+            server_list(
+              ip,
+              status,
+              memo,
+              stype
+            )VALUES(
+              ?,?,?,?
+            )
+
+       ]]>
+    </entry>
+
+
+    <entry key="updateStratedyServerId">
+        <![CDATA[
+        UPDATE strategy_baseinfo
+             SET
+            back_test_sid=?,
+            status=?
+        WHERE
+            st_uuid=?
+
+       ]]>
+    </entry>
+
+
+    <entry key="updateStratedyPassTime">
+        <![CDATA[
+        UPDATE strategy_baseinfo
+             SET
+            pass_time=NOW()
+        WHERE
+            id=? and pass_time=''
+
+       ]]>
+    </entry>
+
+    <entry key="updateStratedyServerIdByIntId">
+        <![CDATA[
+        UPDATE strategy_baseinfo
+             SET
+            back_test_sid=?,
+            status=?,
+            pass_time=NOW()
+        WHERE
+            id=?
+
+       ]]>
+    </entry>
+
+
+    <entry key="updateBackTestServerStatus">
+        <![CDATA[
+        UPDATE server_list
+             SET
+            status=?
+        WHERE
+            id=?
+       ]]>
+    </entry>
+
+
+
+
+    <entry key="findAllServer">
+        <![CDATA[
+        SELECT
+             id,
+             ip,
+             status,
+             stype type,
+             memo
+        FROM
+            server_list bsl
+       ]]>
+    </entry>
+
+</properties>

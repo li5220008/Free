@@ -1,0 +1,1067 @@
+#{extends 'main.html' /}
+#{set title:'策略列表' /}
+
+#{set 'moreStyles'}
+*{这里是策略的css}*
+<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/global-strategysuper.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/global-strategysuper.css'}">
+#{/set}
+<script type="text/javascript">
+    var daymaxDate=${dayDates[0]};
+    var dayminDate=${dayDates[1]};
+    var daymaxYield=parseFloat(${dayDates[2]});
+    var  daystrategys=${dayDates[3]};
+    var  day_pre_Yield=parseFloat(${dayDates[4]});
+    var  dayInitCapital=parseFloat(${dayDates[5]});
+
+
+    var weekmaxDate=${weekDates[0]};
+    var weekminDate=${weekDates[1]};
+    var weekmaxYield=parseFloat(${weekDates[2]});
+    var  weekstrategys=${weekDates[3]};
+    var  week_pre_Yield=parseFloat(${weekDates[4]});
+    var  weekInitCapital=parseFloat(${weekDates[5]});
+</script>
+<script src="@{'/public/javascripts/highChart/js/highcharts.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/StrategyDetail/strategyDetails.js'}" type="text/javascript" charset="utf-8"></script>
+
+<style>
+    .comment_pop{ display: none;}
+</style>
+
+<body class="stra_detail_body">
+
+<div class="left">
+<div class="left_wrap">
+<div class="nav_common">
+    <img src="@{'/public/images/qy_zs.png'}" alt="权益走势图" class="cm_til">
+    <span style="right:13px;" class="ordered_time" id="order_endTime">订阅到期时间:<span  class="" id="ordertEndTime">#{emVF v : strategy_etime,f: 'yyyy-MM-dd'/}</span> </span>
+    #{if isorder == true}
+    #{hasAuth '4'}<span class="renew_order" id="renew_order" >&nbsp;</span>#{/hasAuth}
+    #{/if}
+    #{else }
+        #{hasAuth '4'}<span style="right: 13px" class="add_order" id="add_order">&nbsp;</span>#{/hasAuth}
+    #{/else}
+    #{if b == true}
+    #{hasAuth '5'}<span data-strategyid="${strategyDetail.id}" class="add_collect add_collect_2">&nbsp;</span>#{/hasAuth}
+    #{/if}
+    #{else}
+    #{hasAuth '5'}<span data-strategyid="${strategyDetail.id}" class="add_collect">&nbsp;</span>#{/hasAuth}
+    #{/else}
+</div>
+
+
+
+    <div class="trend_img">
+        <div class="t_w_img">
+            <!--日线-->
+            <div class="dw_pic" id="day_trategy_container"></div>
+            <!--周线-->
+            <div class="dw_pic" id="week_trategy_container"> </div>
+
+            <div class="day_week">
+                <div class="day_line dw_curren" id="day">
+                    日线
+                </div>
+                <div class="week_line" id="week">
+                   周线
+                </div>
+            </div>
+            <script type="text/javascript">
+                //初始化容器、highchats宽高
+                (function(){
+                    var dwHeight = 340,
+                        dwWidth = $("body")[0].clientWidth - 390;
+                    $(".dw_pic").css({"height": dwHeight, "width": dwWidth});
+
+                })();
+
+
+            </script>
+        </div>
+          <!-- 改变 日线 周线样式-->
+        <script type="text/javascript">
+          $(document).ready(function(){
+              $("#day").click(function(){
+                  $("#week_trategy_container").hide();
+                  $("#day_trategy_container").show();
+                  $("#day").addClass("day_line dw_curren");
+                  $("#week").removeClass("day_line dw_curren");
+                  $("#week").addClass("week_line");
+              });
+              $("#week").click(function(){
+                  $("#day_trategy_container").hide();
+                  $("#week_trategy_container").show();
+                  $("#week").addClass("day_line dw_curren");
+                  $("#day").removeClass("day_line dw_curren");
+                  $("#day").addClass("week_line");
+              });
+
+          });
+          $("#week_trategy_container").hide();
+      </script>
+
+</div>
+
+
+<div class="tra_detai_tab">
+
+<!--folder Begin-->
+<div class="level_folder" title="折叠菜单2">
+    <div class="level_folder_wrap">
+        <div class="level_folder_hide">
+            &nbsp;
+        </div>
+    </div>
+</div>
+<!--folder End-->
+
+<div class="detail_hide">
+    <ul id="menuTab" class="tab_li">
+        <li class="display">基本信息</li>
+        <li id="chicang">策略持仓</li>
+        <li id="weituojilu">委托记录</li>
+        <li id="chengjiaojilu">成交记录</li>
+
+    #{hasAuth '4'}
+        <li id="usercomment">用户评价</li>
+    #{/hasAuth}
+    </ul>
+    <script>
+        var chiCangRoute =  #{jsRoute @StrategyDetail.holdPosition()/};//策略持仓url
+        var weituojiluRoute =  #{jsRoute @StrategyDetail.entrustRecord()/};//委托记录url
+        var chengjiaojiluRoute =  #{jsRoute @StrategyDetail.bargainRecord()/};//成交记录url
+         var usercommentRoute =  #{jsRoute @StrategyDetail.userComment()/};//用户评价url
+        $("#chicang").click(function(){
+
+            var id = $(".tbl_base_info").attr("param_id");
+            //第一次加载 显示loading 加载中
+            if(!$("#h_showloading").val()){
+                $.qicLoading({
+                    target: '#holdposition',
+                    text: "努力加载中...",
+                    modal: false,
+                    width: 220,
+                    top: '200%',
+                    left: '32%',
+                    postion: "absolute",
+                    zIndex: 2000
+                });
+
+            $.ajax({
+                url:chiCangRoute.url(),
+                data: {id:id},
+                type:"GET",
+                dataType:"HTML",
+                success:function (html) {
+                   $("#holdposition").html(html);
+
+                    var scHeight = $(".trend_img")[0].scrollHeight+155;
+                    $(".tbl_scoll").css("border-bottom", "1px solid #ccc");
+                    window.resizeHeight(".tbl_scoll",  scHeight);
+                }
+            }) ;
+            }
+        });
+
+        $("#weituojilu").click(function(){
+            var id = $(".tbl_base_info").attr("param_id");
+            //第一次加载 显示loading 加载中
+         if(!$("#e_showloading").val()){
+             $.qicLoading({
+                 target: '#entrustRecord',
+                 text: "努力加载中...",
+                 modal: false,
+                 width: 220,
+                 top: '200%',
+                 left: '32%',
+                 postion: "absolute",
+                 zIndex: 2000
+             });
+
+            $.ajax({
+                url:weituojiluRoute.url(),
+                data: {id:id},
+                type:"GET",
+                dataType:"HTML",
+                success:function (html) {
+                   $("#entrustRecord").html(html);
+
+                    var scHeight = $(".trend_img")[0].scrollHeight+155;
+                    $(".tbl_scoll").css("border-bottom", "1px solid #ccc");
+                    window.resizeHeight(".tbl_scoll",  scHeight);
+
+                }
+            }) ;
+         }
+        });
+
+        $("#chengjiaojilu").click(function(){
+            var id = $(".tbl_base_info").attr("param_id");
+            //第一次加载 显示loading 加载中
+            if(!$("#b_showloading").val()){
+                $.qicLoading({
+                    target: '#bargainRecord',
+                    text: "努力加载中...",
+                    modal: false,
+                    width: 220,
+                    top: '200%',
+                    left: '32%',
+                    postion: "absolute",
+                    zIndex: 2000
+                });
+
+            $.ajax({
+                url:chengjiaojiluRoute.url(),
+                data: {id:id},
+                type:"GET",
+                dataType:"HTML",
+                success:function (html) {
+                    $("#bargainRecord").html(html);
+
+                    var scHeight = $(".trend_img")[0].scrollHeight+155;
+                    $(".tbl_scoll").css("border-bottom", "1px solid #ccc");
+                    window.resizeHeight(".tbl_scoll",  scHeight);
+                }
+            }) ;
+            }
+        });
+
+        $("#usercomment").click(function(){
+            var id = $(".tbl_base_info").attr("param_id");
+            if(!$("#u_showloading").val()){
+                $.qicLoading({
+                    target: '#userComments',
+                    text: "努力加载中...",
+                    modal: false,
+                    width: 220,
+                    top: '50%',
+                    left: '34%',
+                    postion: "absolute",
+                    zIndex: 2000
+                });
+
+            $.ajax({
+                url:usercommentRoute.url(),
+                data: {id:id},
+                type:"GET",
+                dataType:"HTML",
+                success:function (html) {
+                 $("#userComments").html(html);
+                }
+            }) ;
+            }
+        });
+
+
+    </script>
+    <ul id="subContImp" class="sub_content">
+        <li class="display">
+            <!--基本信息 Begin-->
+            <div class="common_tab_wrap common_base_wrap">
+                <table width="100%" class="tbl_base_info" border="0" cellspacing="0" cellpadding="0" param_id="#{emVF strategyDetail.id/}">
+                    <tr>
+                        <td width="31%"><strong>策略运行参数详情</strong></td>
+                        <td width="69%">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><p class="base_p1">交易品种:
+                        #{if strategyDetail.tradeVariety == 1}股票#{/if}
+                        #{if strategyDetail.tradeVariety == 2}期货#{/if}
+                        #{if strategyDetail.tradeVariety == 3}混合#{/if}
+                            <br/>
+                            策略类型:
+                        #{if strategyDetail.tradeType == 1}选股型#{/if}
+                        #{if strategyDetail.tradeType == 2}择时型#{/if}
+                        #{if strategyDetail.tradeType == 3}交易型#{/if}
+                        #{if strategyDetail.tradeType == 4}其他#{/if}
+                            <br/>
+                        </p>
+                        </td>
+                        <td><p class="base_p1">回测开始时间<strong> #{emVF v :strategyDetail.lookbackStime, f: 'yyyy-MM-dd'/}</strong><br/>
+                            回测结束时间<strong> #{emVF v : strategyDetail.lookbackEtime,f: 'yyyy-MM-dd'/}</strong></p></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="base_hr">&nbsp;</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>策略简介</strong><br/>
+
+                            <p class="base_p2">
+                            #{emVF v : strategyDetail.desp/}
+                            </p></td>
+                    </tr>
+                </table>
+
+            </div>
+            <!--基本信息 End-->
+        </li>
+        </li>
+        <!--策略持仓 Begin-->
+        <li id="holdposition" class="common_tab_wrap_2">
+
+        </li>
+        <!--策略持仓 End-->
+        <!--委托记录 Begin-->
+        <li id="entrustRecord" class="common_tab_wrap_2">
+        </li>
+        <!--委托记录 End-->
+
+        <li id="bargainRecord" class="common_tab_wrap_2">
+            <!--成交信息 Begin-->
+            <!--成交信息 End-->
+        </li>
+
+        <!-- 我要评论-->
+        <li>
+            <div class="common_tab_wrap common_user_wrap">
+                <h3 class="common_til_h3">
+                <img src="@{'/public/images/my_comment_op.png'}" #{if discussesBoolean==1}style="display: none"#{/if} class="my_comment" width="93" height="26">
+
+                </h3>
+
+                <div class="comment_list" id="userComments">
+
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="right">
+<!--folder Begin-->
+<div class="folder" title="折叠菜单">
+    <div class="folder_wrap">
+        <div class="folder_tips_hide">
+            &nbsp;
+        </div>
+    </div>
+</div>
+<!--folder End-->
+<div class="right_wrap">
+
+<div class="nav_common">
+    <div class="tmap_til">
+        <div class="tmap_til_left">
+            &nbsp;
+        </div>
+        <div class="tmap_til_middle">
+        #{emVF v : strategyBaseinfo.sname/}
+        </div>
+        <div class="tmap_til_right">
+            &nbsp;
+        </div>
+    </div>
+</div>
+
+
+<!--right_1 Begin-->
+<div class="right_1">
+    <table width="100%" class="tbl_rg1" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="22%" align="right"> 策略类型：</td>
+            <td width="78%">
+            #{if strategyBaseinfo.stype == 1 }选股型#{/if}
+            #{if strategyBaseinfo.stype == 2 }择时型#{/if}
+            #{if strategyBaseinfo.stype == 3 }交易型#{/if}
+            #{if strategyBaseinfo.stype == 4 }其他#{/if}
+            </td>
+        </tr>
+        <tr>
+            <td align="right">上架时间：</td>
+            <td><strong>#{emVF v : strategyBaseinfo.upTime,f : 'yyyy-MM-dd'/}</strong></td>
+        </tr>
+        <tr>
+            <td align="right">收藏人数：</td>
+            <td><strong>#{emVF v : strategyBaseinfo.collectCount/}</strong></td>
+        </tr>
+        <tr>
+            <td align="right">评价等级：</td>
+            <td>
+            #{if strategyBaseinfo.starLevel > 4.7}
+            <span class="all_star_10"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 4.7&&strategyBaseinfo.starLevel > 4.2}
+                <span class="all_star_9"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 4.2&&strategyBaseinfo.starLevel > 3.7}
+                <span  class="all_star_8"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 3.7&&strategyBaseinfo.starLevel > 3.2}
+                <span class="all_star_7"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 3.2&&strategyBaseinfo.starLevel > 2.7}
+                <span  class="all_star_6"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 2.7&&strategyBaseinfo.starLevel> 2.2}
+                <span class="all_star_5"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 2.2&&strategyBaseinfo.starLevel> 1.7}
+                <span class="all_star_4"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 1.7&&strategyBaseinfo.starLevel> 1.2}
+                <span  class="all_star_3"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 1.2&&strategyBaseinfo.starLevel> 0.7}
+                <span  class="all_star_2"></span>
+            #{/if}
+            #{if strategyBaseinfo.starLevel <= 0.7&&strategyBaseinfo.starLevel> 0}
+                <span  class="all_star_1"></span>
+            #{/if}
+            </td>
+        </tr>
+    </table>
+
+</div>
+<!--right_1 End-->
+
+<div class="right_2">
+    <h2 class="bar_title">
+        绩效指标
+    </h2>
+
+    <div class="right_2_wrap">
+
+        <table width="100%" class="tbl_perfomance" border="0" cellspacing="0" cellpadding="0">
+           *{ <tr>
+                <th width="46%">指标名称</th>
+                <th width="54%">数值</th>
+            </tr>}*
+            <tr>
+                <td>收益率</td>
+                #{if indicator.yield == null}
+                   <td><strong>#{emVFC v : indicator.yield, f : '#,##0.00',c:true/}</strong></td>
+                #{/if}
+                #{else }
+                    <td><strong>#{emVFC v : indicator.yield*100, f : '#,##0.00',u:'%',c:true/}</strong></td>
+                #{/else}
+
+            </tr>
+            <tr>
+                <td>月化收益率</td>
+                <td><strong>#{emVFC v : indicator.yieldOfMonth * 100, f : '#,##0.00', u : '%',c:true/}</strong></td>
+            </tr>
+            <tr>
+                <td>月度收益标准差</td>
+                <td><strong>#{emVF v : indicator.yieldOfMonthStandardDeviation, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>总盈利</td>
+                <td><strong>#{emVF v : indicator.overallProfitability, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>总亏损</td>
+                <td><strong>#{emVF v : indicator.overallDeficit, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>总交易天数</td>
+                <td><strong>#{emVF v : indicator.tradeDays /}</strong></td>
+            </tr>
+            <tr>
+                <td>最大空仓时间</td>
+                <td><strong>#{emVF v : indicator.mAXShortPositionTime/}</strong></td>
+            </tr>
+            <tr>
+                <td>交易次数</td>
+                <td><strong>#{emVF v : indicator.tradeCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>多头交易次数</td>
+                <td><strong>#{emVF v : indicator.longPositionTradeCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>空头交易次数</td>
+                <td><strong>#{emVF v : indicator.shortPositionTradeCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>盈利次数</td>
+                <td><strong>#{emVF v : indicator.profitCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>亏损次数</td>
+                <td><strong>#{emVF v : indicator.deficitCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>持平次数</td>
+                <td><strong>#{emVF v : indicator.positionCloseCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>最大连续盈利次数</td>
+                <td><strong>#{emVF v : indicator.mAXSequentialProfitCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>最大连续亏损次数</td>
+                <td><strong>#{emVF v : indicator.mAXSequentialDeficitCount/}</strong></td>
+            </tr>
+            <tr>
+                <td>盈利比率</td>
+                <td><strong>#{emVF v : indicator.profitRatio, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>总盈利/总亏损（盈亏比）</td>
+                <td><strong>#{emVF v : indicator.canhsiedRatio, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>单次最大盈利</td>
+                <td><strong>#{emVF v : indicator.mAXSingleProfit, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>单次最大亏损</td>
+                <td><strong>#{emVF v : indicator.mAXSingleDeficit, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>最大盈利/总盈利</td>
+                <td><strong>#{emVF v : indicator.mAXSingleProfitRatio, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>最大亏损/总亏损</td>
+                <td><strong>#{emVF v : indicator.mAXSingleDeficitRatio, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>最大连续亏损额</td>
+                <td><strong>#{emVF v : indicator.mAXSequentialDeficitCapital, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>手续费合计</td>
+                <td><strong>#{emVF v : indicator.sumOfCommission, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>毛利润</td>
+                <td><strong>#{emVF v : indicator.grossProfit, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>净利润/单次最大亏损</td>
+                <td><strong>#{emVF v : indicator.profitLossRatio, f : '#,##0.00'/}</strong></td>
+            </tr>
+            <tr>
+                <td>月度平均盈利</td>
+                <td><strong>#{emVFC v : indicator.yieldOfMonth, f : '#,##0.00',c:true/}</strong></td>
+            </tr>
+            <tr>
+                <td>年化收益率</td>
+                <td><strong>#{emVFC v : indicator.yieldOfYear * 100, f : '#,##0.00', u : '%',c:true/}</strong></td>
+            </tr>
+            <tr>
+                <td>夏普指数</td>
+                <td><strong>#{emVF v : indicator.sharpeIndex, f : '#,##0.00' /}</strong></td>
+            </tr>
+            <tr>
+                <td>浮动盈亏</td>
+                <td><strong>#{emVF v : indicator.floatingProfitAndLoss, f : '#,##0.00'/}</strong></td>
+            </tr>
+            *{<tr>
+                <td>滑价成本</td>
+                <td><strong>#{emVF v : indicator.movingCost, f : '#,##0.00'/}</strong></td>
+            </tr>}*
+        </table>
+    </div>
+</div>
+<div class="right_3">
+    <h2 class="bar_title">
+        策略委托信号
+    </h2>
+    <table width="100%" border="0" class="tbl_str_sigla" cellspacing="0" cellpadding="0">
+    #{list items : ordersignallist, as :'item'}
+        <tr>
+            <td width="57%"><strong>#{emVF v : item.sendingtime, f : 'yyyy-MM-dd HH:mm:ss'/}</strong></td>
+            <td width="23%"><strong>#{emVF v : item.securityid/}</strong></td>
+            <td width="20%">
+                #{if item.side ==1}买/多#{/if}
+                #{elseif item.side ==2}卖/空#{/elseif}
+                #{else }未定义#{/else}
+            </td>
+        </tr>
+    #{/list}
+    </table>
+</div>
+
+</div>
+
+
+</div>
+
+
+<!--我要评价 Begin-->
+<div class="comment_pop" title="我要评价">
+    <div class="comment_wrap">
+        <form action="" id="cndForm">
+            <input type="hidden" name="stid" value="${stid}">
+
+            <p>评价内容<span class="dark">(140字以内)</span></p>
+            <textarea name="usd.content" id="comTextarea"  maxLength="140"></textarea>
+                <!--模仿下拉框 Begin-->
+                <div class="select_wrap">
+                    <label>
+                        评价:
+                    </label>
+                    <div class="dialog_box">
+                        <input type="hidden" name="usd.star" value="5"  id="reportDate"  autocomplete="off">
+                        <input type="hidden" id="reportName"  autocomplete="off">
+                        <div class="sel_84_dialog" id="select_info_year1">
+                            <span class="star_5">5</span>
+                        </div>
+
+                        <ul class="sel_91_option" id="options_year1">
+                            <li class="star_5"  data-name="12">5</li>
+                            <li class="star_4" data-name="11">4</li>
+                            <li class="star_3" data-name="10">3</li>
+                            <li class="star_2" data-name="19">2</li>
+                            <li class="star_1" data-name="18">1</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--模仿下拉框 End-->
+        </form>
+    </div>
+</div>
+<!--我要评价 End-->
+
+<script>
+    tabMenu("menuTab", "subContImp", "display");//1.0 tab切换调用
+    window.resizeHeight('.common_tab_wrap', 505);
+    window.resizeHeight('#userComments', 538);
+    //window.resizeHeight(".tbl_scoll",  800);
+
+
+    $(function () {
+
+//绩效指标里的高度跟随 浏览器客户端变化
+        ;
+        (function ($) {
+            /*
+        *func: QIC-策略超市
+        *author:jinwei
+        *email: awayInner@gmail.com
+        *date: 2012-11-05
+        */
+
+            //UI事件-resize事件
+            /*var clientHeight = document.documentElement.clientHeight; //浏览器客户区高度
+       var rHeight = $('.right_2_wrap');
+       rHeight.css({"height": clientHeight-41-151-33-250});
+       window.onresize = function(){
+           rHeight.css("height",document.documentElement.clientHeight-41-151-33-250);
+       }*/
+
+
+            //监听窗口变化,设置highchats
+            window.onresize = function(){
+                var chartsBox =  $(".dw_pic"),
+                        cHigh = $("body")[0].clientHeight+15, //屏幕高度
+                        cWidth = $("body")[0].clientWidth, //屏幕宽度
+                        aHeight = null,         //实际高度
+                        aWidth = null;           //实际宽度
+
+                if($(".detail_hide:hidden").length === 1){  //水平折叠已隐藏
+                    if($(".right").width()==300){
+                        aWidth = cWidth - 410;
+                        aHeight = cHigh -100;
+                        chartsBox.css({"height":aHeight, "width": aWidth});
+                        weeklyChart.setSize(aWidth-30, aHeight);
+                        dailyChart.setSize(aWidth-30, aHeight);
+                    }else{
+                        aWidth = cWidth - 152;
+                        aHeight = cHigh -100;
+                        chartsBox.css({"height":aHeight, "width": aWidth});
+                        weeklyChart.setSize(aWidth-30, aHeight);
+                        dailyChart.setSize(aWidth-30, aHeight);
+
+                    }
+
+                }else{
+
+                    if($(".right").width()==300){ //右边展开
+                        aHeight = cHigh -$(".tra_detai_tab").height()-130;
+                        aWidth = cWidth - 410;
+                        chartsBox.css({"height":aHeight, "width": aWidth});
+                        weeklyChart.setSize(aWidth-30, aHeight-10);
+                        dailyChart.setSize(aWidth-30, aHeight-10);
+                    }else{
+                        aHeight = cHigh -$(".tra_detai_tab").height()-130;
+                        aWidth = cWidth - 152
+                        chartsBox.css({"height":aHeight, "width": aWidth});
+                        weeklyChart.setSize(aWidth-10, aHeight-20);
+                        dailyChart.setSize(aWidth-10, aHeight-20);
+
+                    }
+
+                }
+            };
+
+
+            resizeHeight('.right_2_wrap', 376);
+
+            //右边侧边栏折叠1
+            var flag = true;
+            var flag_2 = true;
+            $(".folder").click(function () {
+                var _this = this;
+
+                var chartsBox =  $(".dw_pic"),
+                    cHigh = $("body")[0].clientHeight, //屏幕高度
+                    cWidth = $("body")[0].clientWidth, //屏幕宽度
+                    aHeight = null,         //实际高度
+                    aWidth = null;           //实际宽度
+
+                if (flag == true) {//收起来
+                    foldSiderbar(_this, 8, 8, "0px 0px") ;
+                    //设置highchart图长宽随折叠栏的长宽变化
+
+                    aWidth = cWidth-120;
+                    aHeight =  cHigh -$(".tra_detai_tab").height()-115 ;
+                    chartsBox.width( aWidth);
+
+                    weeklyChart.setSize(aWidth, aHeight);
+                    dailyChart.setSize(aWidth, aHeight);
+
+
+                } else {
+                    foldSiderbar(_this, 300, 300, "-9px 0px");
+
+                    aWidth = cWidth-390;
+                    aHeight =  cHigh -$(".tra_detai_tab").height()-115 ;
+                    chartsBox.width( aWidth+20);
+
+                    weeklyChart.setSize(aWidth, aHeight);
+                    dailyChart.setSize(aWidth, aHeight);
+
+                }
+
+                function foldSiderbar(_this, rgtWidth, marginLeft, position) {
+                    //$(".right_wrap").toggle();
+                    $(_this).parent(".right").css("width", rgtWidth);//设置侧边栏宽
+                    $(".left_wrap").css("margin-right", marginLeft);
+                    $(".folder_tips_hide").css("background-position", position);//背景图标
+                    flag = !flag;
+                }
+            });
+
+
+            //权益走势图折叠2
+
+            $(".level_folder").click(function () {
+
+                $(".dw_pic").height( ($("body")[0].clientHeight -100) );
+
+                if($(".right").width() == 8){
+                    $(".dw_pic").width( ($("body")[0].clientWidth -68) );
+                }else{
+                    $(".dw_pic").width( ($("body")[0].clientWidth -360) );
+                }
+
+
+                var le2High = $("body")[0].clientHeight -100;
+                var le2Width = '';
+                if($(".right").width() == 8){
+                    le2Width = $("body")[0].clientWidth -98;
+                }else{
+                    le2Width = $("body")[0].clientWidth -390;
+                }
+
+                if (flag_2 == true) {//收起来
+
+
+
+                    foldSiderbar('none', "0px 0px")
+                    //设置highchart图长宽随折叠栏的长宽变化
+
+
+
+                   // alert(le2Width + " " + $(".dw_pic").width())
+
+                    if(flag==false){
+                        dailyChart.setSize( le2Width, le2High);
+                        weeklyChart.setSize( le2Width, le2High);
+                    }  else{
+                        dailyChart.setSize( le2Width, le2High);
+                        weeklyChart.setSize( le2Width, le2High);
+                    }
+
+                } else {
+                    foldSiderbar('block', "0px -9px");//展开
+                    $("#day_trategy_container").css("height","auto");
+                    $("#week_trategy_container").css("height","auto");
+                    var picHight = 340;
+                    if(flag==false){
+                        $(".dw_pic").width( le2Width )
+                        dailyChart.setSize(le2Width, picHight);
+                        weeklyChart.setSize(le2Width, picHight);
+                    }  else{
+                        dailyChart.setSize(le2Width, picHight);
+                        weeklyChart.setSize(le2Width, picHight);
+                    }
+                }
+
+                function foldSiderbar(display, position) {
+                    $(".detail_hide").css("display", display); //隐藏tab
+                   // $(" .t_w_img").css("max-height", maxHeight);
+                    $(".level_folder_hide").css("background-position", position);//背景图标
+
+
+
+                    flag_2 = !flag_2;
+                }
+            });
+
+
+            //策略详情的添加收藏与取消收藏
+            detailCollect();
+            function detailCollect() {
+                $(".add_collect").click(function (event) {
+                    var className = $(this).attr('class');
+                    var element = $(this);
+                    var target= event.target;
+                    if (className == 'add_collect') {
+                        //添加收藏
+
+                        var id = $(this).attr("data-strategyid");
+                        $.get("/userStrategycollects/addstrategycollect", {sid:id}, function (data) {
+                            if (data.isSuccess) {
+                                $.qicTips({
+                                    target: target,
+                                    level: 1,
+                                    message: '收藏成功',
+                                    mtop: 30
+                                });
+                                element.toggleClass("add_collect_2")
+                            } else {
+                                $.qicTips({
+                                    target: target,
+                                    level: 2,
+                                    message: '收藏失败'
+                                });
+                            }
+                            //载入成功时回调函数
+                        }, "json");
+                    }
+                    else if (className == 'add_collect add_collect_2') {
+                        //取消收藏
+                        // var element = $(this);
+                        var id = $(this).attr("data-strategyid");
+                        $.get("/userStrategycollects/deletestrategycollect", {sid:id}, function (data) {
+                            if (data.isSuccess) {
+                                $.qicTips({
+                                    target: target,
+                                    level: 1,
+                                    message: '取消成功',
+                                    mtop: 30
+                                });
+                                //alert(data.message);
+                                element.toggleClass("add_collect_2")
+                            } else {
+                                $.qicTips({
+                                    target: target,
+                                    level: 2,
+                                    message: '取消失败'
+                                });
+                                //alert(data.message);
+                            }
+                            //载入成功时回调函数
+                        }, "json");
+                    }
+                });
+            }
+        })(jQuery);
+    });
+
+
+</script>
+
+<div class="add_order_box" title="我要订阅">
+    <form onsubmit="javascript:return addOrDelayStrategy();">
+        <div class="order_content">
+            <label><strong id="order_last">订阅时长</strong>
+                <input type="text"  placeholder="请输入数字" class="order_time">
+                <strong>个月</strong></label>
+        </div>
+        <div class="common_btn order_btn">
+            <input type="button" class="common_blue common_cancle" value="取消" id="order_cancel">
+            <input type="submit" class="common_blue" value="现在付款" id="order_register">
+        </div>
+    </form>
+</div>
+
+<!--我要订阅 begin -->
+<script>
+    $(".add_order,.renew_order").click(function(){
+        $(".order_time").val("");
+        $(".add_order_box").dialog({
+            "width": 350,
+            "height": 145,
+            "modal": true,
+            "resizable": false
+        });
+        var flag = $(".add_order").attr('class');
+        if(flag != "add_order") {
+            $("#order_last").text("续订时长");
+        }
+
+    });
+    $("#order_cancel").click(function(){
+        $(".add_order_box").dialog("close");
+        $(".order_time").val("");
+    })
+
+    //隐藏时间
+    var element = ${isorder} ;
+    if(element == false){
+        $("#order_endTime").css("display","none");
+    }
+
+   function addOrDelayStrategy(){
+        var stid = ${strategyDetail.id};
+        var uid = ${uid};
+        var month = $(".order_time").val();
+        if(month == ""){
+            $.qicTips({
+                target: '#order_register',
+                level: 2,
+                message: "请输入订阅时长"
+            });
+            return false;
+        }
+
+       var reg = /^[1-9]+[0-9]{0,}$/;
+        if(!reg.test(month)){
+            $.qicTips({
+                target: '#order_register',
+                level: 2,
+                message: "请输入正整数！"
+            });
+            return false;
+        }
+
+        else{
+
+            var flag = $(".add_order").attr('class');
+            if(flag == "add_order"){
+                $.ajax({
+                    url:'/strategydetail/addStrategyOrder',
+                    dateType:'json',
+                    data:{"month":month,"uid":uid,"stid":stid},
+                    type:"post",
+                    success:function(data){
+                        if(data.success == true){
+                            $.qicTips({
+                                target: '#order_register',
+                                level: 1,
+                                message: data.message
+                            });
+                            $("#ordertEndTime").html(data.date);
+                            $(".add_order_box").dialog("close");
+                            $("#add_order").removeClass();
+                            $("#add_order").addClass("renew_order");
+                            $("#order_endTime").css("display","block");
+                        }
+                        else{
+                            $.qicTips({
+                                target: '#order_register',
+                                level: 2,
+                                message: data.message
+                            });
+                        }
+                    }
+                });
+            }
+
+            else {
+                $.ajax({
+                    url:'/strategydetail/delayStrategyOrder',
+                    dateType:'json',
+                    data:{"month":month,"uid":uid,"stid":stid},
+                    type:"post",
+                    success:function(data){
+                        if(data.success == true){
+                            $.qicTips({
+                                target: '#order_register',
+                                level: 1,
+                                message: data.message
+                            });
+                            $("#ordertEndTime").html(data.date);
+                            $(".add_order_box").dialog("close");
+                        }
+                        else{
+                            $.qicTips({
+                                target: '#order_register',
+                                level: 2,
+                                message: data.message
+                            });
+                        }
+                    }
+
+                });
+            }
+
+            return false;
+        }
+   }
+</script>
+<!--我要订阅 end -->
+
+
+<!--jqtransform插件 Begin-->
+<link rel="stylesheet" href="@{'/public/jqtransformplugin/jqtransform.css'}" type="text/css" media="all"/>
+<script src="@{'/public/jqtransformplugin/jquery.jqtransform.js'}"></script>
+<script>
+    $(document).ready(function (e) {
+        $(function () {
+            $('.nav_form').jqTransform({imgPath:"/public/jqtransformplugin/img/"});
+        });
+    });
+</script>
+<!--jqtransform插件 End-->
+
+
+
+<!--jquery-ui插件 Begin-->
+<link href="@{'/public/stylesheets/ui-lightness/jquery-ui-1.9.1.custom.css'}" rel="stylesheet">
+<script src="@{'/public/javascripts/jquery-ui-1.9.1.custom.js'}"></script>
+<script>
+    $(".my_comment").click(function () {
+        $(".comment_pop").dialog({
+            autoOpen:true,
+            modal:true,
+            resizable:false,
+            width:530,
+            height:250,
+            buttons:[
+                {
+                    title:"取消",
+                    class:'cancel',
+                    click:function () {
+                        $(this).dialog("close");
+                    }
+                },
+                {
+                    title:"提交",
+                    class:'submit',
+                    id:'subComment'
+                }
+            ]
+        }).dialog("open")
+    });
+    //$(".my_comment").click()
+
+</script>
+<!--jquery-ui插件 End-->
+
+<script>
+    function saveBtn_onclick() {
+        var form = $('#cndForm')[0];
+        form.action = "@{StrategyDetail.userDiscuss()}";
+        form.submit();
+    }
+
+
+    //用户评级
+    starChoose("select_info_year1", "#options_year1", "#reportDate", "#reportName");
+    starChoose("select_info_year2", "#options_year2", "#reportDate2", "#reportName2");
+</script>
+
+
+</body>

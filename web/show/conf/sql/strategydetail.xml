@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>test sql</comment>
+
+
+    <!--策略持仓-->
+    <entry key="StrategyPosition">
+        <![CDATA[
+          SELECT
+          b.`UpdateTime` AS updatetime,
+          b.`Side` AS side,
+          b.`SecurityID` AS securityid,
+          b.`SecurityExchange` AS securityexchange,
+          b.`PositionQty` AS positionqty,
+          b.`Symbol` AS symbol
+        FROM
+          qicore.`position_list` b
+        WHERE b.`StrategyID` = ?
+        ]]>
+    </entry>
+
+
+    <!--委托详情-->
+    <entry key="AuthorizeRecord">
+        <![CDATA[
+       SELECT
+          b.`SendingTime` AS sendingtime,
+          b.`Side` AS side,
+          b.`SecurityID` AS securityid,
+          b.`OrderQty` AS orderqty,
+          b.`Price` AS price,
+          b.`Account` AS account,
+          b.`OrderSNID` AS ordersnid
+        FROM
+          qicore.`order_list` b
+        WHERE b.`ClOrdLinkID` = ?
+        ORDER BY b.`SendingTime` DESC
+        LIMIT 100
+        ]]>
+    </entry>
+
+    <!--成交记录-->
+    <entry key="ExecutionRecord">
+        <![CDATA[
+        SELECT
+          b.`TransactTime` AS sendingtime,
+          b.`Side` AS side,
+          b.`SecurityID` AS securityid,
+          b.`LastQty` AS lastpx,
+          b.`LastPx` AS avgpx,
+          b.`CumQty` AS cumqty,
+          b.`Account` AS account
+        FROM
+          qicore.`execution_report_list` b
+        WHERE b.`ClOrdLinkID` = ?
+        ORDER BY b.`TransactTime` DESC
+        LIMIT 100
+         ]]>
+    </entry>
+
+     <!--绩效指标 -->
+    <entry key="Indicator">
+        <![CDATA[
+        SELECT
+          sb.`id`,
+          sb.`st_uuid`,
+          shl.RetainedProfits AS retainedProfits,
+          shl.Yield AS yield,
+          shl.YieldOfMonth AS yieldOfMonth,
+          shl.YieldOfMonthStandardDeviation AS yieldOfMonthStandardDeviation,
+          shl.OverallProfitability AS overallProfitability,
+          shl.OverallDeficit AS overallDeficit,
+          shl.TradeDays AS tradeDays,
+          shl.MAXShortPositionTime AS mAXShortPositionTime,
+          shl.TradeCount AS tradeCount,
+          shl.LongPositionTradeCount AS longPositionTradeCount,
+          shl.ShortPositionTradeCount AS shortPositionTradeCount,
+          shl.ProfitCount AS profitCount,
+          shl.DeficitCount AS deficitCount,
+          shl.PositionCloseCount AS positionCloseCount,
+          shl.MAXSequentialProfitCount AS mAXSequentialProfitCount,
+          shl.MAXSequentialDeficitCount AS mAXSequentialDeficitCount,
+          shl.ProfitRatio AS profitRatio,
+          shl.CanhsiedRatio AS canhsiedRatio,
+          shl.MAXSingleProfit AS mAXSingleProfit,
+          shl.MAXSingleDeficit AS mAXSingleDeficit,
+          shl.MAXSingleProfitRatio AS mAXSingleProfitRatio,
+          shl.MAXSingleDeficitRatio AS mAXSingleDeficitRatio,
+          shl.MAXSequentialDeficitCapital AS mAXSequentialDeficitCapital,
+          shl.SumOfCommission AS sumOfCommission,
+          shl.GrossProfit AS grossProfit,
+          shl.ProfitLossRatio AS profitLossRatio,
+          shl.AvgProfitOfMonth AS avgProfitOfMonth,
+          shl.YieldOfYear AS yieldOfYear,
+          shl.SharpeIndex AS sharpeIndex,
+          shl.FloatingProfitAndLoss AS floatingProfitAndLoss,
+          shl.MovingCost AS movingCost
+        FROM
+          qic_db.`strategy_baseinfo` sb
+          LEFT JOIN qic_db.`strategy_high_low` shl
+            ON sb.`st_uuid` = shl.`StrategyID`
+        WHERE sb.`id` = ?
+        GROUP BY sb.`id` ;
+         ]]>
+    </entry>
+
+    <!--策略委托信号-->
+    <entry key="order_signal">
+        <![CDATA[
+            SELECT
+              a.`SecurityID` ,
+              a.`SendingTime` AS sendingtime,
+              a.`Side` AS side
+            FROM
+              qicore.`order_list` a
+            WHERE a.`ClOrdLinkID` = ?
+            ORDER BY a.`SendingTime` DESC
+            LIMIT 7
+         ]]>
+    </entry>
+
+    <!--权益走势图 初始资金-->
+    <entry key="get_initial_capital">
+        <![CDATA[
+              SELECT
+  IniCapital as inicapital
+FROM
+  qicore.`capital_list`
+WHERE StrategyID = ?
+         ]]>
+    </entry>
+    <!--策略对比图形展示-->
+    <entry key="strategy_contrast_for_pictrue_sql">
+        <![CDATA[
+  SELECT
+  a.yield as yield,
+  a.updatedate as updatedate
+FROM
+  strategy_daily_yield a
+WHERE strategyid = ?
+  AND a.updatedate >= ?
+ORDER BY a.updatedate
+]]>
+    </entry>
+    <!--策略走势图展示(日线)-->
+    <entry key="pictrue_sql_for_day">
+        <![CDATA[
+  SELECT
+  a.yield as yield,
+  a.updatedate as updatedate,
+  b.name as sname
+FROM
+  strategy_daily_yield a
+  inner join
+  qic_db.strategy_baseinfo b
+ ON a.StrategyID = b.st_uuid
+WHERE a.strategyid = ?
+  AND a.updatedate >= ?
+ORDER BY a.updatedate
+]]>
+    </entry>
+
+
+    <!--策略走势图展示(周线)-->
+    <entry key="pictrue_sql_for_week">
+        <![CDATA[
+SELECT
+  *
+FROM
+  (SELECT DISTINCT
+    IF(
+      DAYOFWEEK (a.updatedate) = '6',
+      a.updatedate,
+      NULL
+    ) AS updatedate,
+    IF(
+      DAYOFWEEK (a.updatedate) = '6',
+      a.yield,
+      NULL
+    ) AS yield ,
+    b. name as sname
+  FROM
+    `strategy_daily_yield` a
+     inner join
+   qic_db.strategy_baseinfo b
+      ON a.StrategyID = b.st_uuid
+  WHERE a.strategyid = ?
+  AND a.updatedate>=?
+  ORDER BY a.updatedate ) f
+]]>
+    </entry>
+
+
+    <!-- 得到当前订阅截止日期-->
+    <entry key="get_orderetime_sql">
+        <![CDATA[
+            SELECT
+              *
+            FROM
+              qic_db.user_strategy_order a
+            WHERE a.`uid` = ?
+              AND a.`stid` = ?
+        ]]>
+    </entry>
+
+    <!--得到下架时间 -->
+    <entry key="getdowntime_sql">
+        <![CDATA[
+            SELECT
+              *
+            FROM
+              qic_db.`strategy_baseinfo` a
+            WHERE a.`id` = ?
+        ]]>
+    </entry>
+
+    <!--更新下架时间 -->
+    <entry key="update_downtime">
+        <![CDATA[
+            UPDATE
+              qic_db.user_strategy_order a
+            SET
+              a.`order_etime` = ?
+            WHERE a.`uid` = ?
+              AND a.`stid` = ?
+        ]]>
+    </entry>
+
+    <!--插入下架时间 -->
+    <entry key="insert_downtime">
+        <![CDATA[
+            INSERT INTO qic_db.`user_strategy_order` (uid, stid, order_stime, order_etime)
+            VALUES
+              (?, ?, NOW(), ?)
+        ]]>
+    </entry>
+
+    <!--插入下架时间 -->
+    <entry key="isorder_sql">
+        <![CDATA[
+            SELECT
+              *
+            FROM
+              qic_db.`user_strategy_order`
+            WHERE uid = ?
+              AND stid = ?
+        ]]>
+    </entry>
+
+    <!--查询用户的上传策略列表-->
+    <entry key="findStrategysByUser">
+        <![CDATA[
+            SELECT
+                 name sname,
+                 provider,
+                 status,
+                 order_count orderCount,
+                 collect_count collectCount,
+                 up_time upTime,
+                 down_time downTime,
+                 pass_time passTime,
+                 upload_time uploadTime,
+                 uso.validCount validOrderCount
+            FROM
+                strategy_baseinfo sb
+            LEFT JOIN
+                 (
+                   SELECT
+                          count(1) validCount,
+                          stid
+
+                    from
+                           user_strategy_order
+                    where
+                          UNIX_TIMESTAMP(order_etime)>UNIX_TIMESTAMP(now())
+                    group by
+                          stid
+
+                 ) uso
+            ON
+                   uso.stid=sb.id
+            WHERE
+                   sb.stup_uid=?
+    ]]>
+    </entry>
+    <!--查询用户的上传策略列表-->
+    <entry key="countOfStrategysByUser">
+        <![CDATA[
+
+                        SELECT
+                            uso.validCount
+                        FROM
+                            strategy_baseinfo sb
+                        LEFT JOIN
+                             (
+                               SELECT
+                                      count(1) validCount,
+                                      stid
+                                from
+                                       user_strategy_order
+                                where
+                                      UNIX_TIMESTAMP(order_etime)>UNIX_TIMESTAMP(now())
+                                group by
+                                      stid
+
+                             ) uso
+                        ON
+                               uso.stid=sb.id
+                        WHERE
+                              sb.stup_uid=?
+
+    ]]>
+    </entry>
+    <!--上传策略-->
+    <entry key="insertStrategy">
+        <![CDATA[
+            INSERT INTO strategy_baseinfo(
+                st_uuid,
+                name,
+                trade_type,
+                trade_variety,
+                provider,
+                provider_desp,
+                desp,
+                status,
+                stup_uid,
+                upload_time,
+                lookback_stime,
+                lookback_etime
+            )VALUES(
+                ?,?,?,?,?,?,?,?,?,NOW(),?,?
+            )
+        ]]>
+    </entry>
+    <!--查询策略-->
+    <entry key="findStrategyByName">
+        <![CDATA[
+            SELECT
+                id id,
+                name sname,
+                desp
+            FROM
+                strategy_baseinfo
+            WHERE
+                name=?
+        ]]>
+    </entry>
+    <!--上传策略后同步数据到qsm表中-->
+    <entry key="syncStrategyToQsm">
+        <![CDATA[
+            INSERT INTO   qstrategy(
+                             StrategyID,
+                             StrategyName,
+                             FilePath,
+                             AgentIP
+                     )
+                        VALUES(?,?,?,?)
+                ]]>
+    </entry>
+
+    <entry key="strategy_baseinfo">
+        <![CDATA[
+        SELECT
+          a.id,
+          a.`st_uuid` AS stUuid,
+          a.`name` AS 'name',
+          a.`trade_variety` AS tradeVariety
+        FROM
+          qic_db.`strategy_baseinfo` a
+        WHERE a.`id` = ?
+
+                ]]>
+    </entry>
+    <!--向策略基本信息表 订阅总数加1-->
+    <entry key="add_sumOrderCount_sql">
+        <![CDATA[
+        UPDATE
+          qic_db.`strategy_baseinfo`
+        SET
+          order_count = order_count + 1
+        WHERE id = ?
+                ]]>
+    </entry>
+
+
+
+
+</properties>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人资料修改</title>
+<script src="js/jquery-1.8.2.min.js"></script>
+<style type="text/css">
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body,button,input,select,textarea{font:14px/1.5 tahoma,arial,\5b8b\4f53;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+address,cite,dfn,em,var{font-style:normal;}
+code,kbd,pre,samp{font-family:courier new,courier,monospace;}
+ul,ol{list-style:none;}
+a{text-decoration:none; color:#000;}
+a:hover{text-decoration:underline;}
+fieldset,img{border:0;}
+button,input,select,textarea{font-size:100%;}
+table{border-collapse:collapse;border-spacing:0;}
+body, html{  background-color:#fff;  font-size:14px; color:#383838; overflow:hidden; font-family:\5b8b\4f53; width:100%; height:100%; }
+select{ vertical-align:middle;}
+
+.box{ width:850px; margin:0 auto;}
+.strategy_nav{ height:41px;  border-top:1px solid #898989; border-bottom:1px solid #c2c2c2; background:-moz-linear-gradient(top, #5e5e5e 0%, #323232 100%); background:-webkit-linear-gradient(top, #5e5e5e 0%, #323232 100%);  min-width:1024px;  width:100%; z-index:1000; }
+.info_h2{ font-size:20px; color:#4aa3d5; font-family:Tahoma, Geneva, sans-serif; border-bottom:4px solid #4aa3d5; padding-bottom:5px; margin-top:40px;}
+
+.tbl_modify{ margin:20px 0 10px 0;}
+.tbl_modify td{ height:50px;}
+.inp_common{ border:1px solid #92c9ee; height:25px; line-height:25px; width:180px;}
+.inp_address{ width:320px;}
+.modify_pwd{ color:#4aa3d5; padding-right:3px;}
+.m_sc{ position:relative; top:25px; text-align:center;width:850px; margin:0 auto;}
+.m_sc img{ cursor:pointer;}
+</style>
+</head>
+
+<body>
+<div class="strategy_nav">
+
+</div>
+<div class="box">
+  <h2 class="info_h2">
+    	个人资料修改
+    </h2>
+    
+    <table width="100%" class="tbl_modify" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11%" align="right">帐号：</td>
+    <td width="29%">Admin</td>
+    <td width="17%" align="right">&nbsp;</td>
+    <td width="43%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right">姓名：</td>
+    <td><input type="text" class="inp_common"></td>
+    <td align="right">E-mail：</td>
+    <td><input type="text" class="inp_common"></td>
+  </tr>
+  <tr>
+    <td align="right">联系电话：</td>
+    <td><input type="text" class="inp_common"></td>
+    <td align="right">邮编：</td>
+    <td><input type="text" class="inp_common"></td>
+  </tr>
+  <tr>
+    <td align="right">联系地址：</td>
+    <td colspan="3"><input type="text" class="inp_common inp_address"></td>
+    </tr>
+</table>
+
+<table width="100%"  class="tbl_modify" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="11%" align="right"><strong class="modify_pwd">更改密码</strong></td>
+    <td width="89%">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="right">当前密码：</td>
+    <td><input type="text" class="inp_common"></td>
+  </tr>
+  <tr>
+    <td align="right">新密码：</td>
+    <td><input type="text" class="inp_common"></td>
+  </tr>
+  <tr>
+    <td align="right">确认密码：</td>
+    <td><input type="text" class="inp_common"></td>
+  </tr>
+
+  
+</table>
+<div class="m_sc"><img src="images/m_cancel.png">&nbsp;&nbsp;<img src="images/m_save.png"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<table width="100%" border="0" class="tbl_exec" cellspacing="0" cellpadding="0">
+    <tr>
+        <th width="18%">时间</th>
+        <th width="20%">策略名称</th>
+        <th width="12%">方向</th>
+        <th width="12%">交易品种</th>
+        <th width="12%">标的代码</th>
+        <th width="12%">委托价格</th>
+        <th width="13%">委托量</th>
+
+        <th width="2">&nbsp;</th>
+    </tr>
+</table>
+
+<div class="tbl_scoll" >
+<table width="100%" border="0" class="tbl_common tbl_exec tbl_no_scroll" cellspacing="0"
+       cellpadding="0">
+#{list items : authorizeRecordDtoList, as : 'item'}
+    <tr>
+        <td width="18%"><strong>#{emVF v : item.sendingtime, f : 'yyyy-MM-dd HH:mm:ss'/}</strong></td>
+        <td width="20%">#{emVF v : item.name/}</td>
+        <td width="12%">
+            #{if item.side ==1}买/多#{/if}
+            #{elseif item.side ==2}卖/空#{/elseif}
+            #{else }未定义#{/else}
+        </td>
+        <td width="12%">
+            #{if item.trade_variety == 1}股票#{/if}
+            #{elseif item.trade_variety == 2}期货#{/elseif}
+            #{else}混合#{/else}
+        </td>
+        <td width="12%"><strong>#{emVF v : item.securityid/}</strong></td>
+        <td width="12%"><strong>#{emVF v : item.price, f:'#,##0.00'/}</strong></td>
+        <td width="13%"><strong>#{emVF v : item.orderqty/}</strong></td>
+
+    </tr>
+#{/list}
+    <input type="hidden" id="e_showloading" value="true"/>
+</table>
+</div>

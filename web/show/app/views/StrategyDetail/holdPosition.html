@@ -1,0 +1,45 @@
+<table width="100%" border="0" class="tbl_exec" cellspacing="0" cellpadding="0">
+    <tr>
+        <th width="18%">时间</th>
+        <th width="12%">策略名称</th>
+        <th width="11%">方向</th>
+        <th width="11%">交易品种</th>
+        <th width="12%">标的代码</th>
+        <th width="12%"> 标的名称</th>
+        <th width="12%">交易所</th>
+        <th width="12%">持仓量</th>
+
+    </tr>
+</table>
+
+<div class="tbl_scoll" >
+<table width="100%" border="0" class="tbl_common tbl_exec tbl_no_scroll" cellspacing="0"
+           cellpadding="0">
+    #{list items : strategyPositionDtoList, as : 'item'}
+        <tr>
+            <td width="18%"><strong>#{emVF v : item.updatetime, f : 'yyyy-MM-dd HH:mm:ss'/}</strong></td>
+            <td width="12%">#{emVF v : item.name/}</td>
+            <td width="11%">
+                #{if item.side ==1}买/多#{/if}
+                #{elseif item.side ==2}卖/空#{/elseif}
+                #{else }未定义#{/else}
+            </td>
+            <td width="11%">
+                #{if item.trade_variety == 1}股票#{/if}
+                #{elseif item.trade_variety == 2}期货#{/elseif}
+                #{else}混合#{/else}
+            </td>
+            <td width="12%"><strong>#{emVF v : item.securityid/}</strong></td>
+            #{if  item.symbol == ""}
+                <td width="12%">--</td>
+            #{/if}
+            #{else }
+                <td width="12%">#{emVF v : item.symbol/}</td>
+            #{/else}
+            <td width="12%">#{emVF v : item.securityexchange/}</td>
+            <td width="12%"><strong>#{emVF v : item.positionqty/}</strong></td>
+        </tr>
+    #{/list}
+    </table>
+    <input type="hidden" id="h_showloading" value="true"/>
+</div>
