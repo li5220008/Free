@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>registerUser  sql</comment>
+
+    <entry key="registerAddUser">
+        <![CDATA[
+                      INSERT INTO
+                               user_info(
+                                 name,
+                                 account,
+                                 pwd,
+                                 phone,
+                                 email,
+                                 idcard,
+                                 sale_dep,
+                                 address,
+                                 post,
+                                 capital_account,
+                                 sdate,
+                                 edate,
+                                 status,
+                                 apply_date
+                               )VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())
+
+        ]]>
+    </entry>
+
+    <entry key="findUserByAccount">
+        <![CDATA[
+                       SELECT
+                       NAME 'name',
+                       account AS account,
+                       pwd 'pwd',
+                       phone,
+                       email email,
+                       idcard,
+                       sale_dep saleDep,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       account=?
+                ]]>
+    </entry>
+    <entry key="findUserByEmail">
+        <![CDATA[
+                    SELECT
+                       NAME 'name',
+                       account AS account,
+                       pwd 'pwd',
+                       phone,
+                       email email,
+                       idcard,
+                       sale_dep saleDep,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       email=?
+                ]]>
+    </entry>
+
+</properties>

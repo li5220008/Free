@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录-注册</title>
+<link rel="stylesheet" type="text/css" href="style/global-admin.css">
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/global-qic.js"></script>
+<style>
+.ui-dialog-titlebar{ display:none;}
+</style>
+</head>
+
+<body>
+
+
+
+
+
+
+<!--新建用户 Begin-->
+<div class="new_user"  style="display:block;">
+<form method="post" class="form_new_user form_login_user">
+
+<table width="100%" class="tbl_new_user" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="20%" align="right"> 请输入账号：</td>
+    <td width="80%">
+           <p class="p_valid">
+            <input type="text"  name="fullname" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text">2～12位中文、字母、数字、下划线</span>
+                     </font>
+    </td>
+  </tr>
+  <tr>
+    <td align="right">请输入姓名：</td>
+    <td>
+        	<p class="p_valid">
+            <input type="text" id="username" name="username" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_error">账号输入错误</span>
+            </font>
+        </td>
+  </tr>
+  
+   <tr>
+    <td align="right">请输入Email：</td>
+    <td>
+        	<p class="p_valid">
+            <input type="text" id="username" name="username" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_error">账号输入错误</span>
+            </font>
+        </td>
+  </tr>
+</table>
+        <div class="new_u_control" style="position:relative; margin-top:45px;">
+            <input type="reset" value="button" class="new_user_cancle">
+            <input type="submit" value="submit" class="new_user_register login_btn">
+         </div>
+</form>
+</div>
+
+<link href="style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="js/jquery-ui-1.9.1.custom.js"></script>
+
+<script src="js/jquery.validate.js"></script>
+<script>
+//validate 插件
+
+$(function(){
+	$(".new_user_cancle").click(function(){
+		$(".ui-dialog-titlebar-close").click()
+	});
+	
+	
+		
+	jQuery.validator.addMethod("fullName", function(value, name){
+		return  /^[\u4E00-\u9FA5\uF900-\uFA2D\w]+$/.test(value);   
+	}, "只能包括中文、英文、数字和下划线");
+	
+	// 中文字两个字节   
+	jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {   
+	  var length = value.length;   
+	  for(var i = 0; i < value.length; i++){   
+	   if(value.charCodeAt(i) > 127){   
+		length++;   
+	   }   
+	  }   
+	  return  ( length >= param[0] && length <= param[1] );   
+	}, "需在2-12个字节之间"); 
+	
+	jQuery.validator.addMethod("inputNum", function(value, element) {   
+		  return !(/^\d+$/.test(value));   
+	}, "不能全部为数字"); 
+		
+	
+	$(".form_new_user").validate({
+		rules: {
+			fullname: {
+				required:true,
+				fullName: true,
+				inputNum: true,
+				byteRangeLength: [2,12]
+			},
+			username: {   
+				    required: true, 
+				    fullName: true,  
+				    inputNum: true, 
+				    byteRangeLength:[4,50],
+				    remote: {
+				    	url: 'test.php',//检测账号
+				    	type: "post",
+				        dataType: "json",
+				        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    	data:{
+				    		//username:function() { return $("#username").val();}
+				    	}
+				    }
+			}
+			
+		},
+		
+		//验证成功
+	   success: function(label) { 
+	   		//$(".form_new_user").preventDefault();
+			//element.parent().parent().find(".new_user_tips").hide();;
+			
+			
+			
+	     	label.parent().html("OK").removeClass("tips_error").addClass("tips_ok").parent(); 
+		
+			
+			
+			
+	   },
+		 
+	  errorPlacement: function(error, element) {
+		  element.parent().parent().find(".new_user_tips").show();
+		  //console.log('1.000:', element);
+		  var targetElement = element.parent().parent().find(".tips_text");
+			   error.appendTo(targetElement.removeClass("tips_ok").addClass('tips_error').empty());   
+		  
+		  //console.log(targetElement)
+		
+       },
+	   
+	   submitHandler:function(form){
+		
+		//$(form).ajaxSubmit();
+		
+		}
+	});
+	
+	
+	
+	//$.post("test.php", function(data){}, 'html');
+	
+	
+	
+	$(".new_user").dialog({
+		autoOpen: true,
+		modal: true,
+		position: {
+			at: "center",
+		},
+		height: 'auto',
+		resizable: false,
+		width: 600,
+		zIndex: 1000
+	});
+
+	
+	
+
+	
+});	
+downBox('select_info_year1_2', '#options_year1_2', 'reportDate_2', 'reportName_2');
+</script>
+
+<!--新建用户 End-->
+
+
+
+</body>
+</html>

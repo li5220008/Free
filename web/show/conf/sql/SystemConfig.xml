@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>systemConfig  sql</comment>
+
+
+    <entry key="loadConfig">
+             <![CDATA[
+                    SELECT
+                       id,
+                       key_name 'key',
+                       key_value value
+                    FROM
+                       config_manage
+                ]]>
+    </entry>
+
+</properties>

@@ -1,0 +1,12 @@
+#{extends 'main.html'/}
+#{set title:'登陆完成后的列表'/}
+
+<body>
+<p>#{a @Strategys.strategyList()}策略列表#{/a}</p>
+<p>#{a @StrategyFavorite.strategyList()}我的收藏#{/a}</p>
+<p>#{a @StrategySubscription.strategyList()}我的订阅#{/a}</p>
+<p>#{a @StockPools.list()}股票池列表#{/a}</p>
+<p>#{a @StockPoolFavorite.list()}股票池列表 我的收藏#{/a}</p>
+<p>#{a @UserStrategyManage.myStrategyList()}策略上传列表#{/a}</p>
+<p>#{a @MessagesInfos.msgList()}系统消息#{/a}</p>
+</body>

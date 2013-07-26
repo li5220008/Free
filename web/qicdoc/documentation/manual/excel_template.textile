@@ -1,0 +1,5 @@
+h3. 批量上传用户表头定义
+
+
+||用户名 ||登入账号||密码 ||联系电话 ||电子邮件|| 身份证号码 ||营业部||联系地址||邮编||资金账号||
+| username|useraccount| pwd| phone | email|idcard|salpartment|address|postcode|capicityAccount|

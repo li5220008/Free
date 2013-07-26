@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>登录-注册</title>
+<link rel="stylesheet" type="text/css" href="style/global-admin.css">
+<script src="js/jquery-1.8.2.min.js"></script>
+<script src="js/global-qic.js"></script>
+<style>
+.ui-dialog-titlebar{ display:none;}
+</style>
+</head>
+
+<body>
+
+
+
+
+
+
+<!--新建用户 Begin-->
+<div class="new_user"  style="display:block;">
+<form method="post" class="form_new_user form_login_user">
+
+<table width="100%" class="tbl_new_user" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="20%" align="right">  <span class="red">*</span>姓名：</td>
+    <td width="80%">
+           <p class="p_valid">
+            <input type="text"  name="fullname" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text">2～12位中文、字母、数字、下划线</span>
+                     </font>
+    </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>帐号：</td>
+    <td>
+        	<p class="p_valid">
+            <input type="text" id="username" name="username" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_error">账号输入错误</span>
+            </font>
+        </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>密码：</td>
+    <td>
+    	 <p class="p_valid">
+            <input type="text" class="new_input">
+         </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_ok">正确</span>
+           </font>
+    	
+       </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>再次输入密码：</td>
+    <td><input type="text" class="new_input">
+    </td>
+  </tr>
+  <tr>
+    <td align="right">联系电话：</td>
+    <td><input type="text" class="new_input"></td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>E-mail：</td>
+    <td>
+        <input type="text" class="new_input">
+    </td>
+  </tr>
+  <tr>
+    <td align="right">身份证号：</td>
+    <td><input type="text" class="new_input"></td>
+  </tr>
+  <tr>
+    <td align="right">所属营业部：</td>
+    <td>
+    	<div class="dialog_box">
+ 
+             <input type="hidden" autocomplete="off" id="reportDate_2">
+            <input type="hidden" autocomplete="off" id="reportName_2">
+             <div id="select_info_year1_2" class="sel_84_dialog new_sel_d">2012</div>
+             <ul id="options_year1_2" class="sel_91_option new_sel_option" style="display: none;">
+                <li data-value="12">2012</li>
+                <li data-value="11">2011</li>
+                <li data-value="10">2010</li>
+                <li data-value="19">2019</li>
+                <li data-value="18">2018</li>
+              </ul>
+          </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td align="right">资金帐号：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">联系地址：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">邮编：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+        <div class="new_u_control">
+            <input type="reset" value="button" class="new_user_cancle">
+            <input type="submit" value="submit" class="new_user_register login_register">
+         </div>
+</form>
+</div>
+
+<link href="style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="js/jquery-ui-1.9.1.custom.js"></script>
+
+<script src="js/jquery.validate.js"></script>
+<!--<script src="js/jquery.metadata.js"></script>-->
+<script>
+//validate 插件
+
+$(function(){
+	$(".new_user_cancle").click(function(){
+		$(".ui-dialog-titlebar-close").click()
+	});
+	
+	
+		
+	jQuery.validator.addMethod("fullName", function(value, name){
+		return  /^[\u4E00-\u9FA5\uF900-\uFA2D\w]+$/.test(value);   
+	}, "只能包括中文、英文、数字和下划线");
+	
+	// 中文字两个字节   
+	jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {   
+	  var length = value.length;   
+	  for(var i = 0; i < value.length; i++){   
+	   if(value.charCodeAt(i) > 127){   
+		length++;   
+	   }   
+	  }   
+	  return  ( length >= param[0] && length <= param[1] );   
+	}, "需在2-12个字节之间"); 
+	
+	jQuery.validator.addMethod("inputNum", function(value, element) {   
+		  return !(/^\d+$/.test(value));   
+	}, "不能全部为数字"); 
+		
+	
+	$(".form_new_user").validate({
+		rules: {
+			fullname: {
+				required:true,
+				fullName: true,
+				inputNum: true,
+				byteRangeLength: [2,12]
+			},
+			username: {   
+				    required: true, 
+				    fullName: true,  
+				    inputNum: true, 
+				    byteRangeLength:[4,50],
+				    remote: {
+				    	url: 'test.php',//检测账号
+				    	type: "post",
+				        dataType: "json",
+				        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    	data:{
+				    		//username:function() { return $("#username").val();}
+				    	}
+				    }
+			}
+			
+		},
+		
+		//验证成功
+	   success: function(label) { 
+	   		//$(".form_new_user").preventDefault();
+			//element.parent().parent().find(".new_user_tips").hide();;
+			
+			
+			
+	     	label.parent().html("OK").removeClass("tips_error").addClass("tips_ok").parent(); 
+		
+			
+			
+			
+	   },
+		 
+	  errorPlacement: function(error, element) {
+		  element.parent().parent().find(".new_user_tips").show();
+		  //console.log('1.000:', element);
+		  var targetElement = element.parent().parent().find(".tips_text");
+			   error.appendTo(targetElement.removeClass("tips_ok").addClass('tips_error').empty());   
+		  
+		  //console.log(targetElement)
+		
+       },
+	   
+	   submitHandler:function(form){
+		
+		//$(form).ajaxSubmit();
+		
+		}
+	});
+	
+	
+	
+	//$.post("test.php", function(data){}, 'html');
+	
+	
+	
+	$(".new_user").dialog({
+		autoOpen: true,
+		modal: true,
+		position: {
+			at: "center",
+		},
+		height: 'auto',
+		resizable: false,
+		width: 600,
+		zIndex: 1000
+	});
+
+	
+	
+
+	
+});	
+downBox('select_info_year1_2', '#options_year1_2', 'reportDate_2', 'reportName_2');
+</script>
+
+<!--新建用户 End-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Application dependencies
+
+require:
+    - play
+    - play -> redis 0.3
+    - play -> excel 1.2.3
+    - com.google.guava -> guava 13.0.1
+    - commons-dbutils -> commons-dbutils 1.5
+    - common -> common
+    - qicdoc -> qicdoc
+
+
+repositories:
+    - MyModules:
+        type:     local
+        artifact: ${application.path}/../[module]
+        contains:
+            - common
+            - qicdoc

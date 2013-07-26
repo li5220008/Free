@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人资料修改</title>
+#{get 'moreStyles' /}
+    <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+*{这里定义全局变量, 用javascript表示. 如上下文路径等}*
+    <script type="text/javascript">
+        var _gQic = {
+            "ctx":"${play.ctxPath}"
+        };
+    </script>
+    <script src="@{'/public/javascripts/jquery-1.8.2.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/global-qic.js'}" type="text/javascript"></script>
+    <script src="@{'/public/javascripts/global-page.js'}" type="text/javascript"></script>
+#{get 'moreScripts' /}
+    <script type="text/javascript" src="@{'/public/javascripts/jquery.validate.js'}"></script>
+    <script src="/public/javascripts/messages_cn.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/personalmodify.css'}">
+
+    <style>
+        .red{ color: red; font-size: 12px; padding: 0 3px;}
+    </style>
+
+</head>
+
+<body>
+<div class="strategy_nav">
+
+</div>
+<div class="box">
+
+    <h2 class="info_h2">
+        个人资料修改
+    </h2>
+<form id="newForm">
+    <table width="100%" class="tbl_modify" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="11%" align="right">帐号：</td>
+            <td width="32%">#{emVF v : userInfo.account/}</td>
+            <td width="17%" align="right">&nbsp;</td>
+            <td width="40%">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right"><span class="red">*</span>姓名：</td>
+            <td><input type="text" class="inp_common" id="name" name="userInfoDto.name" value="#{emVF v : userInfo.name/}"></td>
+            <td align="right"><span class="red">*</span>E-mail：</td>
+            <td><input type="text" class="inp_common" id="email" name="userInfoDto.email" value="#{emVF v : userInfo.email/}"></td>
+        </tr>
+        <tr>
+            <td align="right">联系电话：</td>
+            <td><input type="text" class="inp_common" id="phone" name="userInfoDto.phone" value="#{emVF v : userInfo.phone/}"></td>
+            <td align="right">邮编：</td>
+            <td><input type="text" class="inp_common" id="post" name="userInfoDto.postCode" value="#{emVF v : userInfo.postCode/}"></td>
+        </tr>
+        <tr>
+            <td align="right">联系地址：</td>
+            <td colspan="3"><input type="text" class="inp_common inp_address" id="address" name="userInfoDto.address" value="#{emVF v : userInfo.address/}">
+            </td>
+        </tr>
+    </table>
+
+    <table width="100%" class="tbl_modify" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="11%" align="right"><strong class="modify_pwd">更改密码</strong></td>
+            <td width="89%">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right"><span class="red">*</span>当前密码：</td>
+            <td><input type="password" class="inp_common" id="curPwd" name="userInfoDto.password"></td>
+        </tr>
+        <tr>
+            <td align="right">新密码：</td>
+            <td><input type="password" class="inp_common" id="newPwd" name="newPassword"></td>
+        </tr>
+        <tr>
+            <td align="right">确认密码：</td>
+            <td><input type="password" class="inp_common" id="rePwd" name="userInfoDto.rePassword"></td>
+        </tr>
+
+
+    </table>
+
+    <div class="m_sc"><input type="image" id="personal_submit" src="/public/images/m_save.png">
+    </div>
+</form>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $("#newForm").validate({
+            submitHandler:function(form){
+
+                $.ajax({
+                    url:'/PersonalModify/modifySuccess',
+                    data:getFormValue(),
+                    dataType:"json",
+                    type:'post',
+                    success:function(data){
+                        if(data.success){
+                            $.qicTips({
+                                target:'#personal_submit',
+                                level:1,
+                                message:data.message
+                            });
+                        }
+                    }
+                });
+
+            },
+            rules: {
+                "userInfoDto.name": "required",
+                "userInfoDto.email": {
+                    required:true,
+                    email:true
+                },
+                "userInfoDto.phone":{
+                    digits:true
+                },
+                "userInfoDto.postCode":{
+                    digits:true
+                },
+                "userInfoDto.password":{
+                    required:true,
+                    remote: {
+                        url: '/PersonalModify/checkPassword',
+                        type:"post",
+                        dataType: "json",
+                        data:{
+                            password:function() { return $("#curPwd").val();}
+                        }
+                    }
+                },
+                "userInfoDto.rePassword":{
+                    equalTo:'#newPwd'
+                }
+            },
+            messages:{
+                "userInfoDto.name" :" 请输入姓名",
+                "userInfoDto.email":{
+                    required:" 请输入email地址",
+                    email:" 请输入正确的email地址"
+                },
+                "userInfoDto.phone":{
+                    digits:"电话必须是数字"
+                },
+                "userInfoDto.postCode":{
+                    digits:"邮编必须是数字"
+                },
+                "userInfoDto.password":{
+                  required:"请输入当前密码",
+                    remote:"当前密码输入错误"
+                },
+                "userInfoDto.rePassword":{
+                    equalTo:'确认密码和新密码不同'
+                }
+            }
+
+        });
+
+    });
+
+    function getFormValue(){
+        var form_value = $("#newForm").serializeArray();
+        return form_value;
+    }
+
+    $(window).keyup(function(event) {
+        if (event.keyCode == "13") {//keyCode=13是回车键
+            $('#personal_submit').click();
+        }
+    });
+
+
+</script>
+</body>
+</html>

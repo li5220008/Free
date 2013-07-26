@@ -1,0 +1,32 @@
+package models.common;
+
+import play.db.jpa.Model;
+
+import javax.persistence.*;
+import java.util.Date;
+
+/**
+ * 用户策略评论
+ * User: wenzhihong
+ * Date: 12-11-7
+ * Time: 上午10:40
+ */
+@Entity
+@Table(name = "user_strategy_discuss")
+public class UserStrategyDiscuss extends Model {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "uid")
+    public UserInfo user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "stid")
+    public StrategyBaseinfo strategy;
+
+    @Column(name = "dis_time")
+    public Date disTime;//可以不附值, 插入数据库时会自动生成
+
+    public String content; //内容
+
+    public Integer star; //星级
+
+}

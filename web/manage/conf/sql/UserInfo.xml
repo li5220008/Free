@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>userinfo  sql</comment>
+
+
+    <entry key="findUserInfoById">
+             <![CDATA[
+                    SELECT
+                       id,
+                       NAME 'name',
+                       account AS account,
+                       pwd 'password',
+                       phone,
+                       email email,
+                       idcard idCard,
+                       sale_dep saleDept,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       id=?
+                ]]>
+    </entry>
+    <entry key="findUserByAccount">
+        <![CDATA[
+                    SELECT
+                       id,
+                       NAME 'name',
+                       account AS account,
+                       pwd 'password',
+                       phone,
+                       email email,
+                       idcard idCard,
+                       sale_dep saleDept,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       account=?
+                ]]>
+    </entry>
+    <entry key="findUserByEmail">
+        <![CDATA[
+                    SELECT
+                       id,
+                       NAME 'name',
+                       account AS account,
+                       pwd 'password',
+                       phone,
+                       email email,
+                       idcard idCard,
+                       sale_dep saleDept,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       email=?
+                ]]>
+    </entry>
+    <entry key="findUserFunctionInfoById">
+        <![CDATA[
+                    SELECT
+                          distinct fi.id AS id,
+                          fi.name,
+                          fi.pid
+                    FROM
+                          user_role ur
+                    LEFT JOIN
+                          role_function rf
+                    ON
+                          ur.rid=rf.rid
+                    LEFT JOIN
+                          function_info fi
+                    ON
+                          rf.fid=fi.id
+                    WHERE
+                          ur.uid=? and fi.name<>''
+        ]]>
+    </entry>
+    <entry key="findUserRoleInfoById">
+        <![CDATA[
+                    SELECT
+                           ri.name
+                    FROM
+                            user_role  ur
+                    LEFT JOIN
+                            role_info ri
+                    ON
+                            ur.rid=ri.id
+                    WHERE
+                            ur.uid=?
+        ]]>
+    </entry>
+    <entry key="updateUserInfo">
+        <![CDATA[
+                      UPDATE
+                                 user_info
+                      SET        name=?,
+                                 account=?,
+                                 pwd=?,
+                                 phone=?,
+                                 email=?,
+                                 idcard=?,
+                                 sale_dep=?,
+                                 address=?,
+                                 post=?,
+                                 capital_account=?
+                     WHERE
+                                 id=?
+        ]]>
+    </entry>
+    <entry key="updateUserInfoWithoutPwd">
+        <![CDATA[
+                      UPDATE
+                                 user_info
+                      SET        name=?,
+                                 account=?,
+                                 phone=?,
+                                 email=?,
+                                 idcard=?,
+                                 sale_dep=?,
+                                 address=?,
+                                 post=?,
+                                 capital_account=?
+                     WHERE
+                                 id=?
+        ]]>
+    </entry>
+    <entry key="addUserBatch">
+        <![CDATA[
+                      INSERT IGNORE INTO
+                               user_info(
+                                 name,
+                                 account,
+                                 pwd,
+                                 phone,
+                                 email,
+                                 idcard,
+                                 sale_dep,
+                                 address,
+                                 post,
+                                 capital_account,
+                                 sdate,
+                                 edate,
+                                 status,
+                                 apply_date
+                               )VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,NOW())
+
+
+        ]]>
+    </entry>
+    <entry key="findUserByAccountExcludeSelf">
+        <![CDATA[
+                    SELECT
+                       id,
+                       NAME 'name',
+                       account AS account,
+                       pwd 'password',
+                       phone,
+                       email email,
+                       idcard idCard,
+                       sale_dep saleDept,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       account=? and account<>?
+                ]]>
+    </entry>
+    <entry key="findUserByEmailExcludeSelf">
+        <![CDATA[
+                    SELECT
+                       id,
+                       NAME 'name',
+                       account AS account,
+                       pwd 'password',
+                       phone,
+                       email email,
+                       idcard idCard,
+                       sale_dep saleDept,
+                       capital_account capitalAccount,
+                       address,
+                       post postCode
+                    FROM
+                       user_info
+                    WHERE
+                       email=? and email<>?
+                ]]>
+    </entry>
+
+    <!--新建用户 -->
+    <entry key="adduser">
+        <![CDATA[
+                INSERT INTO qic_db.`user_info` (
+                  NAME,
+                  account,
+                  pwd,
+                  phone,
+                  email,
+                  idcard,
+                  sale_dep,
+                  capital_account,
+                  address,
+                  post,
+                  sdate,
+                  edate,
+                  status
+                )
+                VALUES
+                  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)
+                ]]>
+    </entry>
+
+    <!--删除用户 -->
+    <entry key="delUser">
+        <![CDATA[
+           UPDATE qic_db.`user_info` a SET a.`status` = ? WHERE a.`id` = ?
+                ]]>
+    </entry>
+
+    <!--用户延期 -->
+    <entry key="delayUser">
+        <![CDATA[
+           UPDATE qic_db.`user_info` a SET a.`edate`= ?  WHERE a.`id` = ?
+                ]]>
+    </entry>
+
+
+
+
+</properties>

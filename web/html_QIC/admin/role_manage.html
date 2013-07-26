@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>角色管理</title>
+<link rel="stylesheet" type="text/css" href="../style/global-manage.css">
+<script src="../js/jquery-1.8.2.min.js"></script>
+<script src="../js/global-qic.js"></script>
+</head>
+
+<body>
+<!--strategy_nav Begin-->
+<div class="strategy_nav">
+	<ul class="manage_top_menu">
+    	<li><a href="user_manage.html">用户权限管理</a></li>
+        <li class="mt_current"><a href="role_manage.html">角色管理</a></li>
+    </ul>
+</div>
+<!--strategy_nav End-->
+
+<!--role_manage_box Begin-->
+<div class="role_manage_box">
+<!--角色列表 Begin-->
+	<div class="role_list_wrap">
+    	<div class="role_list_title_box">
+        	<div class="role_list_title">
+            角色列表
+            </div>
+        	<div class="role_list_control">
+            	<p>
+                	<button class="add_role">
+                    <img src="../images/admin/role_add.png">
+                    </button>
+                    <button>
+                    <img src="../images/admin/role_top.png">
+                    </button>
+                    <button>
+                    <img src="../images/admin/role_bottom.png">
+                    </button>
+                    <button>
+                    <img src="../images/admin/role_remove.png">
+                    </button>
+                </p>
+            </div>
+            
+            <div class="role_tu_list">
+            
+                <ul class="role_list_ul">
+                	<li class="add_role_box" style="display:none;">
+                  	  <input type="text" placeholder="请输入名称..."  class="add_role_input">
+                    </li>
+                    <li><a href="#">角色1</a></li>
+                    <li class="current"><a href="#">角色1</a></li>
+                    <li><a href="#">角色1</a></li>
+                    <li><a href="#">角色1</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                    <li><a href="#">角色21</a></li> 
+                  
+                </ul>
+                
+            </div>
+            
+        </div>
+    </div>
+    <!--角色列表 End-->
+    
+    <div class="belogn_user_wrap">
+    	<ul class="tab_ul" id="menuTab">
+      	               	<li class="display">角色属性</li>
+                        <li class="">角色用户列表</li>
+       </ul>
+       <ul class="sub_content" id="menuTab">
+            <li class="display">
+                <div class="common_user_bar">
+                        角色1
+                </div>
+                <div class="role_belong_content">
+               		 <div class="role_description">
+                     	<h3 class="role_descr_til">
+                        角色描述：
+                        </h3>
+                        <textarea name="" cols="" rows="" class="role_txtarea"></textarea>
+                        
+                        <div class="common_btn">
+                             <input type="button" class="common_blue" value="编辑">
+                             <input type="button" class="common_blue" value="保存">
+                        </div>
+                     </div>
+                     
+                     <div class="role_privilege">
+                     	<h3 class="role_descr_til">
+                        角色描述：
+                        </h3>
+                        <div class="role_privi_txt">
+                        	 <div class="organization_tree">
+                                <!--ligerTree插件html部分 Beigin-->
+                                <ul id="tree1">
+                                    <li isexpand="false">
+                                        <span>节点1</span>
+                                        <ul>
+                                            <li isexpand="false">
+                                                <span>节点1.1</span>
+                                                 <ul>
+                                                    <li><span>节点1.1.2</span></li>
+                                                    <li><span>节点1.1.2</span></li>
+                                                 </ul>
+                                             </li>
+                                             <li><span>节点1.2</span></li>
+                                        </ul>
+                                    </li>  
+                                </ul>
+                                <!--ligerTree插件html部分 End-->
+                                </div>
+                        </div>
+                        <div class="common_btn">
+                             <input type="button" class="common_blue" value="设置">
+                             <input type="button" class="common_blue" value="保存">
+                        </div>
+                     </div>
+                </div>
+            </li>
+            <li class="">
+          		  <div class="common_user_bar">
+                    角色1
+                 </div>
+                  <div class="role_belong_content">
+          			 
+                            
+                             
+                                        
+                          <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec">
+              <tr>
+                <th width="12%">帐号</th>
+                <th width="13%">姓名</th>
+                
+                <th width="15%">联系电话</th>
+                <th width="15%">所属营业部</th>
+                <th width="15%">资金账号</th>
+                
+                <th width="15%"> 权限到期日</th>
+                <th width="15%">用户状态</th>
+                                                                                    
+
+                </tr>
+                </table>
+                                                                               
+                            <div class="tbl_scoll">
+                        
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_common tbl_exec tbl_no_scroll">
+                           
+                            <tr>
+                            <td width="12%"><span class="username_datum">axly10</span></td>
+                            <td width="13%">张三</td>
+                            <td width="15%">13798689971</td>
+                             <td width="15%">XXXXXXXX部门</td>
+                            <td width="15%">XXXXXXXX</td>
+                            <td width="15%">2012-9-18 </td>
+                            <td width="15%">一周内到期</td>
+                            </tr>
+                     
+                   			<tr>
+                            <td width="12%"><span class="username_datum">axly10</span></td>
+                            <td width="13%">张三</td>
+                            <td width="15%">13798689971</td>
+                             <td width="15%">XXXXXXXX部门</td>
+                            <td width="15%">XXXXXXXX</td>
+                            <td width="15%">2012-9-18 </td>
+                            <td width="15%">一周内到期</td>
+                            </tr>
+                      
+                          
+                  
+                        </table>
+                  	      </div>
+                            <!--角色用户列表 End-->
+                            
+                              <!--分页 Begin-->
+                                <div class="page">
+                                    <div class="page_center">
+                                        <a href="#" class="previous">上一页</a>
+                                        <span class="page_current">1</span>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <span class="page_break">...</span>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="page_num">共10页</span>
+                                        <span class="go_page">到第<input type="text">页</span>
+                                        <span class="page_ok"><img src="../images/st_ok.png"></span>
+                                    </div>
+                                </div>
+                                <!--分页 End-->
+                                
+                                <!--control_active Begin-->
+                                <div class="control_active">
+                                	<div class="control_active_wrap">
+                                    	<span class="add_remove_user">增加/删除用户</span>
+                                    </div>
+                                </div>
+                                 <!--control_active End-->
+                                
+                </div>
+            </li>
+       </ul>
+    </div>
+</div>
+<!--role_manage_box End-->
+
+<script>
+window.resizeHeight(".role_list_ul", 190);
+window.resizeWidth(".belogn_user_wrap", 370);
+window.resizeHeight(".role_belong_content", 187);
+window.resizeHeight(".role_privi_txt", 470);
+
+$(".add_role").click(function(){
+	$(".add_role_box").toggle();	
+});
+
+//jQ tab切换
+$(".tab_ul li").click(function(){
+	var index = $(this).index();
+	$(".tab_ul").children("li").removeClass().eq(index).addClass('display');
+	$(".sub_content").children("li").removeClass().eq(index).addClass('display')
+});
+</script>
+<!--ligerUI插件 Begin-->
+<script src="../js/ligerUI/base.js"></script>
+<script src="../js/ligerUI/ligerTree.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/ligerUI/ligerui-tree.css">
+<script type="text/javascript">
+	$(function(){
+		$("#tree1").ligerTree({ checkbox: true, btnClickToToggleOnly:false, parentIcon: null, childIcon: null, getChecked:true, nodeWidth: 152}).expandAll();
+	})
+</script>
+<!--ligerUI插件 End-->
+
+<!--用户列表设置 Begin-->
+<div class="set_user_list" title="用户列表设置">
+	<div class="list_role_wrap">
+    		<div class="checked_list">
+               <h3 class="h3_title">
+                用户列表
+                </h3>
+                <table width="100%" class="tbl_checked" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>姓名</th>
+    <th>账号</th>
+  </tr>
+  <tr class="tr_checked">
+    <td>张三</td>
+    <td>XXXX</td>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>XXXX</td>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>XXXX</td>
+  </tr>
+</table>
+
+            </div>
+            
+            <div class="role_user_control">
+        	   <div class="common_btn">
+                       <input type="button" value="添加>>" class="common_blue">
+                          <input type="button" value="删除<<" class="common_blue">
+                </div>
+            </div>
+            
+            <div class="belong_role_list">
+                <h3 class="h3_title">
+                角色用户列表
+                </h3>
+            	 <table width="100%" class="tbl_checked" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <th>姓名</th>
+                    <th>账号</th>
+                  </tr>
+                  <tr>
+                    <td>张三</td>
+                    <td>XXXX</td>
+                  </tr>
+                </table>
+               
+               
+            </div>
+             <div class="">
+                 <input type="text" class="set_user_i">
+                 <input type="text" class="set_user_i set_user_i_2">
+           </div>
+    </div>
+    
+  
+    
+    <div class="common_btn">
+            	<input type="button" value="重置" class="common_blue">
+                <input type="button" value="取消" class="common_blue">
+                 <input type="button" value="确定" class="common_blue">
+    </div>
+</div>
+<link href="../style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="../js/jquery-ui-1.9.1.custom.js"></script>
+<script>
+	$(".add_remove_user").click(function(){
+		$(".set_user_list").dialog({
+			autoOpen: true,
+			width: 590,
+			height: 750,
+			modal: true,
+			resizable: false,
+			draggable: true
+		});
+	});
+	//$(".add_remove_user").click();
+</script>
+<!--用户列表设置 End-->
+</body>
+</html>

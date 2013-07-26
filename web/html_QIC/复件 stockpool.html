@@ -1,0 +1,1230 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>股票池</title>
+<link rel="stylesheet" type="text/css" href="style/global-stockpool.css">
+<script src="js/jquery-1.8.2.min.js"></script>
+
+</head>
+
+<body>
+
+
+<!--strategy_nav Begin-->
+<div class="strategy_nav">
+
+    <ul class="nav_func">
+    	<li class="nav_search">
+       		 <input type="text" class="key_strategy" value="关键字" name="">
+             <input type="submit" class="btn_submit">					     
+        </li>
+        <li class="more_search" id="dialog-link">高级搜索</li>
+    </ul>
+</div>
+<!--strategy_nav End-->
+
+
+<!--main_wrap Begin-->
+<div class="main_wrap">
+    <div class="sp_left">
+    	<!--folder Begin-->
+        <div class="folder" title="折叠菜单">
+            <div class="folder_wrap">
+                <div class="folder_tips_hide">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <!--folder End-->
+    		
+         <div class="sp_left_wrap">
+         	<h2 class="siderbar_h2">所有组合</h2>
+            <dl>
+            	<dt>热门推荐</dt>
+                <dd>
+                	<h2 class="small_h2">风格类</h2>
+                    <ul class="siderbar_list">
+                        <li><a href="#">稳健型</a></li>
+                        <li><a href="#">平衡型</a></li>
+                        <li><a href="#">进取型</a></li>
+                    </ul>
+                </dd>
+                
+                 <dd>
+                	<h2 class="small_h2">价值-成长类</h2>
+                    <ul class="siderbar_list">
+                        <li><a href="#">价值型</a></li>
+                        <li><a href="#">成长型</a></li>
+                    </ul>
+                </dd>
+                
+                <dd>
+                	<h2 class="small_h2">行业概念类</h2>
+                    
+                    <div class="sp_content_m">
+                    	<h3><span class="sp_tip">&nbsp;</span><i>行业分类</i></h3>
+                        <ul class="siderbar_list siderbar_list_2">
+                            <li><a href="#">制造业</a> </li>
+                            <li class="current"><a href="#">农林牧渔</a></li>
+                        </ul>
+                    </div>
+                    
+                    
+                   <div class="sp_content_m">
+                    	<h3><span class="sp_tip">&nbsp;</span><i>概念类</i></h3>
+						<ul class="siderbar_list siderbar_list_2">
+                            <li><a href="#">概念类1</a> </li>
+                            <li><a href="#">概念类2</a></li>
+                        </ul>
+                    </div>
+                  
+                </dd>
+                
+                <dd>
+                	<h2 class="small_h2">周期类</h2>
+                    <ul class="siderbar_list">
+                        <li><a href="#">周</a></li>
+                        <li><a href="#">月</a></li>
+                        <li><a href="#">季</a></li>
+                        <li><a href="#">年</a></li>
+                    </ul>
+                </dd>
+                
+                <dd>
+                	<h2 class="small_h2">策略类</h2>
+                    <ul class="siderbar_list">
+                        <li><a href="#">多因子</a></li>
+                        <li><a href="#">动量反转</a></li>
+                        <li><a href="#">其他</a></li>
+                    </ul>
+                </dd>
+                
+            </dl>
+         </div>    
+    
+    </div>
+
+	<!--sp_right Begin-->
+    <div class="sp_right">
+    	<div class="sp_right_wrap">
+        	<div class="content_title">
+               <!---->
+            	<div class="control_btn">
+                	<div class="control_btn_left control_btn_left_2">
+                    	左
+                    </div>
+                    <div class="control_btn_right control_btn_right_2">
+                    	右
+                    </div>
+                </div>
+                
+                <div class="tab_title">
+                	<div class="tab_title_wrap">
+                    <ul class="tab_li tab_maximum" id="menuTab">
+                     	<li class="display">组合浏览1</li>
+                     <li class="" title="123456">稳健型股票推荐2<img class="stable_close" src="images/stable_close.png"></li>
+						<!----><li class="">稳健型股票推荐3<img class="stable_close" src="images/stable_close.png"></li>
+                        <li class="">稳健型股票推荐4<img class="stable_close" src="images/stable_close.png"></li>
+						<li class="">稳健型股票推荐5<img class="stable_close" src="images/stable_close.png"></li>
+                        <li class="">稳健型股票推荐6<img class="stable_close" src="images/stable_close.png"></li>
+                        <li class="">稳健型股票推荐7<img class="stable_close" src="images/stable_close.png"></li>
+                       <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                     </ul>
+                     </div>
+                </div>
+                
+            </div>
+       
+            <ul class="sub_content" id="subContImp">
+                     	<li class="display">
+                        	<!--基本信息 Begin-->
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec">
+  <tr>
+    <th width="10%">组合名称</th>
+    <th width="10%">来源</th>
+    <th width="10%">年化收益率</th>
+    <th width="10%">夏普比率</th>
+    <th width="10%">用户评级</th>
+    <th width="10%">更新日期</th>
+    <th width="10%"> 组合股票数</th>
+    <th width="10%">收藏人气</th>
+    <th width="10%">我要收藏</th>
+    <th width="10%">我要评价</th>
+    </tr>
+    </table>
+    
+                                                                   
+                <div class="tbl_scroll">
+            
+                <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_common tbl_exec tbl_no_scroll">
+            
+               
+              <tr>
+                <td width="10%"><a href="stockpool_stable.html" data-value='0001' class="stable_load">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%"><span class="blue">0.00</span></td>
+                <td width="10%"><span style="width:87px;" class="star_b1">&nbsp;</span></td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333个</td>
+                <td width="10%"><span class="blue">22</span></td>
+                 <td width="10%"><span class="btn_collect">我要收藏</span></td>
+                <td width="10%"><span class="btn_comment">我要评价</span></td>
+                </tr>
+                
+                <tr>
+                <td width="10%"><a href="stockpool_stable.html" class="stable_load">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%"><span class="blue">0.00</span></td>
+                <td width="10%"><span style="width:87px;" class="star_b1">&nbsp;</span></td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333个</td>
+                <td width="10%"><span class="blue">22</span></td>
+                 <td width="10%"><span class="btn_uncollect">我要收藏</span></td>
+                <td width="10%"><span class="btn_uncomment">我要评价</span></td>
+                </tr>
+                </tr>
+                
+              <tr>
+                <td width="10%"><a href="stockpool_stable.html">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                
+                 <tr>
+                <td width="10%"><a href="#">稳健型股票推荐</a></td>
+                <td width="10%">稳化证券</td>
+                <td width="10%">0.01%</td>
+                <td width="10%">0.00</td>
+                <td width="10%">五星</td>
+                <td width="10%">2012—12-12</td>
+                <td width="10%">333</td>
+                <td width="10%">22</td>
+                 <td width="10%">我要收藏</td>
+                <td width="10%">我要评价</td>
+                </tr>
+                 
+                
+            </table>
+            </div>
+                            <!--基本信息 End-->
+                        </li>
+                        <li>2</li>
+                     <!-- --> <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                      	<li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                      
+                     </ul>
+                          
+  <!--分页 Begin-->
+    <div class="page">
+    	<div class="page_center">
+            <a href="#" class="previous">上一页</a>
+            <span class="page_current">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <span class="page_break">...</span>
+            <a href="#" class="next">下一页</a>
+            <span class="page_num">共10页</span>
+            <span class="go_page">到第<input type="text">页</span>
+            <span class="page_ok"><img src="images/st_ok.png"></span>
+        </div>
+    </div>
+    <!--分页 End-->
+    
+        </div>
+    </div>
+    <!--sp_right End-->
+    
+</div>
+
+<!--main_wrap End-->
+
+<!--高级搜索 Begin-->
+<div class="search_set_wrap" title="搜索设置">
+	<div class="search_list">
+    	<h3 class="h3_title">
+        我的搜索列表
+        </h3>
+        
+        <input type="text" class="serach_l_input" value="请输入名称...">
+        <ul class="search_ul">
+            <li>
+            	我的搜索1
+            </li>
+             <li>
+            	我的搜索2
+            </li>
+            <li>
+            	我的搜索1
+            </li>
+            <li>
+            	我的搜索1
+            </li>
+             <li>
+            	我的搜索2
+            </li>
+            <li>
+            	我的搜索1
+            </li>
+            <li>
+            	我的搜索1
+            </li>
+             <li>
+            	我的搜索我的搜索2我的搜索22
+            </li>
+            <li>
+            	我的搜索1
+            </li>
+      	</ul>
+        
+        <div class="set_control">
+        	<button>
+            	<img src="images/set_remove.jpg">
+            </button>
+            <button>
+                <img src="images/set_add.jpg">
+            </button>
+        </div>
+        
+    </div>
+  <div class="search_set">
+  	  <h3 class="h3_title">
+        搜索条件设置
+      </h3>
+		
+      <div class="condition_set">
+      		<div class="condition_left">
+            	<h4>推荐机构</h4>
+                <div class="organization_tree">
+                
+                <!--ligerTree插件html部分 Beigin-->
+                <div style="width:170px; height:240px; margin-top:10px;  float:left;  overflow:auto;  ">
+                <ul id="tree1">
+                    <li isexpand="false">
+                        <span>节点1</span>
+                        <ul>
+                            <li isexpand="false">
+                                <span>节点1.1</span>
+                                 <ul>
+                                    <li><span>节点1.1.2</span></li>
+                                    <li><span>节点1.1.2</span></li>
+                                 </ul>
+                             </li>
+                             <li><span>节点1.2</span></li>
+                        </ul>
+                    </li>  
+                </ul>
+                </div>
+                <!--ligerTree插件html部分 End-->
+    
+                </div>
+            </div>
+            
+            <div class="condition_right">
+            	
+                <div class="common_set update_time">
+                    <h4>更新时间 </h4>
+                     <select name="">
+                                   <option value="1">全部</option>
+                                   <option value="2">选选股型1</option>
+                                   <option value="3">选股型</option>
+                                   <option value="4">选股型2</option>
+                     </select>
+                </div>
+                
+                 <div class="common_set user_star">
+                    <h4>用户评级</h4>
+                   <select name="" size="1" class="star_choose">
+                    	 <option value="5">5星</option>
+                         <option value="4">4星</option>
+                         <option value="3">3星</option>
+                         <option value="2">2星</option>
+                         <option value="1">1星</option>
+                     </select>
+                     <span>&nbsp;到&nbsp;</span>
+                     <select name="" size="1" class="star_choose">
+                    	 <option value="5">5星</option>
+                         <option value="4">4星</option>
+                         <option value="3">3星</option>
+                         <option value="2">2星</option>
+                         <option value="1">1星</option>
+                     </select>
+                </div>
+                
+                 <div class="common_set user_star">
+                    <h4>年化收益率</h4>
+                   <input type="number" step="0.01" value="1.10" name="points" min="1.12" max="10.11">&nbsp;<b>%</b>
+            &nbsp;到&nbsp;
+            <input type="number" step="0.01" value="1.10" name="points" min="1.12" max="10.11">&nbsp;<b>%</b>
+                </div>
+                
+                 <div class="common_set user_star">
+                    <h4>Sharp比率</h4>
+                   <input type="number" step="0.01" value="1.10" name="points" min="1.12" max="10.11">&nbsp;<b>%</b>
+            &nbsp;到&nbsp;
+            <input type="number" step="0.01" value="1.10" name="points" min="1.12" max="10.11">&nbsp;<b>%</b>
+                </div>
+            	
+            </div>
+      </div> 
+
+      
+
+  </div>
+</div>
+<!--高级搜索 End-->
+
+<!--评价 Begin-->
+<div class="commment_wrap" title="评价">
+	<h3 class="stable_title">
+        稳健型股票推荐 
+    </h3>
+    
+    <div class="cm_line_star">
+        <label>
+         评价:
+        </label>
+        <select class="star_choose"  name="">
+                 <option value="5">5星</option>
+                 <option value="4" selected>4星</option>
+                 <option value="3">3星</option>
+                 <option value="2">2星</option>
+                 <option value="1">1星</option>
+         </select>
+     </div>
+</div>
+<!--评价 End-->
+
+<script src="js/global-qic.js"></script>
+<script>
+//tab 选项卡添加、左右移动
+var controlUtil = function(){
+		var controlElement = $('.tab_maximum');
+		//var controlList = controlElement.children("li");
+		
+		//遍历tab选项卡
+		function eachList(){
+			var leftList = []; //记录每个tab选项的left
+			var currentItemLeft = 0;
+			controlElement.children("li").each(function(i){
+				if(i>0){
+					currentItemLeft = parseInt(leftList[i-1]) + $(this).prev().width() + 7 +40;
+				}
+				leftList.push(currentItemLeft);
+			
+			});
+			return leftList;
+		}
+		
+		return {
+			//移动上一个tab选项
+			prevTabItem: function(){
+				var leftList = eachList();
+				var currentLeft =  -1 * parseInt($(".tab_maximum").css("left"));
+				console.log(leftList, currentLeft);
+				
+				for(var i=0; i<leftList.length; i++){
+					if(leftList[i] <currentLeft && leftList[i+1] >= currentLeft){
+						console.log(i, leftList[i])
+						$(".tab_maximum").animate({left: -1*parseInt(leftList[i])});
+					}
+				}
+			}
+		};
+		
+}();
+
+$("")
+
+
+//左边菜单折叠
+$(".small_h2").click(function(){
+	var display  = $(this).siblings(".siderbar_list").css("display");
+	$(this).closest("dl").find(".siderbar_list").hide('fast');
+	if(display == 'none'){
+		$(this).siblings(".siderbar_list").show('fast')
+	}else{
+		$(this).siblings(".siderbar_list").hide('fast')
+	}
+});
+
+
+
+window.resizeTitleWidth('.tab_title', 350);//tab随客户端变宽
+function resizeTitleWidth(element, trueWidth){
+	var clientWidth = document.documentElement.clientWidth; //浏览器客户区宽度
+	var wElement = $(element); //自适应宽度的元素
+	wElement.css({"width": clientWidth- trueWidth});
+	
+	$(window).bind("resize", function(){
+		wElement.css("width",document.documentElement.clientWidth-trueWidth);
+		
+		var liWidth = Math.abs(parseInt($(".tab_maximum li").eq(0).css("width")));
+		console.log(liWidth)
+			if(liWidth<55 && liWidth>20){
+				//alert(1123)
+				var clientWidth = clientTotalWidthFunc();
+				var startLiLength =  $(".tab_maximum li").length;
+				var extraWidth = startLiLength*7 + startLiLength*30;
+				var cureentWidth = 78*startLiLength+ extraWidth;
+				
+				var averWidth = (clientWidth -extraWidth) / startLiLength;
+				$(".tab_maximum li").css({"width": averWidth});
+			}
+	});
+
+}
+
+//每个选项卡同宽
+function averageFunc(){
+	var clientWidth = clientTotalWidthFunc();
+	var startLiLength =  $(".tab_maximum li").length;
+	var extraWidth = startLiLength*7 + startLiLength*30;
+	var cureentWidth = 78*startLiLength+ extraWidth;
+	var averWidth = (clientWidth -extraWidth) / startLiLength;
+	
+	if(averWidth<=88){
+		$(".tab_maximum li").css({"width": averWidth});
+	}
+	
+	
+};
+
+window.averageFunc(); //li平均值
+
+//左控制按钮
+(function(){
+	$(".control_btn_left_2").live("click", function(){
+		 var arr_display = [];
+		 $(".tab_maximum li").each(function(){
+			 arr_display.push($(this).attr("class"));
+		 });
+		 
+		 for(var i =0; i<arr_display.length; i++){
+			 if(arr_display[i] == 'display' ){
+				 var index = i -1;
+				 var maxLength =  arr_display.length;
+				 console.log(i, maxLength)
+				 
+				 if(i > 0){
+					 $(".tab_li li").removeClass().eq(index).addClass('display');
+					$(".sub_content li").removeClass().eq(index).addClass('display');
+				 }else{	
+					$.qicTips({
+						target: '.control_btn_left',
+						time: 2000,
+						message: '已是第一个选项！',
+						level: 2	
+					});
+				 }
+				 
+				return false;	
+			 } 
+		 }
+		 
+		 
+	});
+})();
+
+//右控制按钮
+(function(){
+	$(".control_btn_right_2").live("click", function(){
+		 var arr_display = [];
+		 $(".tab_maximum li").each(function(){
+			 arr_display.push($(this).attr("class"));
+		 });
+		 
+		 for(var i =0; i<arr_display.length; i++){
+			 if(arr_display[i] == 'display' ){
+				 if(i<(arr_display.length-1)){
+					 var index = i +1;
+					$(".tab_li li").removeClass().eq(index).addClass('display');
+					$(".sub_content li").removeClass().eq(index).addClass('display');
+					
+				 }else{
+					$.qicTips({
+						target: '.control_btn_left',
+						time: 2000,
+						message: '已是最后一个选项！',
+						level: 2	
+					});
+				 }
+				 
+				return false;	
+			 } 
+		 }
+		 
+		 
+	});
+	
+})();
+
+
+
+
+//整个tab li的宽度之和
+function tabTotalWidthFunc(){
+	var liLength = $(".tab_maximum li").length;//li数目
+	var liMarginWidth = 7 * (liLength-1);//li的margin总宽度
+	var liWidth = $(".tab_maximum li")[liLength-1].offsetWidth; //新加的li宽度
+	
+	var arrLiWidth = []; //li的宽度数组
+	var liTotalWidth = 10;//必须数值
+	//遍历整个tab li的宽度
+	$(".tab_maximum li").each(function(i){
+		arrLiWidth.push(this.offsetWidth);
+		liTotalWidth += parseInt(arrLiWidth[i]); 
+		return liTotalWidth;
+		
+	});
+	
+	var tabWidth = liMarginWidth + liTotalWidth;//总宽度
+	return tabWidth;
+}
+
+//tab 的客户端宽度
+function clientTotalWidthFunc(){
+	return parseInt($(".tab_title")[0].offsetWidth);
+}
+
+
+
+
+$(function(){
+
+//绩效指标里的高度跟随 浏览器客户端变化	
+;(function($){
+	/* 
+	 *func: QIC-股票池
+	 *author:jinwei
+	 *email: awayInner@gmail.com
+	 *date: 2012-11-06
+	 */ 
+ 
+	//UI事件-resize事件
+	window.resizeHeight('.sp_left_wrap', 41);//左边栏目自适应高度
+	window.resizeWidth('.sub_content', 290);//内容自适应宽度
+	window.resizeHeight('.tbl_scroll', 200);//内容自适应高度
+	window.spSiderbar(); //股票池侧边栏
+	
+	
+	//ajax 加载稳定型股票推荐
+	$(".stable_load").click(function(event){
+		event.preventDefault();
+		var dataValue = $(this).attr("data-value");
+		$.ajax({
+			url: "test.php",
+			type: 'POST',
+			data: 'dataValue='+dataValue+'',
+			dataType: "json",
+			cache: false,
+			success: function(data){
+				//var data2  = decodeURI(data)
+				//var dataHtml = decodeURIComponent(data);
+				//var dataHtml =JSON.parse(data);
+				var dataHtml = data;
+				$(".tab_li li, .sub_content li").removeClass();
+				
+				$(".tab_li").append(dataHtml.liHtml);
+				$(".sub_content").append(dataHtml.contHtml);
+				
+				
+				
+				
+				var liTotalWidth = tabTotalWidthFunc();//li 总宽度
+				var clientTotalWidth = clientTotalWidthFunc();//li客户端宽度
+				
+				var currentLiLength = $(".tab_maximum li").length; //当前li数目
+				var currentLiWidth = (78+7+30)*currentLiLength;//当前的宽度
+				
+				//li平均值
+				var averageWidth = (clientTotalWidth -30*currentLiLength-7*currentLiLength)/currentLiLength;
+				
+				if(currentLiWidth>clientTotalWidth){
+					var moveWidth = liTotalWidth -clientTotalWidth; //要移动的宽度
+					//$(".tab_maximum").animate({left: -moveWidth});
+					$(".tab_maximum li").animate({width: averageWidth});
+					$(".control_btn_left").addClass("control_btn_left_2")
+				}else{
+					window.averageFunc();
+				}
+								
+
+				
+			},
+			statusCode: {404: function() {
+				alert('404错误,页面未找到');
+			}},
+			error: function(){
+				alert('请求错误');
+			}
+
+		});
+		
+	});
+	
+	//jQ tab切换
+	$(".tab_li li").live('click', function(){
+		var index = $(this).index();
+		$(".tab_li li, .sub_content li").removeClass().eq(index).addClass('display');
+		$(".sub_content li").removeClass().eq(index).addClass('display')
+	});
+	
+	//删除稳健型股票
+	$(".stable_close").live('click', function(event){
+			event.stopPropagation(); //阻止事件冒泡
+			
+			//操作提示
+			var target = event.target;
+			$.qicTips({
+				target: target,
+				time: 2000,
+				message: '删除成功',
+				level: 1	
+			});
+			
+			
+			var index  = $(this).parent("li").index();
+			$(this).parent("li").remove();//删除title
+			$(".stable_content li").eq(index).remove(); //删除内容
+			
+			//把焦点设到第一个(组合浏览)
+			$(".tab_li li").removeClass().eq(0).addClass('display');
+			$(".sub_content li").removeClass().eq(0).addClass('display');
+			
+			//tab 即时变化
+			var liLength = $(".tab_maximum li").length;
+			var liWidth = Math.abs(parseInt($(".tab_maximum li").eq(index).css("width")));
+			var liTotalWidth = (liWidth+7+30)*liLength;
+			var clientWidth = clientTotalWidthFunc();
+			if(liWidth<108){
+				window.averageFunc(); //li平均值
+			}
+	});
+	
+})(jQuery);
+
+
+
+
+});
+</script>
+
+<!--jquery-ui插件 Begin-->
+<link href="style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="js/jquery-ui-1.9.1.custom.js"></script>
+<script>
+myComment();//我要评价
+//$(".btn_comment").click();
+
+//tabMenu("menuTab", "subContImp", "display");//1.0 tab切换调用
+//jQ tab切换
+$(".tab_li li").click(function(){
+	var index = $(this).index();
+	$(".tab_li li, .sub_content li").removeClass().eq(index).addClass('display');
+	$(".sub_content li").removeClass().eq(index).addClass('display')
+});
+
+
+
+	//高级搜索
+	$( "#dialog-link" ).click(function( event ) {
+			$(".search_set_wrap").css("visibility", "visible");
+			$(".search_set_wrap" ).dialog({
+		autoOpen: false,
+		width: 660,
+		height: 430,
+		resizable: false,
+		overflow: 'inherit',
+		modal: true,
+		buttons: [
+			{
+				title: "重置",
+				class: 'ser_reset',
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			{
+				title: "保存",
+				class: 'ser_keep',
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			{
+				title: "搜索",
+				class: 'ser_search',
+				click: function() {
+					$( this ).dialog( "close" );
+				}
+			}
+			
+		]
+	}).dialog( "open" );
+	
+		
+	});
+
+//$( "#dialog-link" ).click();
+</script>
+<!--jquery-ui插件 End-->
+
+
+<!--ligerUI插件 Begin-->
+<script src="js/ligerUI/base.js"></script>
+<script src="js/ligerUI/ligerTree.js"></script>
+<link rel="stylesheet" type="text/css" href="js/ligerUI/ligerui-tree.css">
+<script type="text/javascript">
+	$(function(){
+		$("#tree1").ligerTree({ checkbox: true, parentIcon: null, childIcon: null , getChecked:true}).expandAll();
+	})
+</script>
+<!--ligerUI插件 End-->
+
+</body>
+</html>

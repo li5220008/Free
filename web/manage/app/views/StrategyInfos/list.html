@@ -1,0 +1,1116 @@
+#{extends 'main.html' /}
+#{set title:'后台管理-策略管理' /}
+
+#{set 'moreStyles'}
+*{这里是策略的css}*
+<link rel="stylesheet" type="text/css" href="@{'public/stylesheets/admin-strategy.css'}">
+#{/set}
+
+<body>
+<script src="/public/javascripts/jquery.validate.js"></script>
+
+<!--strategy_nav Begin-->
+<div class="strategy_nav">
+</div>
+<!--strategy_nav End-->
+
+<!--main_wrap Begin-->
+<div class="main_wrap">
+
+
+<!--sp_right Begin-->
+<div class="sp_right_wrap">
+<div class="content_title">
+    <div class="tab_title">
+        <ul class="tab_li" id="menuTab">
+            <li #{if sp.flag==1}class="display"#{/if} >已上架策略</li>
+            <li #{if sp.flag==2}class="display"#{/if} >待上架策略</li>
+            <li #{if sp.flag==3}class="display"#{/if} >策略回收站</li>
+        </ul>
+
+    </div>
+
+</div>
+
+<ul class="sub_content stable_content" id="subContImp">
+
+<li #{if sp.flag==1}class="display"#{/if}>
+
+    <div class="common_user_bar">
+        <form action="@{StrategyInfos.list()}" method="get">
+        <dl>
+            <dd>
+                <input  class="s_keyword"  type="text" name="sp.keyWords" value="${sp.keyWords}">
+            </dd>
+
+            <dd>
+                <input  type="image" class="user_submit" src="@{'/public/images/user_check.png'}" name="" >
+            </dd>
+        </dl>
+        </form>
+    </div>
+    <div class="scroll_str">
+
+    <form action="@{StrategyInfos.list()}" method="get" id='groundingSort'>
+    #{if sp.orderFlag==0}
+        <input type="hidden" name="sp.orderFlag" value="1">
+    #{/if}
+    #{else }
+        <input type="hidden" name="sp.orderFlag" value="0">
+    #{/else}
+        <input type="hidden" name="sp.keyWords" value="${sp.keyWords}">
+        <input type="hidden" name="sp.orderSort" value="" id="groundingParam">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec tbl_common">
+        <tr>
+            <th width="8%"><img src="@{'/public/images/check_uncheck.png'}" class="check_uncheck"></th>
+            <th width="8%" onclick="groundingSort('sname')">策略名称#{sortTagShow sortName:sp.orderSort, fieldName:'sname', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('provider')">提供人员#{sortTagShow sortName:sp.orderSort, fieldName:'provider', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('collectCount')">当前收藏总数#{sortTagShow sortName:sp.orderSort, fieldName:'collectCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('subscriber')">当前订阅总数#{sortTagShow sortName:sp.orderSort, fieldName:'subscriber', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('endDate')">订阅最迟到期时间#{sortTagShow sortName:sp.orderSort, fieldName:'endDate', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('allSubscriber')"> 总订阅数#{sortTagShow sortName:sp.orderSort, fieldName:'allSubscriber', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('tradeVariety')">交易品种#{sortTagShow sortName:sp.orderSort, fieldName:'tradeVariety', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('stype')">交易类型#{sortTagShow sortName:sp.orderSort, fieldName:'stype', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('retainedProfits')">净利润#{sortTagShow sortName:sp.orderSort, fieldName:'retainedProfits', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('yield')"> 收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yield', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('yieldOfMonth')">月化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfMonth', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('yomsd')">月度收益率标准差% #{sortTagShow sortName:sp.orderSort, fieldName:'yomsd', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('overallProfitability')">总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'overallProfitability', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="groundingSort('overallDeficit')">总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'overallDeficit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('tradeCount')">交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('profitCount')">盈利次数#{sortTagShow sortName:sp.orderSort, fieldName:'profitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('deficitCount')">亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'deficitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSingleProfit')">单次最大盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSingleDeficit')">单次最大亏损#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('tradeDays')">总交易天数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeDays', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxShortPositionTime')">最大空仓时间#{sortTagShow sortName:sp.orderSort, fieldName:'maxShortPositionTime', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('longPositionTradeCount')">多头交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'longPositionTradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('shortPositionTradeCount')">空头交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'shortPositionTradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('positionCloseCount')">持平次数#{sortTagShow sortName:sp.orderSort, fieldName:'positionCloseCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSequentialProfitCount')">最大连续盈利次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialProfitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSequentialDeficitCount')">最大连续亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('profitRatio')">盈利比率（胜率）#{sortTagShow sortName:sp.orderSort, fieldName:'profitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('canhsiedRatio')">总盈利/总亏损（盈亏比）#{sortTagShow sortName:sp.orderSort, fieldName:'canhsiedRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSingleProfitRatio')">最大盈利/总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSingleDeficitRatio')">最大亏损/总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('maxSequentialDeficitCapital')">最大连续亏损额#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCapital', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('sumOfCommission')">手续费合计#{sortTagShow sortName:sp.orderSort, fieldName:'sumOfCommission', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('grossProfit')">毛利润#{sortTagShow sortName:sp.orderSort, fieldName:'grossProfit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('profitLossRatio')">净利润/单次最大亏损#{sortTagShow sortName:sp.orderSort, fieldName:'profitLossRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('avgProfitOfMonth')">月度平均盈利#{sortTagShow sortName:sp.orderSort, fieldName:'avgProfitOfMonth', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('yieldOfYear')">年化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfYear', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('sharpeIndex')">夏普指数#{sortTagShow sortName:sp.orderSort, fieldName:'sharpeIndex', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('floatingProfitAndLoss')">浮动盈亏#{sortTagShow sortName:sp.orderSort, fieldName:'floatingProfitAndLoss', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="groundingSort('movingCost')">滑价成本#{sortTagShow sortName:sp.orderSort, fieldName:'movingCost', flag:sp.orderFlag /}</th>
+        </tr>
+    #{list items:gdList,as:'item'}
+        <tr>
+            <td width="8%"><input type="checkbox" autocomplete="off" id="stra_${item.id}" name="" value="${item.id}" ></td>
+            <td width="8%">#{emFM item.sname /}</td>
+
+            <td width="8%">#{emFM item.provider /}</td>
+            <td width="10%">#{emFM item.collectCount /}</td>
+            <td width="10%">#{emFM item.subscriber /}</td>
+            <td width="10%">#{emVF item.endDate , f:'yyyy-MM-dd' /}</td>
+            <td width="10%">#{emFM item.allSubscriber /}</td>
+            <td width="8%">
+                #{if item.tradeVariety ==1  }
+                    股票
+                #{/if}
+                #{elseif item.tradeVariety==2}
+                    期货
+                #{/elseif}
+                #{else }
+                    混合
+                #{/else}
+            </td>
+            <td width="8%">
+                #{if item.stype==1}
+                    选股型
+                #{/if}
+                #{elseif item.stype==2}
+                    择时型
+                #{/elseif}
+                #{elseif item.stype==3}
+                    交易型
+                #{/elseif}
+                #{else }
+                    其他
+                #{/else}
+
+            </td>
+
+            <td width="8%">#{emFM v:item.retainedProfits, f:'##,##0.00'/}</td>
+            <td width="8%">#{emFM v:item.yield * 100, f:'##,##0.00' /}</td>
+            <td width="8%">#{emFM v:item.yieldOfMonth * 100, f:'##,##0.00' /}</td>
+            <td width="10%">#{emFM v:item.yomsd * 100, f:'##,##0.00' /}</td>
+            <td width="8%">#{emFM v:item.overallProfitability, f:'##,##0.00',  /}</td>
+            <td width="8%">#{emFM v:item.overallDeficit, f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.tradeCount  /}</td>
+            <td width="10%">#{emFM v:item.profitCount /}</td>
+            <td width="10%">#{emFM v:item.deficitCount  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleProfit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleDeficit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.tradeDays /}</td>
+            <td width="10%">#{emFM v:item.maxShortPositionTime   /}</td>
+            <td width="10%">#{emFM v:item.longPositionTradeCount /}</td>
+            <td width="10%">#{emFM v:item.shortPositionTradeCount /}</td>
+            <td width="10%">#{emFM v:item.positionCloseCount  /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialProfitCount /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialDeficitCount  /}</td>
+            <td width="10%">#{emFM v:item.profitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.canhsiedRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleProfitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleDeficitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialDeficitCapital , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.sumOfCommission , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.grossProfit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.profitLossRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.avgProfitOfMonth , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.yieldOfYear * 100, f:'##,##0.00' /}</td>
+            <td width="10%">#{emFM v:item.sharpeIndex , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.floatingProfitAndLoss , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.movingCost , f:'##,##0.00',  /}</td>
+        </tr>
+    #{/list}
+        </table>
+    </form>
+
+
+    </div>
+    <!--分页 Begin-->
+    <div class="page">
+        <div class="page_center">
+            <form action="@{StrategyInfos.list(sp) }" class="pageFrom" method="get">
+            #{paging page:page /}
+            </form>
+        </div>
+    </div>
+    <!--分页 End-->
+
+    <!--control_active Begin-->
+    <div class="control_active">
+        <div class="control_active_wrap">
+        #{hasAuth '23' } <span class="sale_out">策略下架</span> #{/hasAuth}
+        </div>
+    </div>
+    <!--control_active End-->
+
+
+</li>
+
+<li #{if sp.flag==2}class="display"#{/if}>
+
+    <div class="common_user_bar">
+        <dl>
+            <form action="@{StrategyInfos.grounding()}" method="get">
+            <dd>
+                <input  class="s_keyword"  type="text"  name="sp.keyWords" value="${sp.keyWords}" >
+            </dd>
+
+            <dd>
+                <input  type="image" class="user_submit" src="@{'/public/images/user_check.png'}" name="" >
+            </dd>
+            </form>
+        </dl>
+
+    </div>
+    <div class="scroll_str">
+    <form action="@{StrategyInfos.grounding()}" method="get" id='waitOrder'>
+    #{if sp.orderFlag==0}
+        <input type="hidden" name="sp.orderFlag" value="1">
+    #{/if}
+    #{else }
+        <input type="hidden" name="sp.orderFlag" value="0">
+    #{/else}
+        <input type="hidden" name="sp.keyWords" value="${sp.keyWords}">
+        <input type="hidden" name="sp.orderSort" value="" id="paramSort">
+    <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec tbl_common">
+        <tr>
+            <th width="8%"><img src="@{'/public/images/check_uncheck.png'}" class="check_uncheck"></th>
+            <th width="8%" onclick="waitSort('status')">回测状态#{sortTagShow sortName:sp.orderSort, fieldName:'status', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('sname')">策略名称#{sortTagShow sortName:sp.orderSort, fieldName:'sname', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('provider')">提供人员#{sortTagShow sortName:sp.orderSort, fieldName:'provider', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('tradeVariety')">交易品种#{sortTagShow sortName:sp.orderSort, fieldName:'tradeVariety', flag:sp.orderFlag /}#{sortTagShow sortName:sp.orderSort, fieldName:'movingCost', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('stype')">交易类型#{sortTagShow sortName:sp.orderSort, fieldName:'stype', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('retainedProfits')"> 净利润#{sortTagShow sortName:sp.orderSort, fieldName:'retainedProfits', flag:sp.orderFlag /}#{sortTagShow sortName:sp.orderSort, fieldName:'movingCost', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('yield')"> 收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yield', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('yieldOfMonth')"> 月化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfMonth', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('yomsd')">月度收益率标准差% #{sortTagShow sortName:sp.orderSort, fieldName:'yomsd', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('overallProfitability')">总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'overallProfitability', flag:sp.orderFlag /}</th>
+            <th width="8%" onclick="waitSort('overallDeficit')">总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'overallDeficit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('tradeCount')">交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('profitCount')">盈利次数 #{sortTagShow sortName:sp.orderSort, fieldName:'profitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('deficitCount')">亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'deficitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSingleProfit')">单次最大盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSingleDeficit')">单次最大亏损 #{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('tradeDays')">总交易天数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeDays', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxShortPositionTime')">最大空仓时间#{sortTagShow sortName:sp.orderSort, fieldName:'maxShortPositionTime', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('longPositionTradeCount')">多头交易次数 #{sortTagShow sortName:sp.orderSort, fieldName:'longPositionTradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('shortPositionTradeCount')">空头交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'shortPositionTradeCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('positionCloseCount')">持平次数#{sortTagShow sortName:sp.orderSort, fieldName:'positionCloseCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSequentialProfitCount')">最大连续盈利次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialProfitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSequentialDeficitCount')">最大连续亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCount', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('profitRatio')">盈利比率（胜率）#{sortTagShow sortName:sp.orderSort, fieldName:'profitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('canhsiedRatio')">总盈利/总亏损（盈亏比）#{sortTagShow sortName:sp.orderSort, fieldName:'canhsiedRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSingleProfitRatio')">最大盈利/总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSingleDeficitRatio')">最大亏损/总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficitRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('maxSequentialDeficitCapital')">最大连续亏损额#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCapital', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('sumOfCommission')">手续费合计#{sortTagShow sortName:sp.orderSort, fieldName:'sumOfCommission', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('grossProfit')">毛利润#{sortTagShow sortName:sp.orderSort, fieldName:'grossProfit', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('profitLossRatio')">净利润/单次最大亏损#{sortTagShow sortName:sp.orderSort, fieldName:'profitLossRatio', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('avgProfitOfMonth')">月度平均盈利#{sortTagShow sortName:sp.orderSort, fieldName:'avgProfitOfMonth', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('yieldOfYear')">年化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfYear', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('sharpeIndex')">夏普指数#{sortTagShow sortName:sp.orderSort, fieldName:'sharpeIndex', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('floatingProfitAndLoss')">浮动盈亏#{sortTagShow sortName:sp.orderSort, fieldName:'floatingProfitAndLoss', flag:sp.orderFlag /}</th>
+            <th width="10%" onclick="waitSort('movingCost')">滑价成本#{sortTagShow sortName:sp.orderSort, fieldName:'movingCost', flag:sp.orderFlag /}</th>
+        </tr>
+    #{list items:waitList ,as:'item'}
+        <tr>
+            <td width="8%"><input type="checkbox" autocomplete="off" name="" status="${item.status}" value="${item.id}"></td>
+            <td width="8%">#{if item.status==1}待审核#{/if}
+                #{elseif item.status==2}沙箱测试#{/elseif}
+                #{elseif item.status==3}回测中#{/elseif}
+                #{elseif item.status==6}已回测#{/elseif}
+                #{else }回测失败#{/else}
+            </td>
+            <td width="8%">#{emFM item.sname /}</td>
+
+            <td width="8%">#{emFM item.provider /}</td>
+            <td width="8%">
+                #{if item.tradeVariety ==1  }
+                    股票
+                #{/if}
+                #{elseif item.tradeVariety==2}
+                    期货
+                #{/elseif}
+                #{else }
+                    混合
+                #{/else}
+            </td>
+            <td width="8%">
+                #{if item.stype==1}
+                    选股型
+                #{/if}
+                #{elseif item.stype==2}
+                    择时型
+                #{/elseif}
+                #{elseif item.stype==3}
+                    交易型
+                #{/elseif}
+                #{else }
+                    其他
+                #{/else}
+
+            </td>
+
+            <td width="8%">#{emFM v:item.retainedProfits, f:'##,##0.00'/}</td>
+            <td width="8%">#{emFM v:item.yield * 100, f:'##,##0.00' /}</td>
+            <td width="8%">#{emFM v:item.yieldOfMonth * 100, f:'##,##0.00' /}</td>
+
+
+            <td width="10%">#{emFM v:item.yomsd * 100, f:'##,##0.00' /}</td>
+            <td width="8%">#{emFM v:item.overallProfitability, f:'##,##0.00',  /}</td>
+            <td width="8%">#{emFM v:item.overallDeficit, f:'##,##0.00',  /}</td>
+
+
+            <td width="10%">#{emFM v:item.tradeCount  /}</td>
+            <td width="10%">#{emFM v:item.profitCount /}</td>
+            <td width="10%">#{emFM v:item.deficitCount  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleProfit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleDeficit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.tradeDays /}</td>
+            <td width="10%">#{emFM v:item.maxShortPositionTime   /}</td>
+            <td width="10%">#{emFM v:item.longPositionTradeCount /}</td>
+            <td width="10%">#{emFM v:item.shortPositionTradeCount /}</td>
+            <td width="10%">#{emFM v:item.positionCloseCount  /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialProfitCount /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialDeficitCount  /}</td>
+            <td width="10%">#{emFM v:item.profitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.canhsiedRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleProfitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSingleDeficitRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.maxSequentialDeficitCapital , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.sumOfCommission , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.grossProfit , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.profitLossRatio , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.avgProfitOfMonth , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.yieldOfYear * 100, f:'##,##0.00' /}</td>
+            <td width="10%">#{emFM v:item.sharpeIndex , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.floatingProfitAndLoss , f:'##,##0.00',  /}</td>
+            <td width="10%">#{emFM v:item.movingCost , f:'##,##0.00',  /}</td>
+
+
+        </tr>
+    #{/list}
+
+
+        </table>
+    </form>
+    </div>
+
+
+    <!--分页 Begin-->
+    <div class="page">
+        <div class="page_center">
+            <form action="@{StrategyInfos.grounding(sp) }" class="pageFrom" method="get">
+            #{paging page:page /}
+            </form>
+        </div>
+    </div>
+    <!--分页 End-->
+
+    <!--control_active Begin-->
+    <div class="control_active">
+        <div class="control_active_wrap">
+           #{hasAuth '23' } <span class="strategy_upload_btn">策略上传</span> #{/hasAuth}
+           #{hasAuth '23'} <span class="add_checkstr">加入回测</span>#{/hasAuth}
+           #{hasAuth '23'}<span class="strategy_sale">策略上架</span>#{/hasAuth}
+           #{hasAuth '23'}<span class="remove_strategy">删除策略</span>#{/hasAuth}
+        </div>
+    </div>
+    <!--control_active End-->
+    <!--待上架策略 End-->
+
+
+
+</li>
+
+<li #{if sp.flag==3}class="display"#{/if}>
+    #{include '/StrategyInfos/retrieve.html' /}
+</li>
+</ul>
+
+
+</div>
+<!--sp_right End-->
+
+</div>
+<!--main_wrap End-->
+
+<!-- 加入回测 dialog begin-->
+
+<div class="tab_strategy_state change_status" style="display:none" title="加入回测">
+    <form action="">
+        <input type="hidden" autocomplete="off" value="-1" id="reportDate_20" name="ip">
+        <input type="hidden" autocomplete="off" id="reportName_20">
+        <div id="select_info_year1_20" class="sel_84_dialog new_sel_d">
+            --请选择回测服务器--
+        </div>
+        <ul id="options_year1_20" class="sel_91_option new_sel_option" style="display: none;">
+
+
+        </ul>
+        <div class="common_btn">
+            <input type="button" class="common_blue" value="加入回测"  id="strategy_state_submit">
+        </div>
+
+
+    </form>
+</div>
+
+ <!-- 策略上架 dialog begin-->
+
+<div class="tab_strategy_up change_status" style="display:none" title="策略上架">
+    <form action="">
+        <input type="hidden" autocomplete="off" value="-1" id="reportDate_21" name="ip">
+        <input type="hidden" autocomplete="off" id="reportName_21">
+
+         <div id="select_info_year1_21" class="sel_84_dialog new_sel_d">
+            --请选择运行服务器--
+        </div>
+        <ul id="options_year1_21" class="sel_91_option new_sel_option" style="display: none;">
+
+
+        </ul>
+
+        <div class="common_btn">
+            <input type="button" class="common_blue" value="确认上架"  id="strategy_state_submit_2">
+
+        </div>
+        <table style="clear:both; width:100%;"><tbody><tr height="20px"></tr><tr><td align="center"><img style="display:none" id="loading2" src="/public/images/loading.gif"></td></tr></tbody></table>
+
+    </form>
+</div>
+<!--  策略上架 dialog end-->
+<script>
+    //加入回测 begin
+    var allowDoSubmit = true;
+    function getCheckBoxValue(){
+        var my_arry = [];
+        $("input[type=checkbox]").each(function(){
+            if(this.checked){
+                my_arry.push($(this).val());
+                if($(this).attr("status") == 6){
+                    allowDoSubmit =false;
+                }
+            }
+        })
+        return my_arry;
+    }
+    function getServers(type){
+       var url = #{jsRoute @BackTestServers.getServers() /}
+               $("#options_year1_20").html("<li data-value='-1'>--请选择回测服务器--</li>");
+               $("#options_year1_21").html("<li data-value='-1'>--请选择运行服务器--</li>");
+        $.ajax({
+            url:url.url() + "?type="+type,
+            dataType:'json',
+            type:"post",
+            success:function(data){
+
+                if(data){
+                   // $("#options_year1_20").html("");
+                   for(var i =0 ;i<data.length;i++)
+                    if(type == 0){
+                       $("#options_year1_20").append("<li data-value="+data[i].id+">"+data[i].ip+"</li>");
+                    }else if(type == 1){
+                       $("#options_year1_21").append("<li data-value="+data[i].id+">"+data[i].ip+"</li>");
+                    }
+
+                }
+              //  $("#select_info_year1_20").text(data[0].ip);
+               // $("#reportDate_20").val(data[0].id);
+            },
+            error:function(data){
+
+
+            }
+
+        });
+
+    }
+    downBox('select_info_year1_20', '#options_year1_20', 'reportDate_20', 'reportName_20');
+    downBox('select_info_year1_21', '#options_year1_21', 'reportDate_21', 'reportName_21');
+    $(".add_checkstr").click(function(){
+        if(getCheckBoxValue().length == 0){
+            alert("没有选中策略");
+            return;
+        }
+        getServers(0);
+        $(".tab_strategy_state").dialog({
+            autoOpen: true,
+            modal: true,
+            position: {
+                at: "center"
+            },
+            height: 'auto',
+            resizable: false,
+            width: 330,
+            zIndex: 1000
+        });
+    })
+
+    $("#strategy_state_submit").click(function(){
+        var server_id = $("#reportDate_20").val();
+        if(server_id==-1){
+            alert("请选择回测服务器");
+            return;
+        }
+
+
+        $.ajax({
+            url:"/StrategyInfos/addlookback",
+            dataType:'json',
+            data:{"ids":getCheckBoxValue(),"sid":server_id},
+            type:"post",
+            beforeSend:function(){
+                if(!allowDoSubmit){
+                    alert("请不要选择已回测策略");
+                    allowDoSubmit=true;
+                    return false;
+                }
+                return true;
+            },
+            success:function(data){
+                if(data.success == true){
+                    $.qicTips({
+                        target:'body',
+                        level:1,
+                        message: data.message
+                    });
+                    window.location.reload();
+                }else{
+                    $.qicTips({
+                        target:'body',
+                        level:2,
+                        message: data.message
+                    });
+                   // alert(data.message);
+                }
+            },
+            error:function(data){
+                if(!data.success){
+                    $.qicTips({
+                        target:'body',
+                        level:2,
+                        message:"出错了....."
+                    });
+                }
+
+            }
+
+        })
+
+
+    })
+    //加入回测 end
+
+    //删除策略 begin
+    $(".remove_strategy").click(function(){
+        if(getCheckBoxValue().length == 0){
+            alert("没有选中策略");
+            return;
+        }
+
+        if(confirm("确认删除?")){
+            $.ajax({
+                url:"/StrategyInfos/delstrategy",
+                dataType:'json',
+                data:{"ids":getCheckBoxValue()},
+                type:"post",
+                success:function(data){
+                    if(data.success){
+                        $.qicTips({
+                            target:'body',
+                            level:1,
+                            message: "删除成功"
+                        });
+                        setTimeout(function(){
+                            window.location.reload();
+                        },400);
+
+                    }
+                },
+                error:function(data){
+                    if(!data.success){
+                        $.qicTips({
+                            target:'body',
+                            level:2,
+                            message:"出错了....."
+                        });
+                    }
+
+                }
+
+            })
+        }
+
+    })
+
+    //删除策略 end
+
+    //策略清空 begin
+     $(".strategy_remove_btn").click(function(){
+         if(confirm("确认清空已删除和下架时间大于三个月的策略?")){
+             $.ajax({
+                 url:"/StrategyInfos/emptystrategy",
+                 dataType:'json',
+                 //data:{"retrieveist":retrieveList},
+                 type:"post",
+                 success:function(data){
+                     if(data.success){
+                         $.qicTips({
+                             target:'body',
+                             level:1,
+                             message: "成功清空策略"
+                         });
+                         setTimeout(function(){
+                             window.location.reload();
+                         },400);
+
+                     }
+                 },
+                 error:function(data){
+                     if(!data.success){
+                         $.qicTips({
+                             target:'body',
+                             level:2,
+                             message:"出错了....."
+                         });
+                     }
+
+                 }
+
+             })
+         }
+     })
+
+    //策略清空 end
+
+    //策略上架begin
+     $(".strategy_sale").click(function(){
+         if(getCheckBoxValue().length == 0){
+             alert("没有选中策略");
+             return;
+         }
+
+             getServers(1);
+             $(".tab_strategy_up").dialog({
+                 autoOpen: true,
+                 modal: true,
+                 position: {
+                     at: "center"
+                 },
+                 height: 'auto',
+                 resizable: false,
+                 width: 330,
+                 zIndex: 1000
+             });
+
+
+
+     });
+    $("#strategy_state_submit_2").click(function(){
+        var server_id = $("#reportDate_21").val();
+        if(server_id==-1){
+            $.qicTips({
+                target:'#strategy_state_submit_2',
+                level:2,
+                message:"请选择运行服务器"
+            });
+            return;
+        }
+        $.ajax({
+            url:'/strategyinfos/upstrategy',
+            data:{"ids":getCheckBoxValue(),"serverId":server_id},
+            type:'post',
+            dataType:'json',
+            beforeSend:function(){
+                $("#loading2").show();
+            },
+            complete:function(){
+                $("#loading2").hide();
+            },
+            success:function(data){
+                if(data.success){
+                    $.qicTips({
+                        target:'#strategy_state_submit_2',
+                        level:1,
+                        message:data.message
+                    });
+                    setTimeout(function(){
+                        window.location.reload();
+                    },400);
+                }
+                else{
+                    $.qicTips({
+                        target:'#strategy_state_submit_2',
+                        level:2,
+                        message:data.message
+                    });
+                }
+            },
+            error:function(data){
+
+                    $.qicTips({
+                        target:'#strategy_state_submit_2',
+                        level:2,
+                        message:"上架失败"
+                    });
+
+            }
+        })
+
+
+    });
+    //策略上架end
+
+</script>
+
+
+
+
+
+<script>
+    (function(){
+        //window.resizeHeight('.tbl_scoll', 320);
+        window.resizeHeight('.scroll_str', 260)
+
+        $(".tab_li li").live("click", function(){
+            var index = $(this).index();
+           if(index==0){
+               window.location.href="/StrategyInfos/list";
+           }else if(index==1){
+               window.location.href="/StrategyInfos/grounding";
+           }else {
+               window.location.href="/StrategyInfos/retrieve";
+           }
+
+        });
+
+        //jQ tab切换
+        $(".tab_li li").click(function(){
+            var index = $(this).index();
+            $(".tab_li").children("li").removeClass().eq(index).addClass('display');
+            $(".sub_content").children("li").removeClass().eq(index).addClass('display')
+        });
+
+        //全选/反选
+        $(".check_uncheck").toggle(function(){
+            //check() uncheck()方法 是自定义jQ对象方法
+            //选中项
+            var checked = $(this).closest("li").find('.tbl_common input[type="checkbox"]').check();
+            //console.log(checked);
+        }, function(){
+            $(this).closest("li").find('.tbl_common input[type="checkbox"]').uncheck();
+            //console.log(undchecked);
+        });
+
+    })();
+
+
+</script>
+
+<!--下架选项 Begin-->
+<script>
+    var strategyDownRoute = #{jsRoute @StrategyInfos.strategyDownInfo() /};
+    var getStrDownTemplateRoute = #{jsRoute @StrategyInfos.strategyDown() /};
+</script>
+<div class="sold_out_pop pop_blue" title='策略下架'>
+    <!-- strategyDown.html-->
+</div>
+<link href="@{'/public/stylesheets/ui-lightness/jquery-ui-1.9.1.custom.css'}" rel="stylesheet">
+<script src="@{'/public/javascripts/jquery-ui-1.9.1.custom.js'}"></script>
+<script src="@{'/public/javascripts/strategyinfo.js'}"></script>
+<script src = "@{'/public/javascripts/WdatePicker.js'}"></script>
+<script>
+
+</script>
+<!--下架选项 End-->
+
+<!--策略上传 Begin-->
+<div class="strategy_upload_box" title="上传策略">
+   <form id="uploadStategyForm"  method="post" class="form_datum_modify">
+    <div class="upload_box">
+        <input name="hadUploadFile" type="hidden" value="0" id="hadUploadFile">
+        <input name="files" id="files" type="hidden" value="" >
+        <img id="loading" src="@{'/public/images/loading.gif'}" style="display:none;">
+        <!--
+
+        &nbsp;&nbsp;<input type="file" id="strategyFile" class="set_user_i"  name="attachment" ><span  onclick="javscript:uploadStrategy()" id="strategy_upload"  class="strategy_upload">上传策略</span>
+        -->
+        <div class="upload_file">
+            <div class="set_user_i" style="">
+                <span class="qic_file_val" ></span>
+            </div>
+            <div class="btn btn_success fileinput_button">
+
+                <i class="icon_plus icon_white"></i>
+                <span>上传策略</span>
+                <input type="file" id="strategyFile" name="attachment" class="qic_file" title="仅限(.zip .excel)">
+
+            </div>
+            <script>
+                bindFileUpload();
+                function bindFileUpload(){
+                    $(".qic_file").bind("change", function(){
+                        var value = $(this).val();
+                        $(".qic_file_val").html(value.substring(12))
+                        //alert($(this).val());
+                        // alert($(".qic_file_val").html());
+                        if(!$("#strategyFile").val() || $("#strategyFile").val() == '' ){
+                            return;
+                        }
+                        uploadStrategy();
+                    })
+                }
+            </script>
+        </div>
+            <h3 class="h3_title">
+                策略信息
+            </h3>
+            <div class="strategy_common strategy_name">
+                <label>策略上传状态<span class="red">&nbsp;</span></label>
+                 <span id="uploadStatus"><font color="red">未上传</font></span>
+                <input name="strategyDto.lookbackStime" type="hidden" value="" autocomplete="off" id="strategyDto_lookbackStime">
+                <input name="strategyDto.lookbackEtime" type="hidden" value="" autocomplete="off" id="strategyDto_lookbackEtime">
+            </div>
+
+            <div class="strategy_common strategy_name">
+                <label>策略名称<span class="red">*</span></label>
+                <input name="strategyDto.sname" id="strategyDto_sname" type="text" class="strategy_name_inpt">
+            </div>
+
+            <div class="strategy_common strategy_variety">
+
+                <div class="dialog_box infor_dialog">
+                    <div></div>
+                    <label class="for_tn">策略类型<span class="red">*</span></label>
+                    <input name="strategyDto.stype" type="hidden" value="3" autocomplete="off" id="reportDate_8">
+                    <input type="hidden" autocomplete="off" id="reportName_8">
+                    <div id="select_info_year1_8" class="sel_84_dialog  for_infor">交易型</div>
+                    <ul id="options_year1_8" class="sel_91_option  for_infor" style="display: none;">
+                        <li data-value="1">选股型</li>
+                        <li data-value="3">交易型</li>
+                        <li data-value="2">择时型</li>
+                        <li data-value="4">其它</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="strategy_common strategy_from">
+                <div class="dialog_box infor_dialog">
+                    <div></div>
+                    <label class="for_tn">交易品种<span class="red">*</span></label>
+                    <input name="strategyDto.tradeVariety" type="hidden" value="2" autocomplete="off" id="reportDate_9">
+                    <input type="hidden" autocomplete="off" id="reportName_9">
+                    <div id="select_info_year1_9" class="sel_84_dialog  for_infor">期货</div>
+                    <ul id="options_year1_9" class="sel_91_option  for_infor" style="display: none;">
+                        <li data-value="1">股票</li>
+                        <li data-value="2">期货</li>
+                        <li data-value="3">混合</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="strategy_common strategy_e">
+                <label>策略提供人员姓名<span class="red">*</span></label>
+                <div>
+                    <input name="strategyDto.provider" id="strategyDto_provider" type="text" class="strategy_name_inpt strategy_fullname">
+                </div>
+            </div>
+
+            <div class="strategy_common strategy_e">
+                <label>提供人员简介（80字）<span class="red">*</span></label>
+                <div>
+                    <textarea style="resize:none" name="strategyDto.providerDesp" id="strategyDto_providerDesp" class="txtarea_stra" cols="" rows=""></textarea>
+                </div>
+            </div>
+
+            <div class="strategy_common strategy_ec">
+                <label>策略简介（140字）<span class="red">*</span></label>
+                <div>
+                    <textarea style="resize:none" name="strategyDto.desp" id="strategyDto_desp" class="txtarea_stra" cols="" rows=""></textarea>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="dialog_box stra_upload_btn">
+            <input type="button" id="cancleUploadBtn" onclick="javascript:cancleUpload()" class="common_blue common_cancle" value="取消">
+            <input type="submit" class="common_blue" value="确定">
+        </div>
+
+
+    </div>
+     </form>
+</div>
+<script src="@{'/public/javascripts/ajaxfileupload.js'}"></script>
+<link href="@{'/public/stylesheets/ajaxfileupload.css'}" type="text/css" rel="stylesheet">
+<script src="/public/javascripts/jquery.validate.js"></script>
+<script>
+    #{if userInfoDto}
+    var curLoginName = '${userInfoDto.name}';
+    #{/if}
+    function cancleUpload(){
+        $("#uploadStategyForm").get(0).reset();
+        $("#hadUploadFile").val(0);//标识已上传策略文件
+        $("#uploadStatus").html("<font color='red'>未上传</font>");
+        $(".qic_file_val").html("");
+        $(".strategy_upload_box").dialog(
+            "close"
+        );
+        return;
+
+    }
+    function removeVlidTip(){
+
+        $("label").each(function(){
+            if($(this).attr("generated")) {
+                $(this).remove();
+
+            }
+        });
+       // $(".new_user_tips").css("display","none");
+    }
+    $().ready(function(){
+
+        $("#uploadStategyForm").validate({
+            submitHandler:function(form){
+                 if($("#hadUploadFile").val() == 0){
+                     alert("你还没有上传策略包，请上传策略包")
+                     return;
+                 }
+                //1. get form data
+                var url = #{jsRoute @StrategyInfos.addStrategy()/};
+                var newStrategyData = $("#uploadStategyForm").serializeArray();
+                $.ajax({
+                    url:url.url(),
+                    data:newStrategyData,
+                    dataType:"json",
+                    type:"post",
+                    success:function(data){
+                        if(data.success){
+                            alert(data.message);
+                            window.location.reload();
+                        }else{
+                            alert("添加策略失败!");
+                        }
+                    } ,
+                    error:function(data){
+                        alert("出错了...");
+                    }
+                });
+                return false;
+
+            },
+            rules: {
+                "strategyDto.provider": {
+                    required:true
+                },
+                "strategyDto.sname":{
+                    required:true,
+                    remote:{
+                        url:'/StrategyInfos/findStrategyByName',
+                        type:"post",
+                        datatype:"json",
+                        data:{
+                            sname:function(){ return $("#strategyDto_sname").val()}
+                        }
+                    }
+                },
+                "strategyDto.providerDesp": {
+                    required: true,
+                    maxlength: 80
+                },
+                "strategyDto.desp": {
+                    required: true,
+                    maxlength: 140
+                }
+
+
+            },
+            messages:{
+                "strategyDto.provider":{
+                    required: "请输入姓名"
+                },
+                "strategyDto.sname":{
+                    required:"请输入策略名",
+                    remote:"策略名已存在"
+                },
+                "strategyDto.providerDesp": {
+                    required: "请输入策略提供信息",
+                    maxlength:"信息最长80个字符"
+                },
+                "strategyDto.desp":{
+                    required:"请输入策略简介",
+                    maxlength:"信息最长140个字符"
+                }
+            }
+        });
+
+    });
+    $(".strategy_upload_btn").click(function(){
+        $("#uploadStategyForm").get(0).reset();
+        $("#hadUploadFile").val(0);//标识已未上传策略文件
+        $("#uploadStatus").html("<font color='red'>未上传</font>");
+        $(".qic_file_val").html("");
+        $(".strategy_upload_box").dialog({
+            autoOpen: true,
+            width: 450,
+            modal: true,
+            resizable: false,
+            draggable: true
+        });
+        $("#strategyDto_provider").val(curLoginName);
+        removeVlidTip();
+    });
+    //$(".strategy_upload_btn").click();
+
+    (function(){
+        downBox('select_info_year1_8', '#options_year1_8', 'reportDate_8', 'reportName_8');
+        downBox('select_info_year1_9', '#options_year1_9', 'reportDate_9', 'reportName_9');
+    })();
+
+    function uploadStrategy(){
+
+        var url = #{jsRoute @UploadFiles.uploadStrage()/};
+        if(!$("#strategyFile").val() || $("#strategyFile").val() == '' ){
+            alert("请选择文件");
+            return;
+        }
+        $("#loading")
+                .ajaxStart(function(){
+                    $(this).show();
+                })
+                .ajaxComplete(function(){
+                    $(this).hide();
+                });
+        $.ajaxFileUpload
+                (
+                        {
+                            url: url.url(),
+                            secureuri:false,
+                            fileElementId:'strategyFile',
+                            dataType: 'json',
+                            success: function (data, status)
+                            {
+                                if(data.success == true){//填充表单
+                                   if(data.fileNotFound){
+                                       alert("上传文件有误");
+                                       return;
+                                   }
+                                   if(data.fileExist){
+                                      alert("策略已存在，不能重复上传");
+                                      return;
+                                   }
+                                   if(data.fileErr){
+                                       alert("策略文件内容有误");
+                                       return;
+                                   }
+                                   //填充表单
+                                    $("#strategyDto_sname").val(data.StrategyName);
+                                    if(data.Author && data.Author!=''){
+                                        $("#strategyDto_provider").val(data.Author);
+                                    }
+                                    $("#strategyDto_providerDesp").val(data.Instruction);
+                                    $("#hadUploadFile").val(1);//标识已上传策略文件
+                                    $("#files").val(data.files[0] + "," + data.files[1])
+                                    $("#strategyDto_lookbackStime").val(data.BackTestStartDate);
+                                    $("#strategyDto_lookbackEtime").val(data.BackTestEndtDate);
+                                    $("#uploadStatus").html("<font color='green'>已上传:"+data.files[0].substring(data.files[0].lastIndexOf("/")+1) +"," +data.files[1].substring(data.files[1].lastIndexOf("/")+1) +"</font>");
+
+
+                                }else{
+                                    alert(data.message);
+                                    return;
+                                }
+                                bindFileUpload();
+                            },
+                            error: function (data, status, e)
+                            {
+                                     alert("上传出错");
+                                    bindFileUpload();
+                            }
+                        }
+                )
+        bindFileUpload();
+        return false;
+    }
+</script>
+<!--策略上传 End-->
+
+<!--排序 start-->
+<script>
+    function waitSort(con) {
+        var form = $('#waitOrder')[0];
+        $("#paramSort").val(con);
+        form.submit();
+    }
+    function retrieveSort(con){
+        var form =$('#retrieveOrder')[0];
+        $("#retrieveParam").val(con);
+        form.submit();
+    }
+    function groundingSort(con){
+        var form =$('#groundingSort')[0];
+        $("#groundingParam").val(con);
+        form.submit();
+    }
+
+</script>
+<!-- 排序 end-->
+</body>
+

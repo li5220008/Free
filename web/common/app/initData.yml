@@ -1,0 +1,525 @@
+# 初始化数据
+# 功能点数据
+models.common.FunctionInfo(front_root):
+  name:      '菜单根节点'
+  action:    '无'
+  code:      '0'
+
+models.common.FunctionInfo(front_f1):
+  name:      '策略超市'
+  action:    'aa'
+  code:      '001'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f11):
+  name:      '策略中心'
+  action:    'aa'
+  code:      '001001'
+  parent:    front_f1
+
+models.common.FunctionInfo(front_f12):
+  name:      '我的收藏'
+  action:    'aa'
+  code:      '001002'
+  parent:    front_f1
+
+models.common.FunctionInfo(front_f13):
+  name:      '策略上传'
+  action:    'aa'
+  code:      '001003'
+  parent:    front_f1
+
+models.common.FunctionInfo(front_f2):
+  name:      '股票池'
+  action:    'aa'
+  code:      '002'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f21):
+  name:      '组合浏览'
+  action:    'aa'
+  code:      '002001'
+  parent:    front_f2
+
+models.common.FunctionInfo(front_f22):
+  name:      '我的收藏'
+  action:    'aa'
+  code:      '002002'
+  parent:    front_f2
+
+models.common.FunctionInfo(front_f3):
+  name:      '行情报价'
+  action:    'aa'
+  code:      '003'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f31):
+  name:      '指数'
+  action:    'aa'
+  code:      '003001'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f32):
+  name:      '沪深股票'
+  action:    'aa'
+  code:      '003002'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f33):
+  name:      '债券'
+  action:    'aa'
+  code:      '003003'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f34):
+  name:      '基金'
+  action:    'aa'
+  code:      '003004'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f35):
+  name:      '商品'
+  action:    'aa'
+  code:      '003005'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f36):
+  name:      '外汇'
+  action:    'aa'
+  code:      '003006'
+  parent:    front_f3
+
+models.common.FunctionInfo(front_f4):
+  name:      '帮助'
+  action:    'aa'
+  code:      '004'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f5):
+  name:      'f10'
+  action:    'aa'
+  code:      '005'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f6):
+  name:      '用户管理'
+  action:    'aa'
+  code:      '006'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f61):
+  name:      '用户权限管理'
+  action:    'aa'
+  code:      '006001'
+  parent:    front_f6
+
+models.common.FunctionInfo(front_f62):
+  name:      '角色管理'
+  action:    'aa'
+  code:      '006002'
+  parent:    front_f6
+
+models.common.FunctionInfo(front_f7):
+  name:      '策略管理'
+  action:    'aa'
+  code:      '007'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f8):
+  name:      '配置管理'
+  action:    'aa'
+  code:      '008'
+  parent:    front_root
+
+models.common.FunctionInfo(front_f9):
+  name:      '操作日志'
+  action:    'aa'
+  code:      '009'
+  parent:    front_root
+
+# 角色数据
+models.common.RoleInfo(r1):
+  name:      '营业部用户'
+  desp:      '只有前端展示数据的权限'
+  functions:
+             - front_root
+             - front_f1
+             - front_f11
+             - front_f12
+             - front_f2
+             - front_f21
+             - front_f22
+             - front_f3
+             - front_f31
+             - front_f32
+             - front_f33
+             - front_f34
+             - front_f35
+             - front_f36
+             - front_f4
+             - front_f5
+
+models.common.RoleInfo(r2):
+  name:      '策略上传'
+  desp:      '有策略上传功能'
+  functions:
+             - front_root
+             - front_f1
+             - front_f13
+             - front_f4
+             - front_f5
+
+models.common.RoleInfo(r3):
+  name:       '后台管理(管理员)'
+  desp:       '后台管理权限'
+  functions:
+             - front_f4
+             - front_f6
+             - front_f61
+             - front_f62
+             - front_f7
+             - front_f8
+             - front_f9
+
+# 营业部信息
+models.common.SaleDepartment(sd1):
+  name:      '营业部1'
+
+models.common.SaleDepartment(sd2):
+  name:      '营业部2'
+
+models.common.SaleDepartment(sd3):
+  name:      '营业部3'
+
+models.common.UserInfo(u1):
+  name:       '营业部1用户1'
+  address:    '只有浏览权限'
+  account:    'yy1user1'
+  pwd:        '123'
+  email:      'wen01@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd1
+  roles:
+              - r1
+
+# 用户信息
+models.common.UserInfo(u2):
+  name:       '营业部1用户2'
+  address:    '只有浏览权限'
+  account:    'yy1user2'
+  pwd:        '123'
+  email:      'wen02@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd1
+  roles:
+              - r1
+
+models.common.UserInfo(u3):
+  name:       '营业部2用户1'
+  address:    '只有浏览权限'
+  account:    'yy2user1'
+  pwd:        '123'
+  email:      'wen03@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd2
+  roles:
+              - r1
+
+models.common.UserInfo(u4):
+  name:       '营业部2用户2'
+  address:    '只有浏览权限'
+  account:    'yy2user2'
+  pwd:        '123'
+  email:      'wen04@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd2
+  roles:
+              - r1
+
+models.common.UserInfo(u5):
+  name:       '策略上传者1'
+  address:    '有浏览和策略上传权限'
+  account:    'stup1'
+  pwd:        '123'
+  email:      'wen05@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd1
+  roles:
+              - r1
+              - r2
+
+models.common.UserInfo(u6):
+  name:       '策略上传者2'
+  address:    '有浏览和策略上传权限'
+  account:    'stup2'
+  pwd:        '123'
+  email:      'wen06@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      1
+  saleDep:    sd1
+  roles:
+              - r1
+              - r2
+
+models.common.UserInfo(u7):
+  name:       '管理员1'
+  address:    '有浏览和管理权限'
+  account:    'admin1'
+  pwd:        '123'
+  email:      'wen07@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      2
+  saleDep:    sd1
+  roles:
+              - r1
+              - r3
+
+models.common.UserInfo(u8):
+  name:       '管理员2'
+  address:    '有浏览和管理权限和上传策略'
+  account:    'admin2'
+  pwd:        '123'
+  email:      'wen08@126.com'
+  sdate:      2012-05-07
+  edate:      2014-05-07
+  status:     10
+  utype:      2
+  saleDep:    sd1
+  roles:
+              - r1
+              - r2
+              - r3
+
+models.common.StrategyBaseinfo(st1):
+  stUuid:         '20121101Test'
+  name:           '策略1'
+  tradeType:      1
+  tradeVariety:   1
+  upTime:         2012-06-12
+  provider:       '提供者1'
+  providerDesp:   '提供者1描述'
+  desp:           '这个策略不错'
+  status:          4
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u5
+
+models.common.StrategyBaseinfo(st2):
+  stUuid:          '222E0CD6AE5342B596670834CEE6FA4F'
+  name:            '策略2'
+  tradeType:       2
+  tradeVariety:    2
+  provider:        '提供者2'
+  providerDesp:    '提供者2描述'
+  desp:            '这个应该不错'
+  status:          1
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u6
+
+models.common.StrategyBaseinfo(st3):
+  stUuid:         '23339CB2018143E5918F8216C7BEC554'
+  name:           '策略3'
+  tradeType:      3
+  tradeVariety:   3
+  upTime:         2011-01-01
+  downTime:       2012-10-10
+  provider:       '提供者1'
+  providerDesp:   '提供者1描述'
+  desp:           '不错'
+  status:         5
+  discussTotal:   4
+  discussCount:   1
+  collectCount:   2
+  orderCount:     2
+  upUser:         u7
+
+models.common.StrategyBaseinfo(st4):
+  stUuid:          '54156134E0824DDB8E3F26AA3529A136'
+  name:            '策略4'
+  tradeType:       4
+  tradeVariety:    1
+  provider:        '提供者1'
+  providerDesp:    '描述'
+  desp:            '不错'
+  status:          2
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u8
+
+models.common.StrategyBaseinfo(st5):
+  stUuid:          '5FA68737E1404709BB1F638309985366'
+  name:            '策略5'
+  tradeType:       1
+  tradeVariety:    2
+  provider:        '提供2'
+  providerDesp:    '描述'
+  desp:            '不错'
+  status:          3
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u5
+
+models.common.StrategyBaseinfo(st6):
+  stUuid:          '647481911801428F95D3AC7EDCA73918'
+  name:            '策略6'
+  tradeType:       2
+  tradeVariety:    2
+  upTime:          2012-01-01
+  provider:        'pri1'
+  providerDesp:    'des1'
+  desp:            'yes'
+  status:          4
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u5
+
+models.common.StrategyBaseinfo(st7):
+  stUuid:          '72ED1B2B829C49E9A9B581A30FCDF057'
+  name:            '策略7'
+  tradeType:       2
+  tradeVariety:    3
+  upTime:          2012-01-01
+  provider:        'des'
+  providerDesp:    'des2'
+  desp:            'ok'
+  status:          4
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u6
+
+models.common.StrategyBaseinfo(st8):
+  stUuid:          'C781810735904308800B0E55F1BD2680'
+  name:            '策略8'
+  tradeType:       2
+  tradeVariety:    2
+  provider:        'dd'
+  providerDesp:    'des'
+  desp:            'ddd'
+  status:          1
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u6
+
+models.common.StrategyBaseinfo(st9):
+  stUuid:          'K0000005'
+  name:            '策略9'
+  tradeType:       3
+  tradeVariety:    3
+  upTime:          2011-09-09
+  downTime:        2012-06-06
+  provider:        'dd'
+  providerDesp:    'ddd'
+  desp:            'dddd'
+  status:          5
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u7
+
+models.common.StrategyBaseinfo(st10):
+  stUuid:         'K0000024'
+  name:           '策略10'
+  tradeType:      3
+  tradeVariety:   2
+  upTime:         2012-09-09
+  provider:       'dd'
+  providerDesp:   'dd'
+  desp:           'dd'
+  status:          4
+  discussTotal:    4
+  discussCount:    1
+  collectCount:    2
+  orderCount:      2
+  upUser:          u8
+
+models.common.ConfigManage(con1):
+  keyName:          'strategyDownMsg'
+  keyValue:         '亲爱的用户你好,[$strategy.Name]将于[$strategy.DownTime]下架，请悉知！'
+  remark:           '策略下架通知'
+
+models.common.ConfigManage(con2):
+  keyName:          'strategyUpMsg'
+  keyValue:         '亲爱的用户你好,[$strategy.Name]将于[$strategy.upTime]上架，请悉知！'
+  remark:           '策略上架通知'
+
+models.common.ConfigManage(con3):
+  keyName:          'otherMsg'
+  keyValue:         '尊敬的用户您好！
+                     您的新密码是：[$userInfo.Pwd]
+                     为了您的账号安全，请登入后进入系统配置中进行密码修改。'
+  remark:           '找回密码'
+
+models.common.ConfigManage(con4):
+  keyName:          'user.excel.template.dir'
+  keyValue:         'public/attachment/template.xls'
+  remark:           '用户上传模板文件路径'
+
+models.common.ConfigManage(con5):
+  keyName:          'user.excel.upload.tmp.dir'
+  keyValue:         '/data/excel/tmp/'
+  remark:           'excel保存的临时目录'
+
+models.common.ConfigManage(con6):
+  keyName:          'user.excel.upload.official.dir'
+  keyValue:         '/data/excel/official/'
+  remark:           'excel保存的正工目录'
+
+models.common.ConfigManage(con7):
+  keyName:          'strategy.upload.temp.dir'
+  keyValue:         '/data/strategy/tmp/'
+  remark:           '策略文件保存手临时目录'
+
+models.common.ConfigManage(con8):
+  keyName:          'strategy.upload.official.dir'
+  keyValue:         '/home/gta/strategies/'
+  remark:           '策略文件保存的正式目录'
+
+models.common.ConfigManage(con9):
+  keyName:          'others.load.strategy.base.dir'
+  keyValue:         '/home/gta/strategies/'
+  remark:           '第三方加载策略文件的基路径'
+
+models.common.ConfigManage(con10):
+  keyName:          'show.createOneStrategyPic.path'
+  keyValue:         'http://localhost:9000/createOneStrategyPic/doRun?strategyId=%s'
+  remark:           '策略上架生成指定策略的数据和小图片'
+
+models.common.ConfigManage(con11):
+  keyName:          'activateMsg'
+  keyValue:         '尊敬的[$userInfo.Name] 您好！您的账号：[$userInfo.Account]已经成功激活,有效日期截止到：[$userInfo.EDate],谢谢使用！'
+  remark:           '账号激活邮件通知'

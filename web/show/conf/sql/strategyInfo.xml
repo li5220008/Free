@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>strategy sql</comment>
+    <entry key="StrategyBaseInfoSql">
+        <![CDATA[
+    SELECT
+  sb.id AS id,
+  sb.`st_uuid` AS UUID,
+  sb.name AS sname,
+  IF(
+    sb.discuss_count = 0,
+    0,
+    sb.discuss_total / sb.discuss_count
+  ) AS starLevel,
+  sb.provider AS provider,
+  sb.trade_type AS stype,
+  sb.trade_variety AS tradeVariety,
+  sb.collect_count AS collectCount,
+  sb.up_time AS upTime,
+  se.tradeCount AS tradeCount,
+  se.yield AS yield,
+  se.profitRatio AS profitRatio,
+  se.`yieldOfMonthStandardDeviation` AS yomsd
+FROM
+  qic_db.strategy_baseinfo sb
+ LEFT JOIN strategy_high_low se
+    ON se.`StrategyID` = sb.`st_uuid`
+    where sb.status in(4,7)
+
+        ]]>
+    </entry>
+
+    <entry key="StrategyFavoriteSql">
+        <![CDATA[
+     SELECT
+  sb.id AS id,
+  sb.`st_uuid` AS UUID,
+  sb.name AS sname,
+  IF(
+    sb.discuss_count = 0,
+    0,
+    sb.discuss_total / sb.discuss_count
+  ) AS starLevel,
+  sb.provider AS provider,
+  sb.trade_type AS stype,
+  sb.trade_variety AS tradeVariety,
+  sb.collect_count AS collectCount,
+  sb.up_time AS upTime,
+  se.tradeCount AS tradeCount,
+  se.yield AS yield,
+  se.profitRatio AS profitRatio,
+  se.`yieldOfMonthStandardDeviation` AS yomsd,
+  ui.id AS uid
+FROM
+  qic_db.strategy_baseinfo sb
+  LEFT JOIN strategy_high_low se
+    ON se.`StrategyID` = sb.`st_uuid`
+  INNER JOIN qic_db.`user_strategy_collect` usc
+    ON usc.`stid` = sb.`id`
+  INNER JOIN qic_db.`user_info` ui
+    ON ui.`id` = usc.`uid`
+    where sb.status in(4,7)
+        ]]>
+    </entry>
+    <entry key="StrategyOrderSql">
+        <![CDATA[
+        SELECT
+          sb.id AS id,
+          sb.`st_uuid` AS UUID,
+          sb.name AS sname,
+          IF(
+            sb.discuss_count = 0,
+            0,
+            sb.discuss_total / sb.discuss_count
+          ) AS starLevel,
+          sb.provider AS provider,
+          sb.trade_type AS stype,
+          sb.trade_variety AS tradeVariety,
+          sb.collect_count AS collectCount,
+          sb.up_time AS upTime,
+          se.tradeCount AS tradeCount,
+          se.yield AS yield,
+          se.profitRatio AS profitRatio,
+          se.`yieldOfMonthStandardDeviation` AS yomsd,
+          ui.id AS uid
+        FROM
+            qic_db.strategy_baseinfo sb
+        LEFT JOIN strategy_high_low se
+    ON se.`StrategyID` = sb.`st_uuid`
+        INNER JOIN qic_db.`user_strategy_order` so
+        ON so.`stid` = sb.`id`
+        INNER JOIN qic_db.`user_info` ui
+        ON ui.`id` = so.`uid`
+        WHERE (sb.status=4 OR sb.status=7)
+        AND so.`order_stime` <= NOW()
+        AND so.`order_etime` >= NOW()
+        ]]>
+    </entry>
+    <entry key="CountStrategyOrderSql">
+        <![CDATA[
+        SELECT count(*)
+        FROM
+            qic_db.strategy_baseinfo sb
+       LEFT JOIN strategy_high_low se
+    ON se.`StrategyID` = sb.`st_uuid`
+        INNER JOIN qic_db.`user_strategy_order` so
+        ON so.`stid` = sb.`id`
+        INNER JOIN qic_db.`user_info` ui
+        ON ui.`id` = so.`uid`
+        WHERE (sb.status=4 OR sb.status=7)
+        AND so.`order_stime` <= NOW()
+        AND so.`order_etime` >= NOW()
+        ]]>
+    </entry>
+
+
+</properties>

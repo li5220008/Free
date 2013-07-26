@@ -1,0 +1,150 @@
+  <div class="common_user_bar">
+        <form action="@{StrategyInfos.retrieve()}" method="get">
+            <dl>
+                <dd>
+                    <input  class="s_keyword"  type="text"  name="sp.keyWords" value="${sp.keyWords}" >
+                </dd>
+
+                <dd>
+                    <input  type="image" class="user_submit" src="@{'/public/images/user_check.png'}" name="" >
+                </dd>
+            </dl>
+        </form>
+    </div>
+    <div class="scroll_str">
+        <form action="@{StrategyInfos.retrieve()}" method="get" id='retrieveOrder'>
+        #{if sp.orderFlag==0}
+            <input type="hidden" name="sp.orderFlag" value="1">
+        #{/if}
+        #{else }
+            <input type="hidden" name="sp.orderFlag" value="0">
+        #{/else}
+            <input type="hidden" name="sp.keyWords" value="${sp.keyWords}">
+            <input type="hidden" name="sp.orderSort" value="" id="retrieveParam">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec tbl_common">
+                <tr>
+                    <th width="8%" onclick="retrieveSort('sname')">策略名称#{sortTagShow sortName:sp.orderSort, fieldName:'sname', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('provider')">提供人员#{sortTagShow sortName:sp.orderSort, fieldName:'provider', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('tradeVariety')">交易品种#{sortTagShow sortName:sp.orderSort, fieldName:'tradeVariety', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('stype')">交易类型#{sortTagShow sortName:sp.orderSort, fieldName:'stype', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('retainedProfits')"> 净利润#{sortTagShow sortName:sp.orderSort, fieldName:'retainedProfits', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('yield')"> 收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yield', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('yieldOfMonth')"> 月化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfMonth', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('yomsd')">月度收益率标准差% #{sortTagShow sortName:sp.orderSort, fieldName:'yomsd', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('overallProfitability')">总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'overallProfitability', flag:sp.orderFlag /}</th>
+                    <th width="8%" onclick="retrieveSort('overallDeficit')">总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'overallDeficit', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('tradeCount')">交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('profitCount')">盈利次数 #{sortTagShow sortName:sp.orderSort, fieldName:'profitCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('deficitCount')">亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'deficitCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSingleProfit')">单次最大盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfit', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSingleDeficit')">单次最大亏损 #{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficit', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('tradeDays')">总交易天数#{sortTagShow sortName:sp.orderSort, fieldName:'tradeDays', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxShortPositionTime')">最大空仓时间#{sortTagShow sortName:sp.orderSort, fieldName:'maxShortPositionTime', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('longPositionTradeCount')">多头交易次数 #{sortTagShow sortName:sp.orderSort, fieldName:'longPositionTradeCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('shortPositionTradeCount')">空头交易次数#{sortTagShow sortName:sp.orderSort, fieldName:'shortPositionTradeCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('positionCloseCount')">持平次数#{sortTagShow sortName:sp.orderSort, fieldName:'positionCloseCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSequentialProfitCount')">最大连续盈利次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialProfitCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSequentialDeficitCount')">最大连续亏损次数#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCount', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('profitRatio')">盈利比率（胜率）#{sortTagShow sortName:sp.orderSort, fieldName:'profitRatio', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('canhsiedRatio')">总盈利/总亏损（盈亏比）#{sortTagShow sortName:sp.orderSort, fieldName:'canhsiedRatio',flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSingleProfitRatio')">最大盈利/总盈利#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleProfitRatio', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSingleDeficitRatio')">最大亏损/总亏损#{sortTagShow sortName:sp.orderSort, fieldName:'maxSingleDeficitRatio', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('maxSequentialDeficitCapital')">最大连续亏损额#{sortTagShow sortName:sp.orderSort, fieldName:'maxSequentialDeficitCapital', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('sumOfCommission')">手续费合计#{sortTagShow sortName:sp.orderSort, fieldName:'sumOfCommission', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('grossProfit')">毛利润#{sortTagShow sortName:sp.orderSort, fieldName:'grossProfit', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('profitLossRatio')">净利润/单次最大亏损#{sortTagShow sortName:sp.orderSort, fieldName:'profitLossRatio', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('avgProfitOfMonth')">月度平均盈利#{sortTagShow sortName:sp.orderSort, fieldName:'avgProfitOfMonth', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('yieldOfYear')">年化收益率%#{sortTagShow sortName:sp.orderSort, fieldName:'yieldOfYear', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('sharpeIndex')">夏普指数#{sortTagShow sortName:sp.orderSort, fieldName:'sharpeIndex', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('floatingProfitAndLoss')">浮动盈亏#{sortTagShow sortName:sp.orderSort, fieldName:'floatingProfitAndLoss', flag:sp.orderFlag /}</th>
+                    <th width="10%" onclick="retrieveSort('movingCost')">滑价成本#{sortTagShow sortName:sp.orderSort, fieldName:'movingCost', flag:sp.orderFlag /}</th>
+                </tr>
+
+            #{list items:retrieveList,as:'item'}
+            <tr>
+                <td width="8%">#{emFM item.sname /}</td>
+
+                <td width="8%">#{emFM item.provider /}</td>
+                <td width="8%">
+                    #{if item.tradeVariety ==1  }
+                        股票
+                    #{/if}
+                    #{elseif item.tradeVariety==2}
+                        期货
+                    #{/elseif}
+                    #{else }
+                        混合
+                    #{/else}
+                </td>
+                <td width="8%">
+                    #{if item.stype==1}
+                        选股型
+                    #{/if}
+                    #{elseif item.stype==2}
+                        择时型
+                    #{/elseif}
+                    #{elseif item.stype==3}
+                        交易型
+                    #{/elseif}
+                    #{else }
+                        其他
+                    #{/else}
+
+                </td>
+
+                <td width="8%">#{emFM v:item.retainedProfits, f:'##,##0.00'/}</td>
+                <td width="8%">#{emFM v:item.yield * 100, f:'##,##0.00' /}</td>
+                <td width="8%">#{emFM v:item.yieldOfMonth * 100, f:'##,##0.00' /}</td>
+
+
+                <td width="10%">#{emFM v:item.yomsd * 100, f:'##,##0.00' /}</td>
+                <td width="8%">#{emFM v:item.overallProfitability, f:'##,##0.00',  /}</td>
+                <td width="8%">#{emFM v:item.overallDeficit, f:'##,##0.00',  /}</td>
+
+
+                <td width="10%">#{emFM v:item.tradeCount  /}</td>
+                <td width="10%">#{emFM v:item.profitCount /}</td>
+                <td width="10%">#{emFM v:item.deficitCount  /}</td>
+                <td width="10%">#{emFM v:item.maxSingleProfit , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.maxSingleDeficit , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.tradeDays /}</td>
+                <td width="10%">#{emFM v:item.maxShortPositionTime   /}</td>
+                <td width="10%">#{emFM v:item.longPositionTradeCount /}</td>
+                <td width="10%">#{emFM v:item.shortPositionTradeCount /}</td>
+                <td width="10%">#{emFM v:item.positionCloseCount  /}</td>
+                <td width="10%">#{emFM v:item.maxSequentialProfitCount /}</td>
+                <td width="10%">#{emFM v:item.maxSequentialDeficitCount  /}</td>
+                <td width="10%">#{emFM v:item.profitRatio , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.canhsiedRatio , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.maxSingleProfitRatio , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.maxSingleDeficitRatio , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.maxSequentialDeficitCapital , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.sumOfCommission , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.grossProfit , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.profitLossRatio , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.avgProfitOfMonth , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.yieldOfYear * 100, f:'##,##0.00' /}</td>
+                <td width="10%">#{emFM v:item.sharpeIndex , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.floatingProfitAndLoss , f:'##,##0.00',  /}</td>
+                <td width="10%">#{emFM v:item.movingCost , f:'##,##0.00',  /}</td>
+            #{/list}
+
+            </table>
+        </form>
+    </div>
+    <!--分页 Begin-->
+    <div class="page">
+        <div class="page_center">
+            <form action="@{StrategyInfos.retrieve(sp) }" class="pageFrom" method="get">
+            #{paging page:page /}
+            </form>
+        </div>
+    </div>
+    <!--分页 End-->
+
+    <!--control_active Begin-->
+    <div class="control_active">
+        <div class="control_active_wrap">
+            #{hasAuth '23'}<span class="strategy_remove_btn">策略清空</span>#{/hasAuth}
+        </div>
+    </div>

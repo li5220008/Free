@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="style/global-marketnews.css">
+<script src="js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+	
+
+ <!--sider_news Begin-->
+    <div class="sider_news">
+		
+		
+        <div class="news_list">
+       <table width="100%" class="tbl_news" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <th width="57%">标题</th>
+            <th width="12%">时间</th>
+            <th width="31%" align="left">&nbsp;&nbsp;来源</th>
+          </tr>
+          <tr>
+            <td><a href="#" class="news_a">我国首座深水钻井平台南海正式开钻我国首座深水钻井平台南海正式开钻</a></td>
+            <td align="center">20:21</td>
+            <td><div class="news_source">第一财经日报第一财经日报</div></td>
+          </tr>
+          
+           <tr>
+            <td><a href="#" class="news_a">我国首座深水钻井平台南海正式开钻我国首座深水钻井平台南海正式开钻</a></td>
+            <td align="center">20:21</td>
+            <td><div class="news_source">第一财经日报</div></td>
+          </tr>
+          
+    
+          
+        
+        </table>
+
+        </div>
+        
+      
+    
+    </div>
+    <!--sider_news End-->
+    
+      <!--folder Begin-->
+        <div class="folder folder_2" id="folder" title="折叠菜单">
+            <div class="folder_tips_hide">
+                &nbsp;
+            </div>
+        </div>
+        <!--folder End-->
+    
+	
+    <div class="main">
+    	<div class="main_wrap">
+        	<!--search_code Begin-->
+        	<div class="search_code">
+    		    <input type="text" name="" required placeholder="关键字/证券代码" class="stock_code">
+                <input type="submit" class="code_btn">
+                
+                <div class="my_subscribe">
+                <div class="dialog_box">
+ 
+             <input type="hidden" value="11" autocomplete="off" id="reportDate_2">
+            <input type="hidden" value="2011" autocomplete="off" id="reportName_2">
+             <div id="select_info_year1_2" class="sel_84_dialog">&nbsp;</div>
+             <ul id="options_year1_2" class="sel_91_option" style="display: none;">
+                <li data-value="12">我的订阅1</li>
+                <li data-value="11">我的订阅1</li>
+                <li data-value="10">编辑订阅</li>
+              </ul>
+          </div>
+                </div>
+                
+            </div>
+            <!--search_code End-->
+   			
+            <div class="content">
+            		<h1 class="cont_title">我国首座深水钻井平台南海正式开钻</h1>
+                    <div class="sub_title">
+                   		 <span class="c_source">第一财经日报</span> 
+                         <span class="author">樊志刚  何崇阳</span>
+                         <span class="report_date">2012-5-3 12:58</span>
+                         
+                         <div class="c_service">
+                         	 <span class="c_word">22</span>
+                             <span class="c_print">22</span>
+                         </div>
+                    </div>
+                    
+            	<div class="c_detail">
+                
+                <p>9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。</p>
+
+      <p>此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。9
+日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。
+    实质性的一步。</p>
+     <p> 此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。
+9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，标志着我国海洋石油工业的“深水战略”由此迈出了实质性的一步。实质性的一步。</p>
+
+    <p> 此次南海首钻是我国石油公司首次独立进行深水油气勘探开发，也使我国成为第一个在南海自营勘探开发深水油气资源的国家。作为我国海洋石油勘探开发由浅水迈向深水的重要里程碑，此举意味着我国海洋石油工业深水勘探开发的序幕正式拉开。9日上午9时38分，我国首座自主设计、建造的第六代深水半潜式钻井平台“海洋石油981”的钻头在南海荔湾6-1区域约1500米深的水下探入地层，
+                实质性的一步。</p>
+                </div>
+            </div>
+            
+         </div>
+    </div>
+    
+    
+<script src="js/global-marketnews.js"></script>
+<script>
+;(function(){
+	
+	//内容高度
+	var clientHeight = document.documentElement.clientHeight,
+		 detail = document.querySelector(".c_detail");
+	detail.style.height =  clientHeight - 240 + "px"; 
+	
+	window.onresize = function(){
+		var clientHeight = document.documentElement.clientHeight;
+		detail.style.height =  clientHeight - 240 + "px"; 
+	}
+	
+	
+	//我的订阅
+	$("body").click(function(e){
+			var target = e.target;
+			var className = target.className;			
+			if(className == 'sel_84_dialog'){
+				$(target).siblings(".sel_91_option").slideToggle(100);	
+			}else{
+				$(".sel_91_option").slideUp(100);
+			}
+	});
+	
+	
+	
+})();
+
+
+//downBox('select_info_year1_2', '#options_year1_2', 'reportDate_2', 'reportName_2');
+
+
+
+</script>
+
+<!--我的订阅 Begin-->
+<div class="mysubcribe_box hide" title="我的订阅">
+
+	<div class="subscribe_list">
+        <div class="order_list">
+        	<h2>订阅列表</h2>
+            <div class="border_subscribe">
+            	<ul class="list_c">
+                	<li><a href="#">·我的订阅</a></li>
+                	<li><a href="#">·我的订阅</a></li>
+                    <li><a href="#">·我的订阅</a></li>
+                	<li><a href="#">·我的订阅</a></li>
+                    <li><a href="#">·我的订阅</a></li>
+                	<li><a href="#">·我的订阅</a></li>
+                    <li><a href="#">·我的订阅</a></li>
+                	<li><a href="#">·我的订阅</a></li>
+                </ul>
+                <div class="order_list_btn">
+                	<div class="dark_share">重置</div>
+                    <div class="dark_share">删除</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="news_source_m">
+        	<h2>新闻来源</h2>
+            <div class="border_subscribe">
+            	<ul class="list_c list_c_m">
+                	<li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+
+                </ul>
+            </div>
+        </div>
+        
+        <div class="news_type">
+        	<h2>新闻类型</h2>
+            <div class="border_subscribe">
+            	<ul class="list_c list_c_m">
+                	<li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+                    <li><input type="checkbox"><label for="">全部来源</label></li>
+
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="share_btn_box">
+        <div class="share_btn">
+            <div class="share_common btn_save">
+                 保存
+            </div>
+            <div class="share_common btn_cancle">
+                 取消
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<!--我的订阅 End-->
+
+
+<!--jquery-ui插件 Begin-->
+<link href="style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="js/jquery-ui-1.9.1.custom.js"></script>
+<script>
+//我的订阅
+$(".sel_91_option li").click(function(e){
+		var lastChild = $(this).last().length,
+			index = $(this).index(),
+			length = $(this).parent("ul").find("li").length;
+		if(index  == (length-1) ){
+			$(".mysubcribe_box").dialog({
+				"autoOpen": true,
+				"width": 680,
+				'height': 335,
+				"resizable": false,
+				"show": 'fast'	
+			});
+		}else{
+			//后台处理的地方	
+		}
+		
+});
+
+//$(".sel_91_option li").click();
+</script>
+<!--jquery-ui插件 End-->
+</body>
+</html>

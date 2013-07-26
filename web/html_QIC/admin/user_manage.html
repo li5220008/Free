@@ -1,0 +1,1506 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户权限管理</title>
+<link rel="stylesheet" type="text/css" href="../style/global-admin.css">
+<script src="../js/jquery-1.8.2.min.js"></script>
+<script src="../js/global-qic.js"></script>
+</head>
+
+<body>
+
+
+<!--strategy_nav Begin-->
+<div class="strategy_nav">
+	<ul class="manage_top_menu">
+    	<li class="mt_current"><a href="user_manage.html">用户权限管理</a></li>
+        <li><a href="role_manage.html">角色管理</a></li>
+    </ul>
+</div>
+<!--strategy_nav End-->
+
+<!--main_wrap Begin-->
+<div class="main_wrap">
+    
+
+	<!--sp_right Begin-->
+    <div class="sp_right_wrap">
+        	<div class="content_title">
+            	
+                
+                <div class="tab_title">
+                    <ul class="tab_li" id="menuTab">
+                     	<li class="display">待激活用户</li>
+                        <li class="">用户列表</li>
+						<li class="">到期用户</li>
+                     </ul>
+                     
+                </div>
+                
+            </div>
+       
+            <ul class="sub_content stable_content" id="subContImp">
+                     	<li class="display">
+                        	<!--待激活用户 Begin-->
+                            <div class="common_user_bar">
+                                <dl>
+                                	<dd>
+                                    	<label for="user_name">
+                                       姓名
+                                        </label>
+                                         <input id="user_name"  type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<label for="user_account">
+                                       帐号
+                                        </label>
+                                         <input id="user_account" type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       所属营业部
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate">
+                                	    <input type="hidden" autocomplete="off" id="reportName">
+                                         <div id="select_info_year1" class="sel_84_dialog">2012</div>
+                                         <ul id="options_year1" class="sel_91_option" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    <dd>
+                                         <input  type="image" class="user_submit" src="../images/user_check.png" name="" >
+                                    </dd>
+                                </dl>
+                                
+                             </div>
+                             
+                                        
+                          <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec">
+              <tr>
+                <th width="11%"><img src="../images/check_uncheck.png" class="check_uncheck"></th>
+                <th width="11%">帐号</th>
+                <th width="11%">姓名</th>
+                <th width="11%">身份证号</th>
+                <th width="11%">联系电话</th>
+                <th width="12%">所属营业部</th>
+                <th width="11%"> 资金账号</th>
+                <th width="11%">申请日期</th>
+                <th width="11%">用户状态</th>
+                </tr>
+                </table>
+                                                                               
+                            <div class="tbl_scoll">
+                        
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_common tbl_exec tbl_no_scroll">
+                        
+                           
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%"><span class="username_datum">axly10</span></td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%"><span class="username_datum">axly10</span></td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                            <tr>
+                            <td width="11%"><input type="checkbox" name=""></td>
+                            <td width="11%">axly10</td>
+                            <td width="11%">张三</td>
+                            <td width="11%">44050910000000</td>
+                            <td width="11%">13798689971</td>
+                            <td width="12%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                  
+                        </table>
+                  	      </div>
+                            <!--待激活用户 End-->
+                            
+                              <!--分页 Begin-->
+                                <div class="page">
+                                    <div class="page_center">
+                                        <a href="#" class="previous">上一页</a>
+                                        <span class="page_current">1</span>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <span class="page_break">...</span>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="page_num">共10页</span>
+                                        <span class="go_page">到第<input type="text">页</span>
+                                        <span class="page_ok"><img src="../images/st_ok.png"></span>
+                                    </div>
+                                </div>
+                                <!--分页 End-->
+                                
+                                <!--control_active Begin-->
+                                <div class="control_active">
+                                	<div class="control_active_wrap">
+                                    	<span class="add_user">新建用户</span>
+                                        <span class="input_user">批量导入用户</span>
+                                        <span class="active_user">激活</span>
+                                        <span class="remove_user">删除</span>
+                                    </div>
+                                </div>
+                                 <!--control_active End-->
+                                
+                                
+                        </li>
+                    
+                    	
+                        
+                    	<li class="">
+                        	<!--用户列表 Begin-->
+                              <div class="common_user_bar">
+                                <dl>
+                                	<dd>
+                                    	<label for="user_name">
+                                       姓名
+                                        </label>
+                                         <input id="user_name"  type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<label for="user_account">
+                                       帐号
+                                        </label>
+                                         <input id="user_account" type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       所属营业部
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate_4">
+                                	    <input type="hidden" autocomplete="off" id="reportName_4">
+                                         <div id="select_info_year1_4" class="sel_84_dialog">2012</div>
+                                         <ul id="options_year1_4" class="sel_91_option" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    
+                                     <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       所属角色
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate_5">
+                                	    <input type="hidden" autocomplete="off" id="reportName_5">
+                                         <div id="select_info_year1_5" class="sel_84_dialog select_short_o">2012</div>
+                                         <ul id="options_year1_5" class="sel_91_option select_short_o" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                             <li data-value="10">23422</li>
+                                            <li data-value="19">1222</li>
+                                            <li data-value="18">1221</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    
+                                     <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       状态
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate_6">
+                                	    <input type="hidden" autocomplete="off" id="reportName_6">
+                                         <div id="select_info_year1_6" class="sel_84_dialog select_short_o">2012</div>
+                                         <ul id="options_year1_6" class="sel_91_option select_short_o" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    
+                                    
+                                     
+                                    
+                                    <dd>
+                                         <input  type="image" class="user_submit" src="../images/user_check.png" name="" >
+                                    </dd>
+                                </dl>
+                                
+                             </div>
+                                       
+                          <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec">
+              <tr>
+                <th width="6%"><img src="../images/check_uncheck.png" class="check_uncheck"></th>
+                <th width="9%">帐号</th>
+                <th width="9%">姓名</th>
+                <th width="9%">身份证号</th>
+                <th width="9%">联系电话</th>
+                <th width="9%">所属营业部</th>
+                <th width="9%"> 资金账号</th>
+                <th width="10%">所属角色</th>
+                <th width="10%">授权日期</th>
+                <th width="10%">权限到期日</th>
+                <th width="10%">用户状态</th>
+                </tr>
+                </table>
+                                                                               
+                            <div class="tbl_scoll">
+                        
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_common tbl_exec tbl_no_scroll">
+                        
+                           
+                            <tr>
+                            <td width="6%"><input type="checkbox" name=""></td>
+                            <td width="9%"><span class="username_datum">axly10</span></td>
+                            <td width="9%">张三</td>
+                            <td width="9%">44050910000000</td>
+                            <td width="9%">13798689971</td>
+                            <td width="9%">XXXXXXXX</td>
+                            <td width="9%">37059XXXX</td>
+                            <td width="10%">角色1 </td>
+                             <td width="10%">2012-9-18</td>
+                             <td width="10%">2012-9-18 </td>
+                             <td width="10%">未激活</td>
+                            </tr>
+                            <tr>
+                            
+                             <tr>
+                            <td width="6%"><input type="checkbox" name=""></td>
+                            <td width="9%"><span class="username_datum">axly10</span></td>
+                            <td width="9%">张三</td>
+                            <td width="9%">44050910000000</td>
+                            <td width="9%">13798689971</td>
+                            <td width="9%">XXXXXXXX</td>
+                            <td width="9%">37059XXXX</td>
+                            <td width="10%">角色1 </td>
+                             <td width="10%">2012-9-18</td>
+                             <td width="10%">2012-9-18 </td>
+                             <td width="10%">未激活</td>
+                            </tr>
+                            <tr>
+                  
+                        </table>
+                  	      </div>
+                            <!--用户列表 End-->
+                            
+                              <!--分页 Begin-->
+                                <div class="page">
+                                    <div class="page_center">
+                                        <a href="#" class="previous">上一页</a>
+                                        <span class="page_current">1</span>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <span class="page_break">...</span>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="page_num">共10页</span>
+                                        <span class="go_page">到第<input type="text">页</span>
+                                        <span class="page_ok"><img src="../images/st_ok.png"></span>
+                                    </div>
+                                </div>
+                                <!--分页 End-->
+                                
+                                <!--control_active Begin-->
+                                <div class="control_active">
+                                	<div class="control_active_wrap">
+                                    	<span class="modify_privilege">更改权限</span>
+                                        <span class="modify_privilege_date">更改权限期限</span>
+                                        <span class="disabled_open">禁用/开启</span>
+                                        <span class="remove_user">删除</span>
+                                    </div>
+                                </div>
+                                 <!--control_active End-->
+                                
+                                
+                        </li>
+                        
+                       <li class="">
+                        	<!--用户列表 Begin-->
+                             <div class="common_user_bar">
+                                <dl>
+                                	<dd>
+                                    	<label for="user_name">
+                                       姓名
+                                        </label>
+                                         <input id="user_name"  type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<label for="user_account">
+                                       帐号
+                                        </label>
+                                         <input id="user_account" type="text" name="" >
+                                    </dd>
+                                    <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       所属营业部
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate_7">
+                                	    <input type="hidden" autocomplete="off" id="reportName_7">
+                                         <div id="select_info_year1_7" class="sel_84_dialog select_short_o">2012</div>
+                                         <ul id="options_year1_7" class="sel_91_option select_short_o" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    
+                                     <dd>
+                                    	<div class="dialog_box">
+                                        <label for="user_belong">
+                                       所属角色
+                                        </label>
+                                    	 <input type="hidden" autocomplete="off" id="reportDate_8">
+                                	    <input type="hidden" autocomplete="off" id="reportName_8">
+                                         <div id="select_info_year1_8" class="sel_84_dialog select_short_o">2012</div>
+                                         <ul id="options_year1_8" class="sel_91_option select_short_o" style="display: none;">
+                                            <li data-value="12">2012</li>
+                                            <li data-value="11">2011</li>
+                                            <li data-value="10">2010</li>
+                                            <li data-value="19">2019</li>
+                                            <li data-value="18">2018</li>
+                                          </ul>
+                                      </div>
+                                    	
+                                    </dd>
+                                    
+                                     
+                                    
+                                    
+                                     
+                                    
+                                    <dd>
+                                         <input  type="image" class="user_submit" src="../images/user_check.png" name="" >
+                                    </dd>
+                                </dl>
+                                
+                             </div> 
+                             
+                                        
+                          <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_exec">
+              <tr>
+                <th width="6%"><img src="../images/check_uncheck.png" class="check_uncheck"></th>
+                <th width="10%">帐号</th>
+                <th width="10%">姓名</th>
+                <th width="10%">身份证号</th>
+                <th width="10%">联系电话</th>
+                <th width="10%">所属营业部</th>
+                <th width="11%"> 资金账号</th>
+                <th width="11%">所属角色</th>
+                <th width="11%">权限到期日</th>
+                <th width="11%">用户状态</th>
+                </tr>
+                </table>
+                                                                               
+                            <div class="tbl_scoll">
+                        
+                            <table width="100%" cellspacing="0" cellpadding="0" border="0" class="tbl_common tbl_exec tbl_no_scroll">
+                        
+                           
+                            <tr>
+                            <td width="6%"><input type="checkbox" name=""></td>
+                            <td width="10%"><span class="username_datum">axly10</span></td>
+                            <td width="10%">张三</td>
+                            <td width="10%">44050910000000</td>
+                            <td width="10%">13798689971</td>
+                            <td width="10%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">角色1 </td>
+                             <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                             <tr>
+                            <td width="6%"><input type="checkbox" name=""></td>
+                            <td width="10%"><span class="username_datum">axly10</span></td>
+                            <td width="10%">张三</td>
+                            <td width="10%">44050910000000</td>
+                            <td width="10%">13798689971</td>
+                            <td width="10%">XXXXXXXX</td>
+                            <td width="11%">37059XXXX</td>
+                            <td width="11%">角色1 </td>
+                             <td width="11%">2012-9-18 </td>
+                             <td width="11%">未激活</td>
+                            </tr>
+                          
+                  
+                        </table>
+                  	      </div>
+                            <!--用户列表 End-->
+                            
+                              <!--分页 Begin-->
+                                <div class="page">
+                                    <div class="page_center">
+                                        <a href="#" class="previous">上一页</a>
+                                        <span class="page_current">1</span>
+                                        <a href="#">2</a>
+                                        <a href="#">3</a>
+                                        <a href="#">4</a>
+                                        <a href="#">5</a>
+                                        <span class="page_break">...</span>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="page_num">共10页</span>
+                                        <span class="go_page">到第<input type="text">页</span>
+                                        <span class="page_ok"><img src="../images/st_ok.png"></span>
+                                    </div>
+                                </div>
+                                <!--分页 End-->
+                                
+                                <!--control_active Begin-->
+                                <div class="control_active">
+                                	<div class="control_active_wrap">
+                                        <span class="deferred_user">延期</span>
+                                        <span class="remove_user">删除</span>
+                                    </div>
+                                </div>
+                                 <!--control_active End-->
+                                
+                                
+                        </li>
+          </ul>
+                          
+
+        </div>
+    <!--sp_right End-->
+    
+</div>
+<!--main_wrap End-->
+
+<script>
+window.resizeHeight('.tbl_scoll', 320)
+
+//jQ tab切换
+$(".tab_li li").click(function(){
+	var index = $(this).index();
+	$(".tab_li").children("li").removeClass().eq(index).addClass('display');
+	$(".sub_content").children("li").removeClass().eq(index).addClass('display')
+});
+
+//全选/反选
+$(".check_uncheck").toggle(function(){
+	//check() uncheck()方法 是自定义jQ对象方法
+	//选中项
+	var checked = $(this).closest("li").find('.tbl_common input[type="checkbox"]').check();
+	//console.log(checked);
+}, function(){
+	$(this).closest("li").find('.tbl_common input[type="checkbox"]').uncheck();
+	//console.log(undchecked);	
+});
+
+downBox('select_info_year1', '#options_year1', 'reportDate', 'reportName');
+downBox('select_info_year1_4', '#options_year1_4', 'reportDate_4', 'reportName_4');
+downBox('select_info_year1_5', '#options_year1_5', 'reportDate_5', 'reportName_5');
+downBox('select_info_year1_6', '#options_year1_6', 'reportDate_6', 'reportName_6');
+
+downBox('select_info_year1_7', '#options_year1_7', 'reportDate_7', 'reportName_7');
+downBox('select_info_year1_8', '#options_year1_8', 'reportDate_8', 'reportName_8');
+</script>
+
+<!--新建用户 Begin-->
+<div class="new_user" title="新建用户">
+<form method="post" class="form_new_user">
+
+<table width="100%" class="tbl_new_user" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="20%" align="right">  <span class="red">*</span>姓名：</td>
+    <td width="80%">
+           <p class="p_valid">
+            <input type="text"  name="fullname" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text">2～12位中文、字母、数字、下划线</span>
+                     </font>
+    </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>帐号：</td>
+    <td>
+        	<p class="p_valid">
+            <input type="text" id="username" name="username" class="new_input">
+           </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_error">账号输入错误</span>
+            </font>
+        </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>密码：</td>
+    <td>
+    	 <p class="p_valid">
+            <input type="text" class="new_input">
+         </p>
+            <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_ok">正确</span>
+           </font>
+    	
+       </td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>再次输入密码：</td>
+    <td><input type="text" class="new_input">
+    </td>
+  </tr>
+  <tr>
+    <td align="right">联系电话：</td>
+    <td><input type="text" class="new_input"></td>
+  </tr>
+  <tr>
+    <td align="right"><span class="red">*</span>E-mail：</td>
+    <td>
+        <input type="text" class="new_input">
+    </td>
+  </tr>
+  <tr>
+    <td align="right">身份证号：</td>
+    <td><input type="text" class="new_input"></td>
+  </tr>
+  <tr>
+    <td align="right">所属营业部：</td>
+    <td>
+    	<div class="dialog_box">
+ 
+             <input type="hidden" autocomplete="off" id="reportDate_2">
+            <input type="hidden" autocomplete="off" id="reportName_2">
+             <div id="select_info_year1_2" class="sel_84_dialog new_sel_d">2012</div>
+             <ul id="options_year1_2" class="sel_91_option new_sel_option" style="display: none;">
+                <li data-value="12">2012</li>
+                <li data-value="11">2011</li>
+                <li data-value="10">2010</li>
+                <li data-value="19">2019</li>
+                <li data-value="18">2018</li>
+              </ul>
+          </div>
+    
+    </td>
+  </tr>
+  <tr>
+    <td align="right">资金帐号：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">联系地址：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">邮编：</td>
+    <td><input type="text" class="new_input" /></td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+        <div class="new_u_control">
+            <input type="reset" value="button" class="new_user_cancle">
+            <input type="submit" value="submit" class="new_user_register">
+         </div>
+</form>
+</div>
+
+<link href="../style/ui-lightness/jquery-ui-1.9.1.custom.css" rel="stylesheet">
+<script src="../js/jquery-ui-1.9.1.custom.js"></script>
+
+<script src="../js/jquery.validate.js"></script>
+<!--<script src="../js/jquery.metadata.js"></script>-->
+<script>
+//validate 插件
+
+$(function(){
+	$(".new_user_cancle").click(function(){
+		$(".ui-dialog-titlebar-close").click()
+	});
+	
+	
+	
+	
+	/*
+	
+	
+		// 字符验证   
+		jQuery.validator.addMethod("userName", function(value, element) {   
+		  return this.optcional(element) || /^[\u4E00-\u9FA5\uF900-\uFA2D\w]+$/.test(value);   
+		}, "账号只能包括中文、英文、数字和下划线"); 
+		// 中文字两个字节   
+		jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {   
+		  var length = value.length;   
+		  for(var i = 0; i < value.length; i++){   
+		   if(value.charCodeAt(i) > 127){   
+		    length++;   
+		   }   
+		  }   
+		  return this.optional(element) || ( length >= param[0] && length <= param[1] );   
+		}, "账号需在4-50个字节之间"); 
+		
+		jQuery.validator.addMethod("inputNum", function(value, element) {   
+			  return this.optional(element) || !(/^\d+$/.test(value));   
+		}, "账号不能全部为数字"); 
+			
+		$(".form_new_user").validate({
+			errorClass:"errrMsg",
+			rules: {
+				fullname: {
+					required: true,
+					milength:2
+					
+				},
+				username: {   
+				    required: true, 
+				    userName: true,  
+				    inputNum: true, 
+				    byteRangeLength:[4,50],
+				    remote: {
+				    	url: 'xx.html',//检测账号
+				    	type: "post",
+				        dataType: "json",
+				        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    	data:{
+				    		username:function() { return $("#username").val();}
+				    	}
+				    }
+				   },   
+				userPassword: {   
+				 	required: true,   
+				 	minlength: 6   
+				},   
+				reUserPassword: {   
+				 	required: true,   
+				 	minlength: 6,   
+				 	equalTo: "#userPassword"   
+				},
+				email: {   
+				  	required: true, 
+				  	email: true   ,
+				  	maxlength: 100,
+				  	 remote: {
+					    	url: 'xx.html',//检测EMAIL
+					    	data:{
+					    		email:function() { return $("#email").val();}
+					    	}
+					    }
+				  	
+				 }
+	       	},
+	        messages: {  
+	        	username: {   
+	        	    required: "账号不能为空",   
+	        	    remote:"该账号已被使用"
+	        	   },   
+        	   	userPassword: {   
+        	    	required: "密码不能为空",   
+        	    	minlength: "密码至少6位"   
+        	   	},   
+        	   	reUserPassword: {   
+        	    	required: "请再次输入密码",   
+        	    	equalTo: "两次输入密码不一致",   
+        	    	minlength: "密码至少6位" 
+        	   	},
+       	  	 	email: {   
+       		    	required: "请输入一个Email地址",   
+       		    	email: "请输入一个有效的Email地址",
+       		    	remote:"邮箱格式不正确或已被其他用户注册激活",
+       		    	maxlength:"邮箱最长100个字符"
+       		   } 
+	        },
+	        errorPlacement: function(error, element) {
+		        	var el = $("<label name='errorLabel'></label>");
+					//var lb = element.parent();
+					var lb = element.parent().parent().find("font.p_l_10").empty();
+					lb.find("label[name='errorLabel']").each(function(){
+						$(this).remove();
+					});
+					lb.find("input").each(function(){
+						$(this).removeClass("errrMsg");
+					});
+					error.appendTo(el);
+					el.appendTo(lb);
+		        	var elemInfo = $(element).parent().children("font");
+					elemInfo.hide();
+	        	},
+	        success: function(label) { 
+					//$(".tips_text").append('1111223311');
+	        		 label.html("&nbsp;").removeClass().addClass("successMsg"); 
+	        		 
+	        }
+		});
+		*/
+	
+});
+
+
+
+
+$(".add_user").click(function(){
+	
+	
+	$.post("test.php", function(data){
+		$(".new_user").html(data);
+		
+	jQuery.validator.addMethod("fullName", function(value, name){
+		return  /^[\u4E00-\u9FA5\uF900-\uFA2D\w]+$/.test(value);   
+	}, "只能包括中文、英文、数字和下划线");
+	
+	// 中文字两个字节   
+	jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {   
+	  var length = value.length;   
+	  for(var i = 0; i < value.length; i++){   
+	   if(value.charCodeAt(i) > 127){   
+		length++;   
+	   }   
+	  }   
+	  return  ( length >= param[0] && length <= param[1] );   
+	}, "需在2-12个字节之间"); 
+	
+	jQuery.validator.addMethod("inputNum", function(value, element) {   
+		  return !(/^\d+$/.test(value));   
+	}, "不能全部为数字"); 
+		
+	
+	$(".form_new_user").validate({
+		rules: {
+			fullname: {
+				required:true,
+				fullName: true,
+				inputNum: true,
+				byteRangeLength: [2,12]
+			},
+			username: {   
+				    required: true, 
+				    fullName: true,  
+				    inputNum: true, 
+				    byteRangeLength:[4,50],
+				    remote: {
+				    	url: '../test.php',//检测账号
+				    	type: "post",
+				        dataType: "json",
+				        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    	data:{
+				    		//username:function() { return $("#username").val();}
+				    	}
+				    }
+			}
+			
+		},
+		
+		//验证成功
+	   success: function(label) { 
+	   		//$(".form_new_user").preventDefault();
+			//element.parent().parent().find(".new_user_tips").hide();;
+			
+			
+			
+	     	label.parent().html("OK").removeClass("tips_error").addClass("tips_ok").parent(); 
+		
+			
+			
+			
+	   },
+		 
+	  errorPlacement: function(error, element) {
+		  element.parent().parent().find(".new_user_tips").show();
+		  //console.log('1.000:', element);
+		  var targetElement = element.parent().parent().find(".tips_text");
+			   error.appendTo(targetElement.removeClass("tips_ok").addClass('tips_error').empty());   
+		  
+		  //console.log(targetElement)
+		
+       },
+	   
+	   submitHandler:function(form){
+		
+		//$(form).ajaxSubmit();
+		
+		}
+	});
+	
+	}, 'html');
+	
+	
+	
+	$(".new_user").dialog({
+		autoOpen: true,
+		modal: true,
+		position: {
+			at: "center",
+		},
+		height: 'auto',
+		resizable: false,
+		width: 600,
+		zIndex: 1000
+	});
+});
+downBox('select_info_year1_2', '#options_year1_2', 'reportDate_2', 'reportName_2');
+//$(".add_user").click();
+</script>
+
+<!--新建用户 End-->
+
+
+<!--用户资料 Begin-->
+<div class="user_datum" title="用户资料">
+	<div class="user_datum_left">
+          <form action="test.php" method="post" class="form_datum_modify">
+          
+          <table width="100%" class="tbl_new_user tbl_datum" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td align="right">  <span class="red">*</span>姓名：</td>
+              <td>
+                     <p class="p_valid">
+                      <input type="text"  name="dt_fullname" class="new_input">
+                     </p>
+                     <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text">2～12位中文、字母、数字、下划线</span>
+                     </font>
+              </td>
+            </tr>
+            <tr>
+              <td align="right"><span class="red">*</span>帐号：</td>
+              <td>
+                  <p class="p_valid">
+                      <input type="text" id="dt_username" name="dt_username" class="new_input">
+                  </p>
+                     <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_error">账号输入错误</span>
+                     </font>
+                  </td>
+            </tr>
+            <tr>
+              <td align="right"><span class="red">*</span>密码：</td>
+              <td>
+                   <p class="p_valid">
+                      <input type="text" class="new_input">
+                   </p>
+                   <font class="new_user_tips p_l_10 nu_two">
+                        <span class="tips_ico">&nbsp;</span>
+                       	<span class="tips_text tips_ok">正确</span>
+                     </font>
+                 </td>
+            </tr>
+            <tr>
+              <td align="right"><span class="red">*</span>再次输入密码：</td>
+              <td><input type="text" class="new_input">
+              </td>
+            </tr>
+            <tr>
+              <td align="right">联系电话：</td>
+              <td><input type="text" class="new_input"></td>
+            </tr>
+            <tr>
+              <td align="right"><span class="red">*</span>E-mail：</td>
+              <td>
+                  <input type="text" class="new_input" required>
+              </td>
+            </tr>
+            <tr>
+              <td align="right">身份证号：</td>
+              <td><input type="text" class="new_input"></td>
+            </tr>
+            <tr>
+              <td align="right">所属营业部：</td>
+              <td>
+                  <div class="dialog_box">
+           
+                       <input type="hidden" autocomplete="off" id="reportDate_3">
+                      <input type="hidden" autocomplete="off" id="reportName_3">
+                       <div id="select_info_year1_3" class="sel_84_dialog new_sel_d">2012</div>
+                       <ul id="options_year1_3" class="sel_91_option new_sel_option" style="display: none;">
+                          <li data-value="12">2012</li>
+                          <li data-value="11">2011</li>
+                          <li data-value="10">2010</li>
+                          <li data-value="19">2019</li>
+                          <li data-value="18">2018</li>
+                        </ul>
+                    </div>
+              
+              </td>
+            </tr>
+            <tr>
+              <td align="right">资金帐号：</td>
+              <td><input type="text" class="new_input" /></td>
+            </tr>
+            <tr>
+              <td align="right">联系地址：</td>
+              <td><input type="text" class="new_input" /></td>
+            </tr>
+            <tr>
+              <td align="right">邮编：</td>
+              <td><input type="text" class="new_input" /></td>
+            </tr>
+            <tr>
+              <td align="right">&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+                  
+          </form>
+    </div>
+
+	<div class="user_datum_right">
+    	
+            <div class="belong_role">
+            所属角色： 角色角
+            </div>
+        <div class="datum_privilege">
+            <h3 class="h3_title">
+            用户权限列表
+            </h3>
+               <div class="organization_tree">
+                        <!--ligerTree插件html部分 Beigin-->
+                        <ul id="tree1">
+                            <li isexpand="false">
+                                <span>节点1</span>
+                                <ul>
+                                    <li isexpand="false">
+                                        <span>节点1.1</span>
+                                         <ul>
+                                            <li><span>节点1.1.2</span></li>
+                                            <li><span>节点1.1.2</span></li>
+                                         </ul>
+                                     </li>
+                                     <li><span>节点1.2</span></li>
+                                </ul>
+                            </li>  
+                        </ul>
+                        <!--ligerTree插件html部分 End-->
+                        </div>
+            </div>
+            
+            <div class="common_btn">
+            	<input type="button" class="common_blue" value="保存">
+                <input type="button"  class="common_blue" value="修改">
+            </div>
+    </div>
+</div>
+
+<script>
+$(".username_datum").click(function(){
+	$(".user_datum").dialog({
+		autoOpen: true,
+		modal: true,
+		resizable: false,
+		width: 630,
+	});	
+	downBox('select_info_year1_3', '#options_year1_3', 'reportDate_3', 'reportName_3');
+});	
+//$(".username_datum").click(); //调试
+
+</script>
+<!--ligerUI插件 Begin-->
+<script src="../js/ligerUI/base.js"></script>
+<script src="../js/ligerUI/ligerTree.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/ligerUI/ligerui-tree.css">
+<script type="text/javascript">
+	$(function(){
+		$("#tree1").ligerTree({ checkbox: true, parentIcon: null, childIcon: null, getChecked:false, nodeWidth: 152}).expandAll();
+	})
+</script>
+<!--ligerUI插件 End-->
+<!--用户资料 End-->
+
+<!--用户权限管理 Begin-->
+<script src = '../js/WdatePicker.js'></script>
+<div class="privilege_manage" title="用户权限管理">
+	<div class="list_role_wrap">
+    		<div class="checked_list">
+               <h3 class="h3_title">
+                已选用户列表
+                </h3>
+                <table width="100%" class="tbl_checked" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>姓名</th>
+    <th>帐号</th>
+    <th>所属营业部</th>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>axly10</td>
+    <td>XXXXXXXXX</td>
+  </tr>
+</table>
+
+            </div>
+            
+            <div class="belong_role_list">
+                <h3 class="h3_title">
+                所属角色
+                </h3>
+            	<ul class="role_list">
+                	<li>
+                    	<input name="roleId_1" type="checkbox" id="roleId_1">	
+                        <label for="roleId_1">角色1</label>
+                 	 </li>
+                     <li>
+                    	<input name="roleId_2" type="checkbox" id="roleId_2">	
+                        <label for="roleId_2">角色2</label>
+                 	 </li>
+                </ul>
+            </div>
+    </div>
+    
+  <div class="privilege_date">
+    	<div class="privilege_datepicker">
+        	<strong>权限期限</strong>
+            <input type="text" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true})" id="start_applydate" name="start_applydate" readonly  class="a_datepicker">
+        </div>
+        <div class="privilege_radio">
+        	<label>   
+              <a href="#">一周</a></label>
+            <label>
+              <a href="#">一个月</a></label>
+            <label>
+              <a href="#">三个月</a></label>
+            <label>
+              <a href="#">半年</a></label>
+            <label>
+              <a href="#">一年</a></label>
+              
+              <label>
+              <a href="#">两年</a></label>
+              
+     
+        </div>
+    </div>
+    
+    <div class="common_btn privilege_btn">
+            	<input type="button" value="重置" class="common_blue">
+                <input type="button" value="取消" class="common_blue common_cancle">
+                 <input type="button" value="确定" class="common_blue">
+    </div>
+</div>
+<script>
+	$(".active_user").click(function(){
+		$(".privilege_manage").dialog({
+			autoOpen: true,
+			width: 590,
+			height: 720,
+			modal: true,
+			resizable: false,
+			draggable: true
+		});
+	});
+	//$(".active_user").click();
+</script>
+    
+<!--用户权限管理 End-->
+
+<!--用户列表 用户权限管理 Begin-->
+<div class="userlist_privilege_manage" title="用户权限管理">
+	<div class="list_role_wrap">
+    		<div class="checked_list">
+               <h3 class="h3_title">
+                已选用户列表
+                </h3>
+                <table width="100%" class="tbl_checked" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th>姓名</th>
+    <th>帐号</th>
+    <th>所属营业部</th>
+  </tr>
+  <tr>
+    <td>张三</td>
+    <td>axly10</td>
+    <td>XXXXXXXXX</td>
+  </tr>
+</table>
+
+            </div>
+            
+            <div class="belong_role_list">
+                <h3 class="h3_title">
+                所属角色
+                </h3>
+            	<ul class="role_list">
+                	<li>
+                    	<input name="roleId_1" type="checkbox" id="roleId_1">	
+                        <label for="roleId_1">角色1</label>
+                 	 </li>
+                     <li>
+                    	<input name="roleId_2" type="checkbox" id="roleId_2">	
+                        <label for="roleId_2">角色2</label>
+                 	 </li>
+                </ul>
+            </div>
+    </div>
+    
+    
+    <div class="common_btn privilege_btn">
+            	<input type="button" value="重置" class="common_blue">
+                <input type="button" value="取消" class="common_blue common_cancle">
+                 <input type="button" value="确定" class="common_blue">
+    </div>
+</div>
+
+<script>
+	$(".modify_privilege").click(function(){
+		$(".userlist_privilege_manage").dialog({
+			autoOpen: true,
+			width: 590,
+			height: 650,
+			modal: true,
+			resizable: false,
+			draggable: true
+		});
+	});
+	//$(".modify_privilege").click();
+</script>
+<!--用户列表 用户权限管理 End-->
+
+
+<!--用户列表 权限期限管理 End-->
+<div class="userlist_privilege_date" title="权限期限管理">
+    
+  <div class="privilege_date">
+    	<div class="privilege_datepicker userlist_detepicker">
+        	<strong>权限期限</strong>
+            <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',readOnly:true});" readonly='readonly' value="2012-12-31" class="w_date_userlist a_datepicker">
+           
+        </div>
+        <div class="privilege_radio">
+        	<label>   
+              <a href="#">一周</a></label>
+            <label>
+              <a href="#">一个月</a></label>
+            <label>
+              <a href="#">三个月</a></label>
+            <label>
+              <a href="#">半年</a></label>
+            <label>
+              <a href="#">一年</a></label>
+              
+              <label>
+              <a href="#">两年</a></label>
+              
+     
+        </div>
+    </div>
+    
+    <div class="common_btn pt_date_btn">
+                <input type="button" value="取消" class="common_blue">
+                 <input type="button" value="确定" class="common_blue">
+    </div>
+</div>
+
+<script>
+	$(".modify_privilege_date, .deferred_user").live('click', function(){
+		
+		$(".userlist_privilege_date").dialog({
+			autoOpen: true,
+			width: 440,
+			height: 190,
+			modal: true,
+			resizable: false,
+			draggable: true
+		});
+	});
+	
+	
+	//$(".modify_privilege_date").click();
+</script>
+<!--用户列表 权限期限管理 End-->
+
+
+</body>
+</html>

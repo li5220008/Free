@@ -1,0 +1,11 @@
+STP_StockPool	          股票池基本信息
+STP_Style	              股票池策略分类表
+STP_Parameters	          股票池分类参数表
+STP_Sample	              股票池样本信息
+STP_DailyReturn	          股票池回报率
+
+REP_Institution	          研究报告发布机构关联表
+REP_ReportInfo	          研究报告基本信息
+
+STK_StockInfo             股票基本信息表
+
